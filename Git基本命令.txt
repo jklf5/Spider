@@ -14,7 +14,9 @@ git remote add origin git@github.com:jklf5/Spider //添加远程仓库管理
 
 git pull --rebase origin master //如果远程仓库创建时选择了创建README.md，则用这条指令同步README.md到本地仓库
 
-//上传内容
+//上传内容，上传之前需要先更新
+git pull --rebase origin master //更新本地仓库
+
 git add hello-world.txt //添加指定文件    
 或者
 git add . //添加所有文件
@@ -36,3 +38,15 @@ git clone git@github.com:jklf5/Spider //从远程仓库克隆内容至本地仓库
 git fetch origin  //获取远程更新
 
 git merge origin/master //将更新的内容合并到本地分支
+
+
+//问题解答;
+//问题描述:Error pulling origin: error: Your local changes to the following files would be overwritten by merge
+git clean -d -fx //用于更新到本地仓库时存在本地仓库相同的文件，强制执行删除本地仓库文件
+
+//问题描述;Could not open a connection to your authentication agent.
+ssh-agent //解决ssh-add时不能connection
+
+//问题描述：git@github.com: Permission denied (publickey).
+ssh-add ~/.ssh/id_key //解决连接远程仓库时没有识别到创建的ssh
+
