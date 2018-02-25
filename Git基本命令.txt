@@ -1,0 +1,38 @@
+ssh-keygen -t rsa -C "emailname"  //创建ssh
+
+ssh -T git@github.com //测试连接
+
+git config --global user.name "userName" //配置用户名
+
+git config --global user.email "myMailbox@163.com" //配置邮箱名
+
+右键git bash here为创建本地仓库
+
+git init //初始化git仓库
+
+git remote add origin git@github.com:jklf5/Spider //添加远程仓库管理
+
+git pull --rebase origin master //如果远程仓库创建时选择了创建README.md，则用这条指令同步README.md到本地仓库
+
+//上传内容
+git add hello-world.txt //添加指定文件    
+或者
+git add . //添加所有文件
+
+git commit -m "备注信息" //提交当前工作空间的修改内容
+
+git push git@github.com:jklf5/Spider //上传内容至远程仓库
+或者
+git push -u origin master  //（-u为第一次使用时）
+
+
+可用git push --all -f 命令完成强制覆盖方式上传内容
+
+git clone git@github.com:jklf5/Spider //从远程仓库克隆内容至本地仓库
+
+
+//假如本地仓库已经存在了代码而远程仓库里有更新，需要将更改的内容合并到本地的代码中
+
+git fetch origin  //获取远程更新
+
+git merge origin/master //将更新的内容合并到本地分支
