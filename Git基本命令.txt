@@ -39,6 +39,9 @@ git fetch origin  //获取远程更新
 
 git merge origin/master //将更新的内容合并到本地分支
 
+git reset --hard 
+git pull //如果希望用代码库中的文件完全覆盖本地工作版本.
+
 
 //问题解答;
 //问题描述:Error pulling origin: error: Your local changes to the following files would be overwritten by merge
@@ -49,4 +52,11 @@ ssh-agent //解决ssh-add时不能connection
 
 //问题描述：git@github.com: Permission denied (publickey).
 ssh-add ~/.ssh/id_key //解决连接远程仓库时没有识别到创建的ssh
+
+//问题描述：error: Your local changes to 'c/environ.c' would be overwritten by merge.  Aborting.
+Please, commit your changes or stash them before you can merge.
+git stash //先将本地修改存储起来
+
+git stash pop stash //还原暂存的内容
+
 
