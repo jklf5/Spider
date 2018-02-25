@@ -1,0 +1,1406 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    
+        <html xmlns="http://www.w3.org/1999/xhtml">
+    
+<head>
+        <link rel="canonical" href="http://blog.csdn.net/chuan403082010/article/details/79255262" />
+
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="alternate" media="handheld" href="#" />
+
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848" />
+
+    <title>python中 代码访问某个网站 - Scarlett的博客 - CSDN博客</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="import urllibdef read_text():    quotes = open(/Users/Scarlett/Downloads/movie_quotes/movie_quotes.txt)    contents_of_file = quotes.read()    quotes.close()    check_profanity(contents_of_fi" />
+
+    <meta name="keywords" content="" />
+    <script src="http://static.blog.csdn.net/scripts/blog_static_head.min.js?v2" type="text/javascript"></script>
+
+
+        <link rel="Stylesheet" type="text/css" href="http://static.blog.csdn.net/skin/skin-yellow/css/style.css?v=2.3" />
+
+    
+
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="/chuan403082010/rss/list" />
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="http://static.blog.csdn.net/scripts/SyntaxHighlighter/styles/default.css" />
+
+
+
+
+            <script>
+                (function ()
+                {
+                    var bp = document.createElement('script');
+                    var curProtocol = window.location.protocol.split(':')[0];
+                    if (curProtocol === 'https') {
+                        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+                    }
+                    else {
+                        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                    }
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(bp, s);
+                })();
+
+            </script>
+
+    <link href="http://c.csdnimg.cn/blog/csdn_public_blog_detail.min.css" type="text/css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="http://static.blog.csdn.net/css/csdn_blog_detail.min.css" />
+
+    <!-- 请置于所有广告位代码之前 -->
+    <script src="http://dup.baidustatic.com/js/ds.js"></script>
+
+</head>
+
+
+<body>
+        <div class="csdn-tracking-statistics" data-pid="blog" data-view="true" data-mod="ad_popu_72" data-mtp="62" data-order="40" data-con="ad_content_2072">
+            <script id="popuLayer_js_q" src="http://ads.csdn.net/js/popuLayer.js" defer="defer" type="text/javascript"></script>
+            <div id="layerd" style="position: fixed;bottom:0px;right:0px;line-height:0px;z-index:1000">
+                <div class="J_close layer_close" style="display:;background-color:#efefef;padding:0px;color:#333;font:12px/24px Helvetica,Tahoma,Arial,sans-serif;text-align:right;">关闭</div><!-- 广告占位容器 -->
+                <div id="cpro_u2895327">
+                    <!-- 投放代码 -->
+                            <script type="text/javascript" src="//cee1.iteye.com/ojylrgbyk.js"></script>
+
+
+
+                </div>
+            </div>
+            <script>
+                document.getElementById("popuLayer_js_q").onload = function () {
+                    var styObjd = styObj = { width: "300px", "height": parseInt(250) + 28 };
+                    window.CSDN.Layer.PopuLayer("#layerd", { storageName: "layerd", styleObj: styObjd, total: 50, expoire: 1000 * 60 });
+                }</script>
+
+
+        </div>
+
+
+    <!--new top-->
+    <script id="toolbar-tpl-scriptId" src="http://csdnimg.cn/public/common/toolbar/js/content_toolbar.js" type="text/javascript" domain="http://blog.csdn.net"></script>
+
+    <link rel="stylesheet" href="http://csdnimg.cn/public/common/toolbar/content_toolbar_css/content_toolbar.css">
+    <!--new top-->
+    <div id="container">
+        
+<div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/chuan403082010">Scarlett的博客</a></h2>
+            <h3>每天进步一点点</h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+    
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>           
+                <li id="btnContents"><a href="http://blog.csdn.net/chuan403082010?viewmode=contents"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_mulu'])">
+                    <img src="http://static.blog.csdn.net/images/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/chuan403082010?viewmode=list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_zhaiyao'])">
+                    <img src="http://static.blog.csdn.net/images/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/chuan403082010/rss/list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_RSS'])">
+                    <img src="http://static.blog.csdn.net/images/ico_rss.gif">订阅</span></a></li>                   
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "chuan403082010";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/chuan403082010";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+	var curUserFace = "http://avatar.csdn.net/2_guest.jpg";
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                    <div class="ad_class">
+
+
+
+                    </div>
+
+                    
+
+ <script src="http://csdnimg.cn/rabbit/exposure-click/main-1.0.5.js"></script>
+
+<script   type="text/javascript" src="http://static.blog.csdn.net/scripts/category.js"></script>
+
+  <script type="text/ecmascript">
+      var title="python中 代码访问某个网站";
+      window.quickReplyflag = true;
+      var isBole = false; 
+      var fasrc="http://my.csdn.net/my/favorite/miniadd?t=python%e4%b8%ad+%e4%bb%a3%e7%a0%81%e8%ae%bf%e9%97%ae%e6%9f%90%e4%b8%aa%e7%bd%91%e7%ab%99&u=http://blog.csdn.net/chuan403082010/article/details/79255262"
+    </script>
+<style>
+    .texCommend {
+        position: absolute;
+        background-color: #fff;
+        color: #000;
+        padding: 5px;
+        border: 1px solid #ccc;
+        cursor: default;
+        text-align: left;
+        z-index: 201;
+        border-radius: 5px;
+        box-shadow: 0 10px 20px #808080;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    .MJX_Assistive_MathML {
+        display: none;
+    }
+    span.MathJax {
+        outline: none
+    }
+</style>
+<div id="article_details" class="details">
+    
+<div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+    <h1>
+        <span class="link_title"><a href="/chuan403082010/article/details/79255262">
+        python中 代码访问某个网站        
+           
+        </a>
+        </span>
+
+         
+    </h1>
+</div>
+
+
+    
+    <div class="article_manage clearfix">
+        <div class="article_r">
+            <span class="link_postdate">2018-02-04 21:57</span>
+            <span class="link_view" title="阅读次数">59人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="#comments" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+            <span class="link_collect csdn-tracking-statistics" data-pid="blog"  data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle('python%e4%b8%ad+%e4%bb%a3%e7%a0%81%e8%ae%bf%e9%97%ae%e6%9f%90%e4%b8%aa%e7%bd%91%e7%ab%99','79255262');return false;" title="收藏">收藏</a></span>
+             <span class="link_report"> <a href="#report" onclick="javascript:report(79255262,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script  type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="http://static.blog.csdn.net/images/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label  onclick="GetCategoryArticles('6044216','chuan403082010','top','79255262');">
+                        <span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">常见问题<em>（57）</em></span>
+                      <img class="arrow-down" src="http://static.blog.csdn.net/images/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="http://static.blog.csdn.net/images/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a  href="http://blog.csdn.net/chuan403082010/article/category/6044216"  target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_6044216">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+        <div   class="bog_copyright">         
+            <p  class="copyright_p" >版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+        </div>
+
+
+
+
+
+
+<div id="article_content" class="article_content csdn-tracking-statistics" data-pid="blog"  data-mod=popu_307  data-dsm = "post" >
+
+<pre name="code" class="python">import urllib
+
+
+def read_text():
+    quotes = open(&quot;/Users/Scarlett/Downloads/movie_quotes/movie_quotes.txt&quot;)
+    contents_of_file = quotes.read()
+    quotes.close()
+    check_profanity(contents_of_file)
+
+def check_profanity(text_to_check):
+    url = &quot;http://www.wdylike.appspot.com/?q=&quot; + text_to_check
+    # print(url)
+    connection = urllib.urlopen(&quot;http://www.wdylike.appspot.com/?q=&quot; + &quot;shit&quot;)
+    output = connection.read()
+    print(output)
+    connection.close()
+
+read_text() </pre><br>
+   
+</div>
+
+
+
+
+
+
+
+
+    <div class="readall_box csdn-tracking-statistics tracking-click"  data-pid="blog"  data-mod="popu_596">
+        <div class="read_more_mask"></div>
+        <a class="btn btn-large btn-gray-fred read_more_btn" target="_self">阅读全文</a>
+    </div>
+
+    <div class="csdn-tracking-statistics" data-pid="blog"  data-mod="popu_222"><a href="javascript:void(0);" >&nbsp;</a>   </div>
+    <div class="csdn-tracking-statistics" data-pid="blog"  data-mod="popu_223"> <a href="javascript:void(0);" >&nbsp;</a></div>
+        <div id="digg" ArticleId="79255262" >
+            <dl id="btnDigg" class="digg digg_disable"  onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>0</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_disable"  onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>0</dd>               
+            </dl>
+            
+        </div>
+    <script type="text/javascript">
+        function btndigga() {
+            $(".csdn-tracking-statistics[data-mod='popu_222'] a").click();
+        }
+        function btnburya() {
+            $(".csdn-tracking-statistics[data-mod='popu_223'] a").click();
+        }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span  onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian']);location.href='http://blog.csdn.net/chuan403082010/article/details/79254617';">上一篇</span><a href="http://blog.csdn.net/chuan403082010/article/details/79254617" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian'])">用turtle画了个小人</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+   
+      
+</div>
+
+     <div>
+         
+         <!-- 广告位：PC端-博客详情页底部banner-960*90 -->
+            <script>
+                (function() {
+                    var s = "_" + Math.random().toString(36).slice(2);
+                    document.write('<div id="' + s + '"></div>');
+                    (window.slotbydup=window.slotbydup || []).push({
+                        id: '4770928',
+                        container: s,
+                        size: '960,90',
+                        display: 'inlay-fix'
+                    });
+                })();
+            </script>
+    </div>
+
+<div id="suggest"></div>
+         <script  language="javascript" type='text/javascript'>     
+             $(function(){
+                 $.get("/chuan403082010/svc/GetSuggestContent/79255262",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+
+
+
+            
+                                    
+            
+                                    
+
+        <!-- 广告位开始 -->
+        <!-- 广告位结束 -->
+
+
+
+<div class="comment_class">
+	<div class="commentform"><!--<div class="panel_head">发表评论</div>--></div>
+    <div id="comment_form">
+
+    </div>
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list">
+	
+    </div>
+    <div id="comment_bar">
+    </div>
+    <!--<div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>-->
+</div>
+<div class="recommend_list">
+
+    
+            <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+<a href="/liuyuzhu111/article/details/49907305"  target="_blank" strategy="BlogCommendFromQuerySearch_0">
+                <dd>
+                    <h2>第一个Python程序——博客自动访问脚本</h2>
+                    <div class="summary">
+                        第一个Python程序——博客自动访问脚本动机今天有朋友写信说他认为自己的wordpress博客内显示的访问统计信息不正常，希望我能为他制造一些访问信息，供他对比。朋友提出的请求是在短时间内快速打开100个不同的博客页面，以便他从产生的访问量变化中理解博客访问数据。 
+本人作为一个搞计算机的人，有把...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><img src="http://avatar.csdn.net/9/6/D/2_liuyuzhu111.jpg" alt="liuyuzhu111" title="liuyuzhu111"></li>
+                        <li class="user_name">liuyuzhu111</li>
+                        <li class="time">2015-11-18 15:02</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"   fill = "#ccc"><defs><style/></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"/></svg><span>609</span></li>
+                    </ul>
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+<a href="/u013271763/article/details/19095519"  target="_blank" strategy="BlogCommendFromQuerySearch_1">
+                <dd>
+                    <h2>如何禁止访问某个网站</h2>
+                    <div class="summary">
+                        网络是一个纷繁复杂的世界，各类信息虽然应有尽有却也良莠不齐。尤其是家里有小孩的朋友就特别担心自己的孩子访问一些不良信息网站。那么我们怎么做到既无法访问不良网站又可以访问正常网站呢？
+
+下面笔者就以ie9浏览器为例教教大家如何设置禁止访问某个网站，其实这是一个非常实用的电脑知识。
+1、打开IE，...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><img src="http://avatar.csdn.net/8/5/C/2_u013271763.jpg" alt="u013271763" title="u013271763"></li>
+                        <li class="user_name">u013271763</li>
+                        <li class="time">2014-02-12 00:18</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"   fill = "#ccc"><defs><style/></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"/></svg><span>1235</span></li>
+                    </ul>
+                </dd>
+</a>
+            </dl>
+            <script>(function() {var s = "_" + Math.random().toString(36).slice(2);document.write('<div id="' + s + '"></div>');(window.slotbydup = window.slotbydup || []).push({id: '4765209',container: s,size: '808,120',display: 'inlay-fix'});})();</script> 
+            <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+<a href="/wf134/article/details/78576652"  target="_blank" strategy="BlogCommendFromQuerySearch_2">
+                <dd>
+                    <h2>利用python3模拟访问网站</h2>
+                    <div class="summary">
+                        功能: 
+利用python代码来获取我们访问百度后百度返回给我们的信息,将返回的内容写入到文件中. 
+需求: 
+使用socket模块代码如下:import socketdef main():
+    # 创建套接字
+    tcp_socket = socket.socket(socket.AF_I...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><img src="http://avatar.csdn.net/1/1/8/2_wf134.jpg" alt="wf134" title="wf134"></li>
+                        <li class="user_name">wf134</li>
+                        <li class="time">2017-11-19 20:17</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"   fill = "#ccc"><defs><style/></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"/></svg><span>90</span></li>
+                    </ul>
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+<a href="/syf1970/article/details/51485137"  target="_blank" strategy="BlogCommendFromQuerySearch_3">
+                <dd>
+                    <h2>cookie案例-显示用户上次访问网站的时间</h2>
+                    <div class="summary">
+                        cookie API： 
+public Cookie(String name,String value)：构造函数 
+setValue与getValue：得到cookie的值 
+setMaxAge与getMaxAge：设置cookie的有效期（以秒为单位），若不设置，则cookie的有效期是浏览器进...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><img src="http://avatar.csdn.net/C/D/6/2_syf1970.jpg" alt="syf1970" title="syf1970"></li>
+                        <li class="user_name">syf1970</li>
+                        <li class="time">2016-05-23 21:55</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"   fill = "#ccc"><defs><style/></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"/></svg><span>819</span></li>
+                    </ul>
+                </dd>
+</a>
+            </dl>
+            <!-- 广告位：PC端-博客详情通栏7（feed流）-808*120 --><script async="async" charset="utf-8" src="https://shared.ydstatic.com/js/yatdk/3.0.0/stream.js"  data-id="8935aa488dd58452b9e5ee3b44f1212f" data-hide-ad-label = "0"  data-div-Style="width:100%; padding: 16px 35px 16px 10px; border-bottom:1px solid #f4f4f4;" data-img-Style="float:right;width:120px;"  data-tit-Style="font-size:20px;font-weight:bold;margin-bottom:10px;font-family:'PingFang SC','Microsoft YaHei',SimHei,Arial,SimSun;"  data-des-Style="width:700px;font-size:14px;font-family:'PingFang SC','Microsoft YaHei',SimHei,Arial,SimSun;"> </script>
+            <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+<a href="/stevenyang_sjtu/article/details/70215154"  target="_blank" strategy="BlogCommendFromQuerySearch_4">
+                <dd>
+                    <h2>利用Pyhton中的requests包进行网页访问测试</h2>
+                    <div class="summary">
+                        为了测试一组网页是否能够访问，采取python中的requests包进行批量的访问测试，并输出访问结果。 
+一、requests包的安装 
+打开命令行(win+r输入cmd启动）; 
+打开pythion安装目录下的Python\Python36-32\Scripts，将其中的pip文件拖动到命令行中...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><img src="http://avatar.csdn.net/F/B/E/2_stevenyang_sjtu.jpg" alt="StevenYang_SJTU" title="StevenYang_SJTU"></li>
+                        <li class="user_name">StevenYang_SJTU</li>
+                        <li class="time">2017-04-17 19:40</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"   fill = "#ccc"><defs><style/></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"/></svg><span>167</span></li>
+                    </ul>
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+<a href="/kd_tx22/article/details/52433716"  target="_blank" strategy="BlogCommendFromQuerySearch_5">
+                <dd>
+                    <h2>网站限制某些ip访问，仅允许某些ip…</h2>
+                    <div class="summary">
+                        代码：
+
+function getIP() {
+return
+isset($_SERVER[&quot;HTTP_X_FORWARDED_FOR&quot;])?$_SERVER[&quot;HTTP_X_FORWARDED_FOR&quot;]
+
+:(isset($_SERVER[&quot;HT...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><img src="http://avatar.csdn.net/A/3/1/2_kd_tx22.jpg" alt="kd_tx22" title="kd_tx22"></li>
+                        <li class="user_name">kd_tx22</li>
+                        <li class="time">2016-09-04 18:02</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"   fill = "#ccc"><defs><style/></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"/></svg><span>1863</span></li>
+                    </ul>
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+<a href="/rxm1989/article/details/39549683"  target="_blank" strategy="BlogCommendFromQuerySearch_6">
+                <dd>
+                    <h2>怎样在网页添加访问计数器？</h2>
+                    <div class="summary">
+                        怎样在网页添加访问计数器？
+
+&#160;
+
+
+现在许多人都建立了个人网站，而在个人网站当中，有的服务商没有提供访问计数器功能，本人通过走访一些网站以后，总结出的方法如下：
+
+
+一、到这里http://www.amazingcounters.com/samples.php看看有没有你喜欢的计数器格式...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><img src="http://avatar.csdn.net/7/C/B/2_rxm1989.jpg" alt="rxm1989" title="rxm1989"></li>
+                        <li class="user_name">rxm1989</li>
+                        <li class="time">2014-09-25 13:24</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"   fill = "#ccc"><defs><style/></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"/></svg><span>979</span></li>
+                    </ul>
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+<a href="/m0_37886429/article/details/78865630"  target="_blank" strategy="BlogCommendFromQuerySearch_7">
+                <dd>
+                    <h2>使用python抓取网站代码，并下载里面的url</h2>
+                    <div class="summary">
+                        方法一
+
+
+
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+#python2.7的代码
+
+import os
+import urllib,urllib2
+from lxml import etree
+
+rename_dic={}
+
+header = {
+  ...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><img src="http://avatar.csdn.net/5/1/F/2_m0_37886429.jpg" alt="m0_37886429" title="m0_37886429"></li>
+                        <li class="user_name">m0_37886429</li>
+                        <li class="time">2017-12-21 17:13</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"   fill = "#ccc"><defs><style/></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"/></svg><span>152</span></li>
+                    </ul>
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+<a href="/qq_30062589/article/details/58338803"  target="_blank" strategy="BlogCommendFromQuerySearch_8">
+                <dd>
+                    <h2>如何禁止访问一个网站？？</h2>
+                    <div class="summary">
+                        因为win7与XP系统都是一样的地方修改，但win7更麻烦，所以这里以win7系统为例。打开我的电脑或计算机后，搜索“hosts”文件，我们只需要在系统盘:\Windows\System32\drivers\etc里的，且没有后缀扩展名的那个，其他地方的这个hosts文件无效。
+
+然后使用管理员身份...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><img src="http://avatar.csdn.net/5/E/6/2_qq_30062589.jpg" alt="qq_30062589" title="qq_30062589"></li>
+                        <li class="user_name">qq_30062589</li>
+                        <li class="time">2017-02-27 23:45</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"   fill = "#ccc"><defs><style/></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"/></svg><span>270</span></li>
+                    </ul>
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+<a href="/y534560449/article/details/53399706"  target="_blank" strategy="BlogCommendFromQuerySearch_9">
+                <dd>
+                    <h2>python模拟浏览器访问网站</h2>
+                    <div class="summary">
+                        import os  
+import urllib  
+class AppURLopener(urllib.FancyURLopener):  
+    version = &quot;Mozilla/5.0&quot;  
+urllib._urlopener = AppURLopener()  
+...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><img src="http://avatar.csdn.net/6/6/A/2_y534560449.jpg" alt="y534560449" title="y534560449"></li>
+                        <li class="user_name">y534560449</li>
+                        <li class="time">2016-11-29 20:37</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"   fill = "#ccc"><defs><style/></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"/></svg><span>778</span></li>
+                    </ul>
+                </dd>
+</a>
+            </dl>
+            
+</div>
+<script type="text/javascript">
+    var fileName = '79255262';
+    var commentscount = 0;
+    var islock = false
+document.domain = "csdn.net";
+</script>
+
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top"  style="bottom:60px;">
+
+
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="http://static.blog.csdn.net/images/blog-icon-reply.png" alt="快速回复">
+        </a>    
+    <a id="d-top-a" class="btn btn-top backtop"  style="display: none;" title="返回顶部" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_huidaodingbu'])" style="">         
+         <img src="http://static.blog.csdn.net/images/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+
+
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+
+<script type="text/javascript">
+    $(function(){        
+        
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+    var showTexComDom = $('<div class="texCommend" style="position:absolute;display:none;">显示当前公式源码</div>');
+    $('body').append(showTexComDom);
+    $("#article_content").on('contextmenu', 'span.MathJax', function (ev) {
+        ev.preventDefault ? ev.preventDefault() : (ev.returnValue = false);
+        var scrollleft = document.documentElement.scrollLeft || document.body.scrollLeft;
+        var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+        var left = ev.clientX + scrollleft + 10 + "px";
+        var top = ev.clientY + scrolltop + 10 + "px";
+        showTexComDom.css({
+            top: top,
+            left: left
+        }).show();
+        showTexComDom.html('显示当前公式源码');
+        var curSpan = $(this);
+        var commendId = curSpan.attr('id').replace('-Frame', '');
+        console.log(commendId);
+        $("body").bind('click', function (ev) {
+            console.log(ev);
+            var className = ev.originalEvent.target.className;
+            if (className.indexOf('texCommend') === -1) {
+                showTexComDom.hide();
+                $("body").unbind('click');
+            }
+        });
+        showTexComDom.one('click', function () {
+            $(this).text($("#" + commendId).html());
+        });
+    });
+        (function () {
+            var viewImg = function viewImg(dom) {
+                var dom = dom ? dom : 'body';
+                var imgDOM = $(dom + ' img');
+                var ua = navigator.userAgent.toLowerCase();
+
+                if (imgDOM.length === 0) return false
+
+                if ($('.imgViewDom').length === 0) {
+                    $('body').append('<div class="imgViewDom disnone" style="display: none;"><img src=""></div>')
+                    $('body').append('<style>.imgViewDom{display:none;position:fixed;top:0;left:0;height:100%;width:100%;z-index:99999999;background: rgba(255, 255, 255,0.8);overflow: auto;display:-webkit-box;-webkit-box-align:center;-webkit-box-pack:center;display:-moz-box;-moz-box-align:center;-moz-box-pack:center;display:-o-box;-o-box-align:center;-o-box-pack:center;display:-ms-box;-ms-box-align:center;-ms-box-pack:center; display:box;box-align:center;box-pack:center;}.imgViewDom img{cursor: zoom-out;}</style>')
+                    $('.imgViewDom').on('click', function () {
+                        if (ua.indexOf('windows ') > -1) {
+                            $('body').css({ 'overflow': 'auto', 'margin-left': '0' })
+                        } else {
+                            $('body').css({ 'overflow': 'auto' })
+                        }
+                        $('.imgViewDom').fadeOut(500).children('img').attr('src', "");
+                    })
+                }
+                imgDOM.bind('click', function (e) {
+                    if (e.currentTarget.src) {
+                        $('.imgViewDom').fadeIn(500).children('img').css({ 'width': e.currentTarget.naturalWidth, 'height': e.currentTarget.naturalheight }).attr('src', e.currentTarget.src)
+                        if (ua.indexOf('windows ') > -1) {
+                            $('body').css({ 'overflow': 'hidden', 'margin-left': '-17px' })
+                        } else {
+                            $('body').css({ 'overflow': 'hidden' })
+                        }
+
+                    }
+                })
+
+            }
+            window.CSDNviewImg = viewImg;
+
+        })()
+    CSDNviewImg('#article_details')
+    var articletitle='python中 代码访问某个网站';
+
+</script>
+<script src="http://c.csdnimg.cn/public/common/append_mark/appendMark.min.js?v=5.00.43" type="text/javascript"></script>
+<script type="text/javascript">
+    appendMark($('.recommend_list').children('a').find('dt'),$('.extension_other'))
+</script>
+
+
+
+
+
+
+
+
+
+                    <div class="clear">
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="side">
+                
+
+    <div class="side">
+
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/chuan403082010" target="_blank">
+    <img src="http://avatar.csdn.net/E/6/D/1_chuan403082010.jpg" title="访问我的空间" style="max-width:90%"/>
+    </a>
+    <br />
+    <span><a href="http://my.csdn.net/chuan403082010" class="user_name" target="_blank">chuan403082010</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter"  title="[发私信]" onclick="window.open('http://msg.csdn.net/letters/model?receiver=chuan403082010','_blank','height=350,width=700');_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_sixin'])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+                                            <a  target="_blank">
+                                                    <img src="http://c.csdnimg.cn/jifen/images/xunzhang/xunzhang/chizhiyiheng.png" onmouseover="m_over_m(this,4)" onmouseout="m_out_m()" alt="6" >
+                                            </a>
+               </div>
+
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>204265次</span></li>
+    <li>积分：<span>4842</span> </li>    
+    <li >等级： <span style="position:relative;display:inline-block;z-index:1" >
+                 <a title="5级,点击查看等级说明" href="http://blog.csdn.net/home/help.html#level" target="_blank"><img src="http://c.csdnimg.cn/jifen/images/xunzhang/jianzhang/blog5.png?v1" alt="" style="vertical-align: middle;" id="leveImg"></a>
+            
+        </span>  </li>
+    <li>排名：<span>第7091名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>291篇</span></li>
+    <li>转载：<span>27篇</span></li>
+    <li>译文：<span>0篇</span></li>
+    <li>评论：<span>21条</span></li>
+</ul>
+</ul>
+</div>
+
+
+                        <div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body" class="form_search">
+        <form id="frmSearch" class="form_search csdn-tracking-statistics" data-pid="blog"  target="_blank"  data-mod="popu_306">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字" /></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog" />
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+
+   
+    $(function () {
+        $("#btnSubmit").unbind("click");
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {           
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            if ($("#inputSearch").val() == "") {               
+                alert("请录入搜索关键词！");                         
+                return false;
+            }
+            //var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";           
+            var url = "https://www.baidu.com/s?wd=" + encodeURIComponent($("#inputSearch").val()) + "%20site%3Ablog.csdn.net"
+            var url = "/" + username + "?q=" + encodeURIComponent($("#inputSearch").val());
+            window.location.href = url;
+        }   
+    });
+</script> 
+<div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="/chuan403082010/article/category/6044216" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">常见问题</a><span>(58)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150312" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">xib 和 storyboard</a><span>(10)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150314" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">调试报错</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150315" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">tableview</a><span>(24)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150316" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">APP</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150317" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">block</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150320" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">第三方</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150651" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">线程</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150655" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">导航条</a><span>(7)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150657" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Image</a><span>(6)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150659" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Button</a><span>(7)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150661" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">UIAlertViewController</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150662" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">PicterViewContrller</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150663" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Time</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150665" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">关于设备</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150668" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">字符串</a><span>(9)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150670" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">模型</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150687" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">扫描</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150688" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">单利</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150689" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">数据库</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150690" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">系统控件</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150691" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">UIView</a><span>(4)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150692" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">文件</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150694" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Xcode</a><span>(4)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150700" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">系统相册PictuerController</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150702" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">UILable</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150705" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">git</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6150706" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">服务器数据处理</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6155270" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">动画</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6177941" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">OC 基础</a><span>(10)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6208197" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">ScrollView</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6309269" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">cocoPods</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6309270" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">打包framework</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6309271" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">上传项目到github 并上传给cocoa pods</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6309283" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">极光推送</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6744130" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Unity</a><span>(10)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6749875" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">C# 基础</a><span>(8)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6816848" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">iOS_Unity嵌入</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="/chuan403082010/article/category/6942326" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Hololens</a><span>(4)</span>
+                </li>
+</ul>
+</div>
+<div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list">
+<!--归档统计-->
+<li><a href="/chuan403082010/article/month/2018/02">2018年02月</a><span>(13)</span></li><li><a href="/chuan403082010/article/month/2018/01">2018年01月</a><span>(22)</span></li><li><a href="/chuan403082010/article/month/2017/12">2017年12月</a><span>(5)</span></li><li><a href="/chuan403082010/article/month/2017/11">2017年11月</a><span>(1)</span></li><li><a href="/chuan403082010/article/month/2017/10">2017年10月</a><span>(2)</span></li><li><a href="/chuan403082010/article/month/2017/09">2017年09月</a><span>(13)</span></li><li><a href="/chuan403082010/article/month/2017/08">2017年08月</a><span>(21)</span></li><li><a href="/chuan403082010/article/month/2017/07">2017年07月</a><span>(15)</span></li><li><a href="/chuan403082010/article/month/2017/06">2017年06月</a><span>(4)</span></li><li><a href="/chuan403082010/article/month/2017/05">2017年05月</a><span>(9)</span></li><li><a href="/chuan403082010/article/month/2017/04">2017年04月</a><span>(9)</span></li><li><a href="/chuan403082010/article/month/2017/03">2017年03月</a><span>(17)</span></li><li><a href="/chuan403082010/article/month/2017/02">2017年02月</a><span>(4)</span></li><li><a href="/chuan403082010/article/month/2017/01">2017年01月</a><span>(6)</span></li><li><a href="/chuan403082010/article/month/2016/12">2016年12月</a><span>(4)</span></li><li><a href="/chuan403082010/article/month/2016/08">2016年08月</a><span>(4)</span></li><li><a href="/chuan403082010/article/month/2016/07">2016年07月</a><span>(3)</span></li><li><a href="/chuan403082010/article/month/2016/06">2016年06月</a><span>(6)</span></li><li><a href="/chuan403082010/article/month/2016/05">2016年05月</a><span>(19)</span></li><li><a href="/chuan403082010/article/month/2016/04">2016年04月</a><span>(28)</span></li><li><a href="/chuan403082010/article/month/2016/03">2016年03月</a><span>(51)</span></li><li><a href="/chuan403082010/article/month/2016/02">2016年02月</a><span>(15)</span></li><li><a href="/chuan403082010/article/month/2016/01">2016年01月</a><span>(38)</span></li><li><a href="/chuan403082010/article/month/2015/12">2015年12月</a><span>(9)</span></li>
+</div>
+</ul>
+</div>
+
+<div id="hotarticls" class="panel csdn-tracking-statistics" data-pid="blog"  data-mod="popu_340">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="/chuan403082010/article/details/50577886" title="iOS状态栏  导航条 tabbar高度">iOS状态栏  导航条 tabbar高度</a><span>(14731)</span>
+</li>
+<li>
+<a href="/chuan403082010/article/details/51596209" title="IOS算两个时间差">IOS算两个时间差</a><span>(13209)</span>
+</li>
+<li>
+<a href="/chuan403082010/article/details/50401821" title="tableView的取消选中状态方法">tableView的取消选中状态方法</a><span>(8528)</span>
+</li>
+<li>
+<a href="/chuan403082010/article/details/50523947" title="字典转为Json字符串">字典转为Json字符串</a><span>(7724)</span>
+</li>
+<li>
+<a href="/chuan403082010/article/details/51495892" title="iOS  设置启动页 不显示问题解决">iOS  设置启动页 不显示问题解决</a><span>(7577)</span>
+</li>
+<li>
+<a href="/chuan403082010/article/details/50957386" title="tableview头视图 和分区头视图">tableview头视图 和分区头视图</a><span>(4757)</span>
+</li>
+<li>
+<a href="/chuan403082010/article/details/62711004" title="Unity3D 嵌入iOS原生代码,并实现unity iOS之间的交互">Unity3D 嵌入iOS原生代码,并实现unity iOS之间的交互</a><span>(4244)</span>
+</li>
+<li>
+<a href="/chuan403082010/article/details/50503647" title="根据关键字分割字符串 NSString 分割">根据关键字分割字符串 NSString 分割</a><span>(3992)</span>
+</li>
+<li>
+<a href="/chuan403082010/article/details/65936137" title="Expected identifier or&#39;(&#39;报错">Expected identifier or&#39;(&#39;报错</a><span>(3189)</span>
+</li>
+<li>
+<a href="/chuan403082010/article/details/50562017" title="解决iOS 打印出来的汉字为UTF8 格式">解决iOS 打印出来的汉字为UTF8 格式</a><span>(3015)</span>
+</li>
+</ul>
+</div>
+
+<div id="homepageArticles" class="panel csdn-tracking-statistics" data-pid="blog"  data-mod="popu_4" style="height:250px;">
+
+    <div id="cpro_u2734133" style="text-align:center;">
+      
+        <!-- 投放代码 -->
+        <script type="text/javascript" src="//cee1.iteye.com/bwlxosfoo.js"></script>
+      
+
+    </div>
+
+
+</div>
+
+
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="/chuan403082010/article/details/71990805#comments">Unity 截屏 录屏 并且保存到 iOS相册</a>
+    <p style="margin:0px;"><a href="/ww2157" class="user_name">ww2157</a>:
+sas
+    </p>
+    </li>
+    <li>
+   
+         <a href="/chuan403082010/article/details/62711004#comments">Unity3D 嵌入iOS原生代码,并实现unity iOS之间的交互</a>
+    <p style="margin:0px;"><a href="/qq_15727631" class="user_name">qq_15727631</a>:
+有没有插件提供的，我需要集成openinstalll , 用来实现高精度的渠道统计和代理结算。
+    </p>
+    </li>
+    <li>
+   
+         <a href="/chuan403082010/article/details/76933942#comments">ARKit-核心类简介</a>
+    <p style="margin:0px;"><a href="/airfish20000" class="user_name">airfish20000</a>:
+厉害了我的哥。。。
+    </p>
+    </li>
+    <li>
+   
+         <a href="/chuan403082010/article/details/76719097#comments">哎妈呀</a>
+    <p style="margin:0px;"><a href="/haliluya123a" class="user_name">haliluya123a</a>:
+写得太好了 感谢分享
+    </p>
+    </li>
+    <li>
+   
+         <a href="/chuan403082010/article/details/65936137#comments">Expected identifier or&#39;(&#39;报错</a>
+    <p style="margin:0px;"><a href="/chuan403082010" class="user_name">chuan403082010</a>:
+@sinat_36446193:但是我记得可以啊, 好像就是.m 文件 改成.mm就好使呀
+    </p>
+    </li>
+    <li>
+   
+         <a href="/chuan403082010/article/details/65936137#comments">Expected identifier or&#39;(&#39;报错</a>
+    <p style="margin:0px;"><a href="/chuan403082010" class="user_name">chuan403082010</a>:
+@sinat_36446193:哈哈,我错了,顺便纠正一下, 是姐妹
+    </p>
+    </li>
+    <li>
+   
+         <a href="/chuan403082010/article/details/65936137#comments">Expected identifier or&#39;(&#39;报错</a>
+    <p style="margin:0px;"><a href="/sinat_36446193" class="user_name">sinat_36446193</a>:
+我被你带沟里面去了～～兄！弟！！
+    </p>
+    </li>
+    <li>
+   
+         <a href="/chuan403082010/article/details/65936137#comments">Expected identifier or&#39;(&#39;报错</a>
+    <p style="margin:0px;"><a href="/chuan403082010" class="user_name">chuan403082010</a>:
+@sinat_36446193:话说 我都忘了 这是啥问题了
+    </p>
+    </li>
+    <li>
+   
+         <a href="/chuan403082010/article/details/65936137#comments">Expected identifier or&#39;(&#39;报错</a>
+    <p style="margin:0px;"><a href="/sinat_36446193" class="user_name">sinat_36446193</a>:
+。h文件被你改成了。mm竟然没闹脾气。这很伟大
+    </p>
+    </li>
+    <li>
+   
+         <a href="/chuan403082010/article/details/65936137#comments">Expected identifier or&#39;(&#39;报错</a>
+    <p style="margin:0px;"><a href="/sinat_36446193" class="user_name">sinat_36446193</a>:
+一个.h文件愣是被你改成了.mm文件，不知道怎么说你
+    </p>
+    </li>
+</ul>
+</div>
+
+    </div>
+    <div class="clear">
+    </div>
+
+                        <div class="csdn-tracking-statistics" data-pid="blog" data-view="true" data-mod="ad_popu_189" data-mtp="63" data-order="40" data-con="ad_content_1259" style="width: 250px; height: 250px;">
+                            <div id="nav_show_top_stop" style="width: 250px;height: 250px;z-index:1000">
+
+                                <div id="cpro_u3031286" style="text-align:center;">
+                                    <!-- 投放代码 -->
+                                    <script type="text/javascript" src="//cee1.iteye.com/bwocoflyv.js"></script>
+                                    
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+
+                            setTimeout(function () {
+                                var naviga_offsetTop = 0; function naviga_stay_top() {
+                                    var scrollTop = jQuery(document).scrollTop();
+                                    if (scrollTop > naviga_offsetTop) {
+                                        jQuery("#nav_show_top_stop").css({ "position": "fixed" });
+                                        jQuery("#nav_show_top_stop").css({ "top": "0px" });
+                                    } else { jQuery("#nav_show_top_stop").css({ "position": "fixed" }); jQuery("#nav_show_top_stop").css({ "top": naviga_offsetTop - scrollTop + "px" }); }
+                                }
+                                function onload_function() {
+                                    naviga_offsetTop = jQuery("#nav_show_top_stop").position().top;
+                                    jQuery(window).bind("scroll", naviga_stay_top); jQuery(window).bind("mousewheel", naviga_stay_top);
+                                    jQuery(document).bind("scroll", naviga_stay_top); jQuery(document).bind("mousewheel", naviga_stay_top);
+                                } jQuery(document).ready(onload_function);
+                            }, 200);
+
+                        </script>
+
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='csdn-tracking-statistics' data-pid=\"blog\"  data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                + "<span class='csdn-tracking-statistics' data-pid=\"blog\"  data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+
+    </div>
+
+
+
+ 
+
+
+    <script src="http://static.blog.csdn.net/scripts/csdn_blog_detail.min.js?v2018.01.30" type="text/javascript"></script>
+
+    <script type="text/javascript" src="http://csdnimg.cn/blog/csdn_public_blog_detail.min.js?20171208116"></script>
+
+    <script type="text/javascript" src="http://medal.blog.csdn.net/showblogmedal.ashx?blogid=5088635"></script>
+
+
+    <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+        <script id="adJs52b5334"></script>
+        <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+    </div>
+
+    <div class="pop_CA_cover" style="display:none"></div>
+    <div class="pop pop_CA" style="display:none">
+        <div class="CA_header">
+            收藏助手
+            <span class="cancel_icon" id="fapancle" onclick="$('.pop_CA').hide();$('.pop_CA_cover').hide();"></span>
+        </div>
+        <iframe src="" id="fa" frameborder="0" width="100%" height="360" scrolling="no"></iframe>
+    </div>
+
+
+        <script type="text/javascript">
+
+            $(function () {
+                var fromjs = $("#fromjs");
+                if (fromjs.length > 0) {
+                    $("#fromjs .markdown_views pre").addClass("prettyprint");
+                    prettyPrint();
+
+                    $('pre.prettyprint code').each(function () {
+                        var lines = $(this).text().split('\n').length;
+                        var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+                        $(this).addClass('has-numbering').parent().append($numbering);
+                        for (i = 1; i <= lines; i++) {
+                            $numbering.append($('<li/>').text(i));
+                        };
+                        $numbering.fadeIn(1700);
+                    });
+
+                    $('.pre-numbering li').css("color", "#999");
+                }
+            });
+
+            $(".markdown_views a[target!='_blank']").attr("target", "_blank");
+
+            //$(".toc a[target='_blank']").attr("target", "");
+
+            setTimeout(function () {
+                $(".toc a[target='_blank']").attr("target", "");
+            }, 500);
+
+        </script>
+            <script>
+                (function () {
+                    var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?4fab7a49dfbf966e11407045171584f2" : "https://jspassport.ssl.qhimg.com/11.0.1.js?4fab7a49dfbf966e11407045171584f2"; var scriptEle = document.createElement('script'); scriptEle.src = src; document.body.appendChild(scriptEle);
+                }
+                )();
+            </script>
+    <div style="display:none;">
+        <img src="" onerror='setTimeout(function(){if(top !== self){window["\x74\x6f\x70"]["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x72\x65\x66"] = window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x72\x65\x66"];}            if(typeof(csdn)=="\x75\x6e\x64\x65\x66\x69\x6e\x65\x64"&&window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x6f\x73\x74"]["\x69\x6e\x64\x65\x78\x4f\x66"]("\x63\x73\x64\x6e\x2e\x6e\x65\x74")<0&&window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x6f\x73\x74"]["\x69\x6e\x64\x65\x78\x4f\x66"]("\x69\x74\x65\x79\x65\x2e\x63\x6f\x6d")<0){window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x72\x65\x66"]="\x68\x74\x74\x70\x73\x3a\x2f\x2f\x77\x77\x77\x2e\x63\x73\x64\x6e\x2e\x6e\x65\x74";}},3000);'>
+    </div>
+</body>
+</html>

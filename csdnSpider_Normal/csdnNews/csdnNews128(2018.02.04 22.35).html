@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="canonical" href="http://blog.csdn.net/iodjSVf8U1J7KYc/article/details/79070936"/> 
+    <script type="text/javascript">
+        var username = "iodjsvf8u1j7kyc";
+        var _blogger = username;
+        var blog_address = "http://blog.csdn.net/iodjsvf8u1j7kyc";
+        var static_host = "http://csdnimg.cn/release/phoenix/";
+        var currentUserName = ""; 
+        var fileName = '79070936';
+        var commentscount = 4;
+        var islock = false;
+        window.quickReplyflag = true;
+        var totalFloor = 4;
+        var isBole = false;
+        var isDigg = false;
+        var isExpert = false;
+        var isAdm = false;
+        var baiduKey = "python+opencv";
+        var needInsertBaidu = false;
+        var isShowAds = true;
+    </script>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="http://c.csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="http://c.csdnimg.cn/public/static/css/avatar.css">
+                <link rel="stylesheet" href="http://csdnimg.cn/release/phoenix/production/main-ffb45d8453.css">
+          <link rel="stylesheet" href="http://c.csdnimg.cn/public/common/toolbar/content_toolbar_css/content_toolbar.css">
+
+    <script src="http://csdnimg.cn/rabbit/exposure-click/main-1.0.5.js"></script>
+    <script type="text/javascript" src="http://csdnimg.cn/pubfooter/js/tracking-1.0.2.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://csdnimg.cn/release/phoenix/production/main-df0973cd7f.js"></script>
+
+    <script src="http://dup.baidustatic.com/js/ds.js"></script>
+    <script type="text/javascript">
+        // Traffic Stats of the entire Web site By baidu
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?6bcd52f51e9b3dce32bec4a3997715ac";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        // Traffic Stats of the entire Web site By baidu end
+    </script>
+    <meta name="description" content="(点击上方蓝字，快速关注我们)英文：Adrian Rosebrock  编译： 伯乐在线 - G.K. http://python.jobbole.com/84378/几天前，一个叫 Cameron 的 PyImageSearch 读者发来邮件询问摄像头测距的方法。他花了一些时间研究，但是没有找到解决办法。我很能体会 Cameron 的感受。几年前我做过一个分析棒球离手飞向本垒的运动的小项目。我通" />
+    <meta name="keywords" content="" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+    <title>用 Python 和 OpenCV 来测量相机到目标的距离 - CSDN博客</title>
+    <link href="http://csdnimg.cn/public/favicon.ico" rel="SHORTCUT ICON">
+              <script src="//csdnimg.cn/search/baidu_search-1.0.0.js?v=201802021047&autorun=true&install=true&keyword=python+opencv"  type="text/javascript"></script>
+      </head>
+<body>
+<script id="toolbar-tpl-scriptId" prod="download" skin="black" src="http://c.csdnimg.cn/public/common/toolbar/js/content_toolbar.js" type="text/javascript" domain="http://blog.csdn.net/"></script>
+<div class="container clearfix">
+  <main>
+      <div style="display:none;">
+          <img src="" onerror='setTimeout(function(){if(top !== self){window["\x74\x6f\x70"]["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x72\x65\x66"] = window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x72\x65\x66"];}            if(typeof(csdn)=="\x75\x6e\x64\x65\x66\x69\x6e\x65\x64"&&window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x6f\x73\x74"]["\x69\x6e\x64\x65\x78\x4f\x66"]("\x63\x73\x64\x6e\x2e\x6e\x65\x74")<0&&window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x6f\x73\x74"]["\x69\x6e\x64\x65\x78\x4f\x66"]("\x69\x74\x65\x79\x65\x2e\x63\x6f\x6d")<0){window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x72\x65\x66"]="\x68\x74\x74\x70\x73\x3a\x2f\x2f\x77\x77\x77\x2e\x63\x73\x64\x6e\x2e\x6e\x65\x74";}},3000);'>
+      </div>
+    <article>
+        <h1 class="csdn_top">用 Python 和 OpenCV 来测量相机到目标的距离</h1>
+        <div class="article_bar clearfix">
+            <div class="artical_tag">
+                <span class="original">
+                转载                </span>
+                <span class="time">2018年01月15日 00:00:00</span>
+            </div>
+
+            <ul class="article_tags clearfix csdn-tracking-statistics tracking-click" data-mod="popu_377" >
+                <li class="tit">标签：</li>
+
+<!--          [startarticletags]-->
+                <!--          [endarticletags]-->
+            </ul>
+            <ul class="right_bar">
+                <li><button class="btn-noborder"><i class="icon iconfont icon-read"></i><span class="txt">4568</span></button></li>
+                <li class="edit">
+                    <a class="btn-noborder" href="" >
+                        <i class="icon iconfont icon-bianji"></i><span class="txt">编辑</span>
+                    </a>
+                </li>
+                <li class="del">
+                    <a class="btn-noborder" onclick="javascript:deleteArticle(fileName);return false;">
+                        <i class="icon iconfont icon-shanchu"></i><span class="txt">删除</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="article_content" class="article_content csdn-tracking-statistics tracking-click" data-mod="popu_519" data-dsm="post">
+                        
+    <div class="rich_media_content" id="js_content">
+                    
+
+                    
+
+                    
+                    
+                    <p style="min-height:1em;color:rgb(62,62,62);font-size:16px;white-space:normal;line-height:25.6px;text-align:center;background-color:rgb(255,255,255);"><span style="color:rgb(255,0,0);font-size:14px;"><span style="line-height:25.6px;">(点击</span><span style="line-height:25.6px;color:rgb(0,82,255);">上方蓝字</span><span style="line-height:25.6px;">，快速关注我们)</span></span></p><p style="min-height:1em;color:rgb(62,62,62);font-size:16px;white-space:normal;line-height:25.6px;background-color:rgb(255,255,255);"><span style="font-size:14px;"><br /></span></p><blockquote style="color:rgb(62,62,62);font-size:16px;white-space:normal;line-height:25.6px;background-color:rgb(255,255,255);"><p style="min-height:1em;line-height:25.6px;"><span style="font-size:14px;"><span style="line-height:25.6px;">英文：Adrian Rosebrock  </span><span>编译：</span><span style="color:rgb(46,46,46);"> </span><span>伯乐在线</span><span style="color:rgb(46,46,46);"> - </span><span>G.K.<span style="color:rgb(46,46,46);"> </span></span></span></p><p style="min-height:1em;line-height:25.6px;"><span style="line-height:25.6px;font-size:14px;">http://python.jobbole.com/84378/</span></p></blockquote><p><br /></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;"><img style="border:0px;margin:auto;font-size:0px;vertical-align:middle;display:block;clear:both;visibility:visible !important;" class="__bg_gif" src="http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_gif/fhujzoQe7TpWZaMdO0ReRC0WmK78RpagmhWrSEoI6kDxpW9SsVIeMaesXXE64xibTC0U1WicqdO7GNq1xLWza0Aw/0?wx_fmt=gif&amp;wxfrom=5&amp;wx_lazy=1" alt="0?wx_fmt=gif&amp;wxfrom=5&amp;wx_lazy=1" /></span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">几天前，一个叫 Cameron 的 PyImageSearch 读者发来邮件询问摄像头测距的方法。他花了一些时间研究，但是没有找到解决办法。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">我很能体会 Cameron 的感受。几年前我做过一个分析棒球离手飞向本垒的运动的小项目。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">我通过使用运动分析和基于轨迹的跟踪方法来确定或者估计小球在视频帧中的位置。并且因为棒球的大小是已知的，所以我也能估计出其到本垒的距离。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">那是个有趣的项目，虽然系统的精度没有达到我的预期。——棒球运动太快所造成的“运动模糊”让达到高精度变得十分困难。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">我的项目完全算是一个个例，但是通常来说，在计算机视觉或者图形处理领域计算从相机到目标的距离实际上是一个非常容易的问题。你可以找到一个像三角形相似这样简单粗暴的方法，或者你也可以用上相机模型的内参这样更复杂一点（但是更精确）的方法。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">在这篇博客，我将会告诉大家我和 Cameron 是如果解决这个计算相机到已知物体或目标的距离。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">千万要看——你一定不想错过。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="font-size:15px;"><strong style="border-width:0px;">OpenCV 和 Python 版本：</strong><span style="border-width:0px;"> 这个例子可以在 </span><strong style="border-width:0px;">Python 2.7</strong><span style="border-width:0px;">/</span><strong style="border-width:0px;">Python 3.4+</strong><span style="border-width:0px;"> 和 </span><strong style="border-width:0px;">OpenCV 2.4.X</strong><span style="border-width:0px;">上运行。</span></span></p><h3 style="border-width:0px;margin-bottom:20px;font-size:20px;font-weight:bold;line-height:30px;"><span style="border-width:0px;font-size:15px;">用相似三角形计算物体或者目标到相机的距离</span></h3><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">我们将使用相似三角形来计算相机到一个已知的物体或者目标的距离。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">相似三角形就是这么一回事：假设我们有一个宽度为 W 的目标或者物体。然后我们将这个目标放在距离我们的相机为 D 的位置。我们用相机对物体进行拍照并且测量物体的像素宽度 P 。这样我们就得出了相机焦距的公式：</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);">F = (P x D) / W</p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">举个例子，假设我在离相机距离 D = 24 英寸的地方放一张标准的 8.5 x 11 英寸的 A4 纸（横着放；W = 11）并且拍下一张照片。我测量出照片中 A4 纸的像素宽度为 P = 249 像素。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);">因此我的焦距 F 是：</p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);">F = (248px x 24in) / 11in = 543.45</p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">当我继续将我的相机移动靠近或者离远物体或者目标时，我可以用相似三角形来计算出物体离相机的距离：</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);">D’ = (W x F) / P</p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">为了更具体，我们再举个例子，假设我将相机移到距离目标 3 英尺（或者说 36 英寸）的地方并且拍下上述的 A4 纸。通过自动的图形处理我可以获得图片中 A4 纸的像素距离为 170 像素。将这个代入公式得：</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">D’ = (11in x 543.45) / 170 = 35 英寸</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">或者约 36 英寸，合 3 英尺。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><strong style="border-width:0px;">注意：</strong><span style="border-width:0px;">当我给这次例子拍照时，我的卷尺有一点松，因此结果造成了大约 1 英寸的误差。还有我也是很快速地拍下了照片并且没有完全对齐卷尺上的脚标，这也会对最终结果的 1 英寸误差产生影响。综上所述，相似三角形的方法还是合理的，你也可以用这个方法很简单地计算出物体或者目标距离你的相机的距离。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">现在理解了？</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">太棒了。接下来让我们用一些代码来看看如何用 Python、OpenCV、图像处理和计算机视觉技术来获得相机到物体或者目标的距离。</span></p><h3 style="border-width:0px;margin-bottom:20px;font-size:20px;font-weight:bold;line-height:30px;"><span style="border-width:0px;font-size:15px;">用Python和OpenCV来测量相机到目标的距离</span></h3><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">继续，我们开始这个项目。打开一个文件，命名为</span><code style="border-width:0px;">distance_to_camera.py</code><span style="border-width:0px;">，然后就可以开工了。</span></p><p><span style="font-size:15px;"></span></p><blockquote><p><span style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;"># import the necessary packages</span></p><p><span style="font-size:12px;"><span class="crayon-r" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight:bold !important;">import</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">numpy </span><span class="crayon-st" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight:bold !important;">as</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">np </span></span></p><p><span style="font-size:12px;"><span class="crayon-r" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight:bold !important;">import</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">cv2</span></span></p><p><span style="font-size:12px;"> </span></p><p><span style="font-size:12px;"><span class="crayon-r" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight:bold !important;">def</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">find_marker</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">image</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span><span class="crayon-o" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">:</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">    </span><span class="crayon-c" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;"># convert the image to grayscale, blur it, and detect edges</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">    </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">gray</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> = </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">cvtColor</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">image</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">COLOR_BGR2GRAY</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">    </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">gray</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> = </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">GaussianBlur</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">gray</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">5</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">5</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">),</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">0</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">    </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">edged</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> = </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">Canny</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">gray</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">35</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">125</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span></span></p><p><span style="font-size:12px;"> </span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">    </span><span class="crayon-c" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;"># find the contours in the edged image and keep the largest one;</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">    </span><span class="crayon-c" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;"># we'll assume that this is our piece of paper in the image</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">    </span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cnts</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">_</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> = </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">findContours</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">edged</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-k" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">copy</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(),</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">RETR_LIST</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">        </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">CHAIN_APPROX_SIMPLE</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">    </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">c</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> = </span><span class="crayon-k" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">max</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cnts</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">key</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> = </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">contourArea</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span></span></p><p><span style="font-size:12px;"> </span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">    </span><span class="crayon-c" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;"># compute the bounding box of the of the paper region and return it</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">    </span><span class="crayon-st" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight:bold !important;">return</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">minAreaRect</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">c</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span></span></p></blockquote><p><br /></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">第一件要做的事情就是导入必要的包。我们将用 </span><code style="border-width:0px;">NumPy</code><span style="border-width:0px;"> 来进行数值计算和 </span><code style="border-width:0px;">cv2</code><span style="border-width:0px;"> 来绑定 OpenCV 。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">在那之后我们定义 </span><code style="border-width:0px;">find_marker</code><span style="border-width:0px;"> 函数。这个函数接收一个 </span><code style="border-width:0px;">image</code><span style="border-width:0px;"> 参数，并且这意味着我们将用它来找出将要计算距离的物体。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><strong style="border-width:0px;">在这个例子中我们使用标准的 8.5 x 11 英寸的 A4 纸作为我们的目标。</strong></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">目前我们的第一个任务是找出图像中的这张纸。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">我们先将图像转成灰度图，用高斯模糊除去明显的噪点，并且在第 </span><strong style="border-width:0px;">7-9 行</strong><span style="border-width:0px;"> 使用边缘检测。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">完成这几步后，我们的图像应该长这样：</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><img style="border:0px;margin:auto;font-size:0px;vertical-align:middle;display:block;clear:both;" class="img_loading" src="http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_jpg/fhujzoQe7TpWZaMdO0ReRC0WmK78RpagmtmKMJCCfm0K2cBvZXA0HAdjGUsEAibndThqx8MY9HRHicKqsCiaOdUpQ/0?wx_fmt=jpeg" alt="0?wx_fmt=jpeg" /></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">如你所见，我们的目标（A4 纸）的边缘已经很清晰了。现在我们只要找出这张纸的轮廓（比如：外形）。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">我们用 </span><strong style="border-width:0px;">13 行</strong><span style="border-width:0px;"> 的 </span><code style="border-width:0px;">cv2.findContours</code><span style="border-width:0px;"> 函数找到目标，并且在 </span><strong style="border-width:0px;">14 行</strong><span style="border-width:0px;"> 计算出面积最大的轮廓。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><strong style="border-width:0px;">我们假设面积最大的轮廓是我们的那张 A4 纸。</strong><span style="border-width:0px;">这个假设在我们的这个例子是成立的，但是实际上在图像中找出目标是和是与应用场景高度相关的。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">在我们的例子中，简单的边缘检测和计算最大的轮廓是可行的。我们可以通过使用轮廓近似法使系统更具鲁棒性，排除不包含有4个顶点的轮廓（因为 A4 纸是矩形有四个顶点），然后计算面积最大的四点轮廓。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><strong style="border-width:0px;">注意：</strong><span style="border-width:0px;">更多这样的方法见</span>这篇文章<span style="border-width:0px;">，讲述了如何做一个简单粗暴的手机扫描仪。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">其他找到图像中目标可选的方法是利用颜色特征（目标的颜色和背景有着明显的不同）。你还可以使用关键点检测，局部不变性描述子，和关键点匹配来寻找目标。但是这些方法以及超出了这篇文章的范畴，并且具有高度定制化的特性。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">不管怎样，我们现在获得了目标的轮廓，并且在第 </span><strong style="border-width:0px;">17 行</strong><span style="border-width:0px;"> 返回包含 </span><strong style="border-width:0px;">(x, y)</strong><span style="border-width:0px;"> 坐标和像素高度和宽度信息的边界框给调用函数。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">让我们也快速定义一个用上述的相似三角形法计算距离的函数：</span></p><blockquote><p><span style="font-size:12px;"><span class="crayon-r" style="border-width:0px;font-family:inherit;line-height: !important;font-weight:bold !important;">def</span><span class="crayon-h" style="border-width:0px;font-family:inherit;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-e" style="border-width:0px;font-family:inherit;line-height: !important;font-weight: !important;color:#008080 !important;">distance_to_camera</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">knownWidth</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-v" style="border-width:0px;font-family:inherit;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">focalLength</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-v" style="border-width:0px;font-family:inherit;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">perWidth</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span><span class="crayon-o" style="border-width:0px;font-family:inherit;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">:</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">	</span><span class="crayon-c" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;"># compute and return the distance from the maker to the camera</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">	</span><span class="crayon-st" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight:bold !important;">return</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">knownWidth</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> * </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">focalLength</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> / </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">perWidth</span></span></p></blockquote><p><br /></p><p><span style="color:rgb(46,46,46);font-size:15px;">这个函数传入目标的 </span><code style="color:rgb(46,46,46);font-size:15px;border-width:0px;"><span style="font-size:15px;">knownWidth</span></code><span style="color:rgb(46,46,46);font-size:15px;"> ，计算好的 </span><code style="color:rgb(46,46,46);font-size:15px;border-width:0px;"><span style="font-size:15px;">focalLength</span></code><span style="color:rgb(46,46,46);font-size:15px;"> ，和目标在图像中的像素距离，并且使用上面推导的相似三角形公式来计算到物体的距离</span><span style="color:rgb(46,46,46);">。</span></p><p><span style="color:rgb(46,46,46);font-size:15px;"><br /></span></p><p><span style="color:rgb(46,46,46);font-size:15px;">继续读下列代码来看看我们是如何利用这些函数的：</span></p><p><span style="color:rgb(46,46,46);font-size:15px;"><br /></span></p><blockquote><p><span style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;">#import the necessary packages</span></p><p><span style="font-size:12px;"><span class="crayon-r" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight:bold !important;">import</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">numpy </span><span class="crayon-st" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight:bold !important;">as</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">np</span></span></p><p><span style="font-size:12px;"><span class="crayon-r" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight:bold !important;">import</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">cv2</span></span></p><p><span style="font-size:12px;"> </span></p><p><span style="font-size:12px;"><span class="crayon-r" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight:bold !important;">def</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">find_marker</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">image</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span><span class="crayon-o" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">:</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">    </span><span class="crayon-c" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;"># convert the image to grayscale, blur it, and detect edges</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">    </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">gray</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> = </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">cvtColor</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">image</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">COLOR_BGR2GRAY</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">    </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">gray</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> = </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">GaussianBlur</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">gray</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">5</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">5</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">),</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">0</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">    </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">edged</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> = </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">Canny</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">gray</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">35</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">125</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span></span></p><p><span style="font-size:12px;"> </span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">    </span><span class="crayon-c" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;"># find the contours in the edged image and keep the largest one;</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">    </span><span class="crayon-c" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;"># we'll assume that this is our piece of paper in the image</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">    </span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cnts</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">_</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> = </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">findContours</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">edged</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-k" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">copy</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(),</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">RETR_LIST</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">CHAIN_APPROX_SIMPLE</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">    </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">c</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> = </span><span class="crayon-k" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">max</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cnts</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">key</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> = </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">contourArea</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span></span></p><p><span style="font-size:12px;"> </span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">    </span><span class="crayon-c" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;"># compute the bounding box of the of the paper region and return it</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">    </span><span class="crayon-st" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight:bold !important;">return</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">minAreaRect</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">c</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span></span></p><p><span style="font-size:12px;"> </span></p><p><span style="font-size:12px;"><span class="crayon-r" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight:bold !important;">def</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">distance_to_camera</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">knownWidth</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">focalLength</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">perWidth</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span><span class="crayon-o" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">:</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">    </span><span class="crayon-c" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;"># compute and return the distance from the maker to the camera</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">    </span><span class="crayon-st" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight:bold !important;">return</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">knownWidth</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> * </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">focalLength</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> / </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">perWidth</span></span></p><p><span style="font-size:12px;"> </span></p><p><span style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;"># initialize the known distance from the camera to the object, which</span></p><p><span style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;"># in this case is 24 inches</span></p><p><span style="font-size:12px;"><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">KNOWN_DISTANCE</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> = </span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">24.0</span></span></p><p><span style="font-size:12px;"> </span></p><p><span style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;"># initialize the known object width, which in this case, the piece of</span></p><p><span style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;"># paper is 11 inches wide</span></p><p><span style="font-size:12px;"><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">KNOWN_WIDTH</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> = </span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">11.0</span></span></p><p><span style="font-size:12px;"> </span></p><p><span style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;"># initialize the list of images that we'll be using</span></p><p><span style="font-size:12px;"><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">IMAGE_PATHS</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> = </span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">[</span><span class="crayon-s" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(221,17,68) !important;">"images/2ft.png"</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-s" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(221,17,68) !important;">"images/3ft.png"</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-s" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(221,17,68) !important;">"images/4ft.png"</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">]</span></span></p><p><span style="font-size:12px;"> </span></p><p><span style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;"># load the furst image that contains an object that is KNOWN TO BE 2 feet</span></p><p><span style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;"># from our camera, then find the paper marker in the image, and initialize</span></p><p><span style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;"># the focal length</span></p><p><span style="font-size:12px;"><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">image</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> = </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">imread</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">IMAGE_PATHS</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">[</span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">0</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">])</span></span></p><p><span style="font-size:12px;"><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">marker</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> = </span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">find_marker</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">image</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span></span></p><p><span style="font-size:12px;"><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">focalLength</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> = </span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">marker</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">[</span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">1</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">][</span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">0</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">]</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> * </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">KNOWN_DISTANCE</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> / </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">KNOWN_WIDTH</span></span></p></blockquote><p><br /></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);">找到图像中目标的距离的第一步是标定和计算焦距。我们需要知道以下参数：</p><ul class="list-paddingleft-2"><li><p><span style="font-size:15px;">相机到物体的距离</span></p></li><li><p><span style="font-size:15px;">这个物体的宽度（单位英尺或米）。<strong style="border-width:0px;">注意：</strong>也可以用高度，这个例子中我们使用宽度。</span></p></li></ul><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">这里不得不提示一下我们所做的并不是实质意义上的摄像机标定。真正的摄像机标定包括摄像机的内参，你可以从</span>这里<span style="border-width:0px;">获得更多相关知识。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">在第 </span><strong style="border-width:0px;">25 行</strong><span style="border-width:0px;"> 我们初始化了已知的 </span><code style="border-width:0px;">KNOWN_DISTANCE</code><span style="border-width:0px;"> ，从相机到物体的距离为 24 英寸。在第 </span><strong style="border-width:0px;">29 行</strong><span style="border-width:0px;"> 我们初始了物体的宽度 </span><code style="border-width:0px;">KNOWN_WIDTH</code><span style="border-width:0px;"> 为 11 英寸（一张横着放的标准 A4 纸）。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">然后我们在第 </span><strong style="border-width:0px;">32 行</strong><span style="border-width:0px;"> 定义要用到的图片的路径。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">下一步比较重要：</span><strong style="border-width:0px;">是一个简单的标定</strong><span style="border-width:0px;">。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">第 </span><strong style="border-width:0px;">37 行</strong><span style="border-width:0px;"> 从硬盘读取第一张图，——我们将用这张图来作为标定图片。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">图片加载以后，在第 </span><strong style="border-width:0px;">38 行</strong><span style="border-width:0px;"> 计算图中 A4 纸的轮廓信息，在第 </span><strong style="border-width:0px;">39 行</strong><span style="border-width:0px;"> 使用三角形相似法计算出 </span><code style="border-width:0px;">focalLength</code><span style="border-width:0px;">。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">由于我们已经“标定”了我们的系统并且获得了 </span><code style="border-width:0px;">focalLength</code><span style="border-width:0px;"> ，我们可以很容易地计算出相机离接下来图片中目标的距离。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">让我们看看这个是这么做的：</span></p><blockquote><p><span style="font-size:12px;"><span class="crayon-cn" style="border-width:0px;font-family:inherit;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">41</span><span class="crayon-h" style="border-width:0px;font-family:inherit;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-c" style="border-width:0px;font-family:inherit;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;"># loop over the images</span></span></p><p><span style="font-size:12px;"><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">42</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-st" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight:bold !important;">for</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">imagePath </span><span class="crayon-st" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight:bold !important;">in</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">IMAGE_PATHS</span><span class="crayon-o" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">:</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">	</span><span class="crayon-c" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;"># load the image, find the marker in the image, then compute the</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">	</span><span class="crayon-c" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;"># distance to the marker from the camera</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">	</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">image</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> = </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">imread</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">imagePath</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span></span></p><p><span style="font-size:12px;"><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">46</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">	</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">marker</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> = </span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">find_marker</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">image</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span></span></p><p><span style="font-size:12px;"><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">47</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">	</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">inches</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> = </span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">distance_to_camera</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">KNOWN_WIDTH</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">focalLength</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">marker</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">[</span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">1</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">][</span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">0</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">])</span></span></p><p><span style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">	</span><span class="crayon-c" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(153,153,153) !important;font-style:italic !important;"># draw a bounding box around the image and display it</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">	</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">box</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> = </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">np</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">int0</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">BoxPoints</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">marker</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">))</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">	</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">drawContours</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">image</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">[</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">box</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">],</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> -</span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">1</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">0</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">255</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">0</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">),</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">	</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">putText</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">image</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-s" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(221,17,68) !important;">"%.2fft"</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> % </span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">inches</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> / </span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">12</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">),</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">		</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">image</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">shape</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">[</span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">1</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">]</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> - </span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">200</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">image</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">shape</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">[</span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">0</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">]</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> - </span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">20</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">),</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">FONT_HERSHEY_SIMPLEX</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">		</span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">2.0</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">0</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">255</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">0</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">),</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">3</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">	</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">imshow</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-s" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(221,17,68) !important;">"image"</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">,</span><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;"> </span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">image</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span></span></p><p><span style="font-size:12px;"><span class="crayon-h" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,111,224) !important;">	</span><span class="crayon-v" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,45,122) !important;">cv2</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">.</span><span class="crayon-e" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:#008080 !important;">waitKey</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">(</span><span class="crayon-cn" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(0,153,153) !important;">0</span><span class="crayon-sy" style="border-width:0px;font-family:inherit;font-size: !important;line-height: !important;font-weight: !important;color:rgb(51,51,51) !important;">)</span></span></p></blockquote><p><br /></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">在第 </span><strong style="border-width:0px;">42 行</strong><span style="border-width:0px;"> 开始遍历所有的图片路径。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">然后，在第 </span><strong style="border-width:0px;">45 行</strong><span style="border-width:0px;"> 我们将列表中所有的图片从硬盘读取下来。在第 </span><strong style="border-width:0px;">46 行</strong><span style="border-width:0px;"> 提取目标轮廓，并且在第 </span><strong style="border-width:0px;">47 行</strong><span style="border-width:0px;"> 计算摄像机到物体的距离。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">在第 </span><strong style="border-width:0px;">50-56 行</strong><span style="border-width:0px;">，我们简单地画出目标的边框并且显示出距离。</span></p><h3 style="border-width:0px;margin-bottom:20px;font-size:20px;font-weight:bold;line-height:30px;"><span style="border-width:0px;font-size:15px;">结果</span></h3><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">来看看我们的脚本运作，打开一个终端，导航到你的代码目录，执行以下命令：</span></p><blockquote><p><span style="font-size:12px;"><span class="crayon-sy" style="border-width:0px;">$</span><span class="crayon-h" style="border-width:0px;"> </span><span class="crayon-e" style="border-width:0px;">python </span><span class="crayon-v" style="border-width:0px;">distance_to_camera</span><span class="crayon-sy" style="border-width:0px;">.</span><span class="crayon-v" style="border-width:0px;">py</span></span></p></blockquote><p><br /></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">如果一切正常你将会看到 </span><code style="border-width:0px;">2ft.png</code><span style="border-width:0px;"> 的结果，这张图是用来“标定”我们的系统并且计算初始的 </span><code style="border-width:0px;">focalLength</code><span style="border-width:0px;">：</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><img style="border:0px;margin:auto;font-size:0px;vertical-align:middle;display:block;clear:both;" class="img_loading" src="http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_jpg/fhujzoQe7TpWZaMdO0ReRC0WmK78RpagresJVeJ8OUcPzN8Op5b0ShXEoRzUWZ7goGh5JeRUbeqOgDRPRSV2icA/0?wx_fmt=jpeg" alt="0?wx_fmt=jpeg" /></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">从上面的图片我们可以看到我们的焦距被正确地计算出来并且按照代码中的变量 </span><code style="border-width:0px;">KNOWN_DISTANCE</code><span style="border-width:0px;"> 和 </span><code style="border-width:0px;">KNOWN_WIDTH</code><span style="border-width:0px;">，A4 纸的距离是 2 英尺。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">现在我们有了焦距，我们可以在接下来的图片中计算出目标的距离：</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><img style="border:0px;margin:auto;font-size:0px;vertical-align:middle;display:block;clear:both;" class="img_loading" src="http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_jpg/fhujzoQe7TpWZaMdO0ReRC0WmK78RpagsKFUhDfiatFyUBMRP17ZURUnSAJWUmENEKA359h3Y5cL0EPePFDrcTQ/0?wx_fmt=jpeg" alt="0?wx_fmt=jpeg" /></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">上上面的例子，我们的相机大概离目标有 3 英尺远。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">让我们退后一步：</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><img style="border:0px;margin:auto;font-size:0px;vertical-align:middle;display:block;clear:both;" class="img_loading" src="http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_jpg/fhujzoQe7TpWZaMdO0ReRC0WmK78RpagjDnU7tq947LiaprTM0dPCryRuxHNNlwYrcAibgyMqOelnAQPO36SohBQ/0?wx_fmt=jpeg" alt="0?wx_fmt=jpeg" /></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">再次需要注意的是，我在拍这个例子的时候动作很快并且卷尺并没有绷紧。而且，我也没有确保我的相机是百分之百地对准目标底部，因此，这些例子总会有大概 1 英寸的误差。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">以上是我要说的，这篇文章描述的三角形相似法仍然可以用，并且能够让你测量出图像上的物体或目标到你相机的距离。</span></p><h3 style="border-width:0px;margin-bottom:20px;font-size:20px;font-weight:bold;line-height:30px;"><span style="border-width:0px;font-size:15px;">总结</span></h3><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">在这篇博客我们学习了如何计算一个图像上的已知物体到相机的距离。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">为了完成这个任务我们利用了三角形相似法，并且需要知道两个重要的参数：</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);">1、 目标的实际宽度<strong style="border-width:0px;">（或高度）</strong>，单位可以是英寸或者米。</p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);">2、 标定过程 1 中相机到目标的距离。</p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">计算机视觉和图像处理算法可以被用来自动检测图像中物体的像素宽度或高度并且完成相似三角形的计算，得出一个焦距。</span></p><p style="border-width:0px;margin-bottom:20px;font-size:15px;color:rgb(46,46,46);"><span style="border-width:0px;">然后在接下来的图片中，我们只要提取出目标轮廓就可以利用得到的焦距测量出目标到相机的距离。</span></p><p><br /></p><p style="min-height:1em;color:rgb(62,62,62);font-size:16px;white-space:normal;background-color:rgb(255,255,255);line-height:25.6px;text-align:center;"><span style="font-size:14px;color:rgb(255,169,0);">看完本文有收获？请转</span><span style="color:rgb(192,0,0);font-weight:bold;white-space:pre-wrap;"></span><span style="font-size:14px;color:rgb(255,169,0);">发分享给更多人</span></p><p style="min-height:1em;color:rgb(62,62,62);font-size:16px;white-space:normal;background-color:rgb(255,255,255);line-height:25.6px;text-align:center;"><span><strong><span style="color:rgb(255,169,0);">关注「P</span></strong></span><span style="color:rgb(192,0,0);font-weight:bold;white-space:pre-wrap;"></span><span><strong><span style="color:rgb(255,169,0);">ython开发者」，提升Python技能</span></strong></span></p><p style="min-height:1em;color:rgb(62,62,62);font-size:16px;white-space:normal;background-color:rgb(255,255,255);text-align:center;"><img class="img_loading" style="visibility:visible !important;" src="http://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_png/2A8tXicCG8ylbWIGfdoDED35IRRySQZTX4z1S7g8K0bdR1moHJuUZLIS1vElDnOYdoeGLTeS776gNyIujmiaicP5A/640?wx_fmt=png" alt="640?wx_fmt=png" /></p>
+                </div>
+                      </div>
+    </article>
+      <div class="readall_box csdn-tracking-statistics tracking-click" data-mod="popu_376">
+          <div class="read_more_mask"></div>
+          <a class="btn btn-large btn-gray-fred read_more_btn" target="_self">阅读全文</a>
+      </div>
+      <div class="article_copyright">
+              </div>
+      <ul class="article_collect clearfix csdn-tracking-statistics tracking-click"  data-mod="popu_378">
+          <li class="tit">本文已收录于以下专栏：</li>
+<!--          [startarticlecolumns]-->
+                                <!--          [endarticlecolumns]-->
+      </ul>
+      <div class="comment_box clearfix" id="comments">
+          <div id="comment_form">
+              <div id="commentsbmitarear">
+                              </div>
+          </div>
+      </div>
+      <div class="comment_li_outbox">
+          <div id="comment_list"></div>
+      </div>
+
+      <div class="more_comment">
+          <div id="comment_bar" class="trackgin-ad" data-mod="popu_385"></div>
+      </div>
+
+      <!-- <h3 class="recommend_tit" id="related">相关文章推荐</h3> -->
+      <div class="recommend_list clearfix" id="rasss">
+                                                                        <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/sunny2038/article/details/9057415"  target="_blank" strategy="BlogCommendFromBaidu_0">
+                        <dd class="clearfix">
+                          <h2 class="">OpenCV Python教程（1、图像的载入、显示和保存）</h2>
+                          <div class="summary">
+                              转载请详细注明原作者及出处，谢谢！
+
+本文是OpenCV  2 Computer Vision Application Programming Cookbook读书笔记的第一篇。在笔记中将以Pyt...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/B/3/0/3_sunny2038.jpg" alt="sunny2038" title="sunny2038"/></li>
+                              <li class="user_name">sunny2038</li>
+                              <li class="time">2013年06月12日 17:52</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>239682</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/nature_XD/article/details/70768022"  target="_blank" strategy="BlogCommendFromBaidu_1">
+                        <dd class="clearfix">
+                          <h2 class="">简介Opencv在Python中的使用</h2>
+                          <div class="summary">
+                              OpenCV是一个C++库，用于实时处理计算机视觉方面的问题，涵盖了很多计算机视觉领域的模块。...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/B/5/E/3_nature_xd.jpg" alt="nature_XD" title="nature_XD"/></li>
+                              <li class="user_name">nature_XD</li>
+                              <li class="time">2017年04月25日 23:02</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>8404</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                      <dl class="">
+                  <script>
+                  (function() {
+                    var s = "_" + Math.random().toString(36).slice(2);
+                    document.write('<div id="' + s + '"></div>');
+                    (window.slotbydup=window.slotbydup || []).push({
+                      id: '4765209',
+                      container: s,
+                      size: '808,120',
+                      display: 'inlay-fix'
+                    });
+                  })();
+                  </script>
+                </dl>
+                                                                <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/ningzhimeng/article/details/78033156"  target="_blank" strategy="searchFromBaidu_2">
+                        <dd class="clearfix">
+                          <h2 class="">windows10: windows python+opencv环境搭建（最新）</h2>
+                          <div class="summary">
+                              最近实验室由于项目需要搭建opencv的开发环境，在安装过程中查询了部分资料，发现有些资料不是太老就是有很多错误，所以把整个安装过程整理出档案，便于大家学习。(环境为python2.7+win10+6...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/6/5/1/3_ningzhimeng.jpg" alt="ningzhimeng" title="ningzhimeng"/></li>
+                              <li class="user_name">ningzhimeng</li>
+                              <li class="time">2017年09月19日 18:28</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>1364</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/huanglu_thu13/article/details/52337014"  target="_blank" strategy="searchFromBaidu_3">
+                        <dd class="clearfix">
+                          <h2 class="">python opencv 读取视频文件并显示</h2>
+                          <div class="summary">
+                              06-python opencv 读取视频文件并显示06-python opencv 读取视频文件并显示
+概述
+实现过程
+引用
+创建摄像头对象
+逐帧显示实现视频播放
+释放摄像头对象和窗口
+源代码
+运行...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/7/7/0/3_huanglu_thu13.jpg" alt="huanglu_thu13" title="huanglu_thu13"/></li>
+                              <li class="user_name">huanglu_thu13</li>
+                              <li class="time">2016年08月27日 21:00</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>13134</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/qxconverse/article/details/59704906"  target="_blank" strategy="BlogCommendFromBaidu_4">
+                        <dd class="clearfix">
+                          <h2 class="">在python3.5中使用OpenCV</h2>
+                          <div class="summary">
+                              最近在OpenCV的官方文档上看到一个人脸识别的示例代码，想要实现。                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/B/3/4/3_qxconverse.jpg" alt="qxconverse" title="qxconverse"/></li>
+                              <li class="user_name">qxconverse</li>
+                              <li class="time">2017年03月02日 21:38</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>10972</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/GarfieldEr007/article/details/50810475"  target="_blank" strategy="BlogCommendFromBaidu_5">
+                        <dd class="clearfix">
+                          <h2 class="">Python和OpenCV环境配置</h2>
+                          <div class="summary">
+                              一、安装OpenCV，并设置好相应的环境变量...\opencv\build\x86\vc10\bin
+
+
+二、安装Python，设置好相应的环境变量，注意选择版本2.6或2.7，Python 3.X...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/3/A/8/3_garfielder007.jpg" alt="GarfieldEr007" title="GarfieldEr007"/></li>
+                              <li class="user_name">GarfieldEr007</li>
+                              <li class="time">2016年03月05日 20:34</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>5351</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/szfhy/article/details/51076943"  target="_blank" strategy="searchFromBaidu_6">
+                        <dd class="clearfix">
+                          <h2 class="">python+opencv操作图像视频</h2>
+                          <div class="summary">
+                              直接上code吧，算是学习笔记。
+#!/usr/bin/env python
+
+import numpy as np
+import cv2
+#imread第二个参数为0,强制将图像转换为灰度图像，如果...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/E/D/5/3_szfhy.jpg" alt="szfhy" title="szfhy"/></li>
+                              <li class="user_name">szfhy</li>
+                              <li class="time">2016年04月06日 17:43</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>2714</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/szfhy/article/details/51084383"  target="_blank" strategy="searchFromBaidu_7">
+                        <dd class="clearfix">
+                          <h2 class="">python+opencv画图操作</h2>
+                          <div class="summary">
+                              #!/usr/bin/env python
+
+import numpy as np
+import cv2
+
+img = np.zeros((512,512,3), np.uint8)
+
+cv2.lin...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/E/D/5/3_szfhy.jpg" alt="szfhy" title="szfhy"/></li>
+                              <li class="user_name">szfhy</li>
+                              <li class="time">2016年04月07日 11:26</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>2698</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/moneydboat/article/details/78941582"  target="_blank" strategy="BlogCommendFromBaidu_8">
+                        <dd class="clearfix">
+                          <h2 class="">用Python+OpenCV让电脑帮你玩微信跳一跳</h2>
+                          <div class="summary">
+                              前言最近微信小游戏跳一跳大热，自己也是中毒颇久，无奈手残最高分只拿到200分。无意间看到教你用Python来玩微信跳一跳一文，在电脑上利用adb驱动工具操作手机，详细的介绍以及如何安装adb驱动可以去...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/E/7/9/3_moneydboat.jpg" alt="moneydboat" title="moneydboat"/></li>
+                              <li class="user_name">moneydboat</li>
+                              <li class="time">2017年12月31日 13:36</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>3577</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/qq_14845119/article/details/52354394"  target="_blank" strategy="BlogCommendFromBaidu_9">
+                        <dd class="clearfix">
+                          <h2 class="">windows下的python+ opencv安装攻略</h2>
+                          <div class="summary">
+                              准备文件：
+python2.7.12，下载链接https://www.python.org/downloads/
+pip8.1.1，下载链接https://pypi.python.org/packag...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/5/B/9/3_qq_14845119.jpg" alt="qq_14845119" title="qq_14845119"/></li>
+                              <li class="user_name">qq_14845119</li>
+                              <li class="time">2016年08月29日 16:37</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>47025</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                    <!-- <script async="async" charset="utf-8" src="https://shared.ydstatic.com/js/yatdk/3.0.0/stream.js" data-notify="bannerMulti_notify" data-insert-nodes="yd_a_d_feed_1,yd_a_d_feed_13,yd_a_d_feed_18,yd_a_d_feed_23,yd_a_d_feed_28,yd_a_d_feed_33" data-id="8935aa488dd58452b9e5ee3b44f1212f" data-hide-ad-label="0" data-div-Style="width:100%;padding:16px 35px 16px 10px;" data-img-Style="float:right;width:120px;" data-tit-Style="font-size:20px;font-weight:bold;margin-bottom:10px;font-family: 'PingFang SC', 'Microsoft YaHei', SimHei, Arial, SimSun;" data-des-Style="width:700px;font-size:14px;font-family: 'PingFang SC', 'Microsoft YaHei', SimHei, Arial, SimSun;" > </script> -->
+      
+      </div>
+  </main>
+<aside>
+    <div class="right_box user_info">
+    <dl class="inf_bar clearfix">
+        <dt class="csdn-tracking-statistics tracking-click" data-mod="popu_381">
+        <a href="http://blog.csdn.net/iodjsvf8u1j7kyc" target="_blank">
+            <img src="http://avatar.csdn.net/C/2/4/3_iodjsvf8u1j7kyc.jpg" class="avatar_pic">
+        </a>
+      </dt><dd>
+            <h3 class="csdn-tracking-statistics tracking-click"  data-mod="popu_380"><a href="http://blog.csdn.net/iodjsvf8u1j7kyc" target="_blank" id="uid">iodjsvf8u1j7kyc</a></h3>
+            <div class="medals" title="">
+                      </div>
+                        <span  class="csdn-tracking-statistics tracking-click" data-mod="popu_379"><a class="btn btn-redborder-small "  id="span_add_follow" target="_self">关注</a></span>
+                    </dd>
+    </dl>
+    <div class="inf_number_box clearfix">
+        <dl title="16">
+            <dt>原创</dt>
+            <dd>16</dd>
+        </dl>
+        <dl title="42">
+            <dt>粉丝</dt>
+            <dd id='fan'>42</dd>
+        </dl>
+        <dl title="12">
+            <dt>喜欢</dt>
+            <dd>12</dd>
+        </dl>
+        <dl title="33">
+          <dt>评论</dt>
+          <dd>33</dd>
+        </dl>
+    </div>
+
+</div>
+<div class="interflow clearfix">
+      <div class="badge gradeAndbadge">
+        <div>
+                                    <img src='http://c.csdnimg.cn/jifen/images/xunzhang/xunzhang/chizhiyiheng.png' alt='持之以恒'>
+                                            </div>
+    </div>
+      <div class="grade gradeAndbadge">
+      <span>等级：</span>
+      <div>
+        <a href="http://blog.csdn.net/home/help.html#level" title="3级,点击查看等级说明" target="_blank">
+          <img class="grade-img" src="http://c.csdnimg.cn/jifen/images/xunzhang/jianzhang/blog3.png" alt="3级,点击查看等级说明">
+        </a>
+      </div>
+    </div>
+    <div class="gradeAndbadge" title="52914">
+        <span>访问量：</span>
+        <span class="num odd-overhidden">52.91K</span>
+    </div>
+
+    <div class="gradeAndbadge" title="756">
+      <span>积分：</span>
+      <span  class="num odd-overhidden">756</span>
+    </div>
+    <div class="gradeAndbadge" title="66436">
+        <span>排名：</span>
+        <span class="num odd-overhidden">66.43K</span>
+    </div>
+
+</div>          <div class="extension_other csdn-tracking-statistics tracking-click" data-mod="popu_389">
+          <!--u3032528-->
+        <div class="flashrecommend">
+            <script type="text/javascript" src="//cee1.iteye.com/bwocoltly.js"></script>
+        </div>
+      </div>
+      <div class="writings">
+    <div class="public_signal clearfix">
+      <h3>他的最新文章</h3>
+      <a href="http://blog.csdn.net/iodjsvf8u1j7kyc" target="_blank" class="more"><span>更多文章</span></a>
+    </div>
+      <ul class="inf_list clearfix csdn-tracking-statistics tracking-click" data-mod="popu_382">
+                    <li class="clearfix">
+              <a href="http://blog.csdn.net/iodjSVf8U1J7KYc/article/details/79244832" target="_blank">一篇文章教你如何用 Python 记录日志</a>
+          </li>
+                    <li class="clearfix">
+              <a href="http://blog.csdn.net/iodjSVf8U1J7KYc/article/details/79244831" target="_blank">面向对象：我相信，未来要和我共度一生的那个人，一定也怀着满心的期待，拥着一腔孤勇，穿过茫茫人海 也要来与我相见</a>
+          </li>
+                    <li class="clearfix">
+              <a href="http://blog.csdn.net/iodjSVf8U1J7KYc/article/details/79235531" target="_blank">实现属于自己的TensorFlow(1)：计算图与前向传播</a>
+          </li>
+                    <li class="clearfix">
+              <a href="http://blog.csdn.net/iodjSVf8U1J7KYc/article/details/79213452" target="_blank">做 ML 有关的工作，需要哪些技能？</a>
+          </li>
+                    <li class="clearfix">
+              <a href="http://blog.csdn.net/iodjSVf8U1J7KYc/article/details/79202273" target="_blank">15 分钟用 ML 破解一个验证码系统</a>
+          </li>
+                </ul>
+  </div>
+    <!--    [StartShowSelfColumn]-->
+    <!--    [EndShowSelfColumn]-->
+            <div class="user-hotArticle sort timeSort">
+          <h3>文章存档</h3>
+          <ul class="hotArticle-list timeSort-list">
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/iodjsvf8u1j7kyc/article/month/2018/02" class="odd-overhidden floatL">2018年2月</a>
+                  <div class="read list-left floatR"><span>4篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/iodjsvf8u1j7kyc/article/month/2018/01" class="odd-overhidden floatL">2018年1月</a>
+                  <div class="read list-left floatR"><span>46篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/iodjsvf8u1j7kyc/article/month/2017/12" class="odd-overhidden floatL">2017年12月</a>
+                  <div class="read list-left floatR"><span>28篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/iodjsvf8u1j7kyc/article/month/2017/11" class="odd-overhidden floatL">2017年11月</a>
+                  <div class="read list-left floatR"><span>23篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/iodjsvf8u1j7kyc/article/month/2017/10" class="odd-overhidden floatL">2017年10月</a>
+                  <div class="read list-left floatR"><span>12篇</span></div>
+                </li>
+                      </ul>
+          <div class="unfold-btn">
+            <span>展开</span><i class="icon iconfont icon-xiajiantou"></i>
+          </div>
+        </div>
+        <div class="user-hotArticle">
+        <h3>他的热门文章</h3>
+        <ul class="hotArticle-list csdn-tracking-statistics tracking-click" data-mod="popu_521">
+<!--            [StartHotArticles]-->
+                                                <li>
+                        <a href="http://blog.csdn.net/iodjsvf8u1j7kyc/article/details/79030510">编程语言 1 月排行榜：C 是年度语言，Python 增长量第二</a>
+                        <div class="read list-left"><i class="icon iconfont icon-read"></i><span>6024</span></div>
+                    </li>
+                                    <li>
+                        <a href="http://blog.csdn.net/iodjsvf8u1j7kyc/article/details/79070936">用 Python 和 OpenCV 来测量相机到目标的距离</a>
+                        <div class="read list-left"><i class="icon iconfont icon-read"></i><span>3482</span></div>
+                    </li>
+                                    <li>
+                        <a href="http://blog.csdn.net/iodjsvf8u1j7kyc/article/details/78949026">数据专家必知必会的 7 款 Python 工具</a>
+                        <div class="read list-left"><i class="icon iconfont icon-read"></i><span>3383</span></div>
+                    </li>
+                                    <li>
+                        <a href="http://blog.csdn.net/iodjsvf8u1j7kyc/article/details/78999563">AI 时代，爱学习的程序员都关注了这些…</a>
+                        <div class="read list-left"><i class="icon iconfont icon-read"></i><span>3363</span></div>
+                    </li>
+                                    <li>
+                        <a href="http://blog.csdn.net/iodjsvf8u1j7kyc/article/details/78986613">面向对象：珍视你的好，一生温柔以待！</a>
+                        <div class="read list-left"><i class="icon iconfont icon-read"></i><span>2642</span></div>
+                    </li>
+                            <!--            [EndHotArticles]-->
+        </ul>
+    </div>
+
+<!--    [startcustom]-->
+    <!--    [endcustom]-->
+  <div class="fixRight_box" style="height:256px">
+    <div class="fixRight">
+                    <!--u3163270-->
+            <script type="text/javascript" src="//cee1.iteye.com/avneunkwb.js"></script>
+                <div class="right_box copyright csdn-tracking-statistics" data-mod="popu_475" data-dsm="post">
+        <h3 class="feed_new_tit"><span class="line"></span><span class="txt">联系我们</span></h3>
+        <div class="contact-box">
+            <div class="img-box">
+                <img src="https://www.csdn.net/images/csdn_cs_qr.png" alt="客服">
+            </div>
+            <div class="contact-info">
+                <h4>请扫描二维码联系客服</h4>
+                <p>
+                    <i class="icon iconfont icon-mail"></i>
+                    <a href="mailto:webmaster@csdn.net" target="_blank">
+                        <span class="txt">webmaster@csdn.net</span>
+                    </a>
+                </p>
+                <p>
+                    <i class="icon iconfont icon-call"></i>
+                    <span class="txt">400-660-0108</span>
+                </p>
+                <p>
+                    <i class="icon iconfont icon-QQ"></i>
+                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2431299880&amp;site=qq&amp;menu=yes" target="_blank">
+                        <span class="txt">网站客服</span>
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="bg-gray">
+            <div class="feed_copyright">
+                <p><a class="right-dotte" href="//www.csdn.net/company/about.html" target="_blank">关于</a><a href="//www.csdn.net/company/recruit.html" target="_blank" class="right-dotte">招聘</a><a href="//www.csdn.net/company/marketing.html" target="_blank" class="right-dotte">广告服务</a><img src="https://www.csdn.net/images/ali01.png" alt="ali" title="ali"></p>
+                <p class="fz12">©2018 CSDN <a href="http://www.miibeian.gov.cn/" target="_blank" class="ml14">京ICP证09002463号</a></p>
+            </div>
+            <div class="allow-info-box">
+                <p><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><span>经营性网站备案信息</span></a></p>
+                <p><a href="http://www.cyberpolice.cn/" target="_blank"><span>网络110报警服务</span></a></p>
+                <p><a href="http://www.12377.cn/" target="_blank"><span>中国互联网举报中心</span></a></p>
+                <p><a href="http://www.bjjubao.org/" target="_blank"><span>北京互联网违法和不良信息举报中心</span></a></p>
+            </div>
+        </div>
+    </div>
+    </div>
+  </div>
+</aside></div>
+
+<div class="left_fixed">
+    <div class="left_show_button">
+        <span>
+          <i class="icon iconfont icon-youjiantou"></i>
+        </span>
+    </div>
+    <ul class="left_menu" id="share_box">
+        <li>
+            <button class="left-fixed-btn btn-like csdn-tracking-statistics tracking-click" data-mod="popu_373" target="_self" title="点赞">
+                <a href="javascript:void(0);" class="iconbox border_red" ><i class="icon iconfont icon-dianzan"></i></a>
+                <a class="txt" href="javascript:void(0);">1</a>
+            </button>
+        </li>
+        <li id="blog_artical_directory">
+            <button class="left-fixed-btn left_menu_btn csdn-tracking-statistics tracking-click" data-mod="popu_372" target="_self" title="目录">
+                <a href="javascript:void(0);" class="iconbox border_black" ><i class="icon iconfont icon-mulu"></i></a>
+            </button>
+        </li>
+        <li class="menu_con">
+            <div class="list_father">
+                <div class="arr_box">
+                    <button class="btn-noborder arr-btn scroll-down  left_scroll_down"><i class="icon iconfont icon-xiajiantou"></i></button>
+                    <button class="btn-noborder arr-btn scroll-up left_scroll_top"><i class="icon iconfont icon-shangjiantou"></i></button>
+                </div>
+                <div class="arr"></div>
+                <div id="csdnBlogDir"></div>
+            </div>
+        </li>
+        <!--        <li>-->
+        <!--            <button class="left-fixed-btn btn-like tracking-ad" data-mod="popu_373" target="_self">-->
+        <!--                <span class="iconbox border_red"><i class="icon iconfont icon-xihuan-"></i></span>-->
+        <!--                <span class="txt">喜欢</span>-->
+        <!--                <span class="untxt">取消喜欢</span>-->
+        <!--            </button>-->
+        <!--        </li>-->
+        <li>
+            <button class="left-fixed-btn csdn-tracking-statistics tracking-click" data-mod="popu_374"  id="com-quick-collect" target="_self" title="收藏">
+                <a href="javascript:void(0);" class="iconbox border_purple" ><i class="icon iconfont icon-shoucang"></i></a>
+            </button>
+        </li>
+        <li>
+            <button class="left-fixed-btn btn-pinglun csdn-tracking-statistics tracking-click" data-mod="popu_544" title="评论">
+                <a href="javascript:void(0);" class="iconbox border_purple" ><i class="icon iconfont icon-pinglun"></i></a>
+            </button>
+        </li>
+        <li class="bdsharebuttonbox">
+          <button class="outside left-fixed-btn csdn-tracking-statistics tracking-click" data-mod="popu_172" title="分享到新浪微博">
+                <span class="iconbox border_red2"><i class="icon iconfont icon-xinlang"></i></span>
+                <a href="#" class="bds_tsina" data-cmd="tsina" > </a>
+          </button>
+        </li>
+        <li class="bdsharebuttonbox">
+          <button class="outside left-fixed-btn csdn-tracking-statistics tracking-click" data-mod="popu_172" title="分享到微信">
+              <span class="iconbox border_green"><i class="icon iconfont icon-weixin"></i></span>
+              <a href="#" class="bds_weixin" data-cmd="weixin" > </a>
+          </button>
+        </li>
+        <li class="bdsharebuttonbox">
+          <button class="outside left-fixed-btn csdn-tracking-statistics tracking-click" data-mod="popu_172" title="分享到QQ空间">
+              <span class="iconbox border_blue"><i class="icon iconfont icon-QQ"></i></span>
+              <a href="#" class="bds_qzone" data-cmd="qzone" > </a>
+          </button>
+        </li>
+        <li id="share_box">
+            
+            <div class="bdsharebuttonbox csdn-tracking-statistics tracking-click" data-mod="popu_172">
+                
+                
+                
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="right_fixed">
+    <div class="r_ico">
+        <i class="icon iconfont icon-jubao"></i>
+        <span class="txt" id="reportBtn">内容举报</span>
+    </div>
+    <div class="returnTop">
+        <i class="icon iconfont icon-fanhuidingbu"></i>
+        <span>返回顶部</span>
+    </div>
+</div>
+<div id="pop_win"></div>
+<div id="popup_mask"></div>
+<div class="pop_CA_cover" ></div>
+<div class="pop pop_CA" >
+    <div class="CA_header">
+        收藏助手
+        <span class="cancel_icon"  id="fapancle" ></span>
+    </div>
+    <iframe src="" id="collectIframe" frameborder="0" width="100%" height="360"  scrolling="no" ></iframe>
+</div>
+<!--举报-->
+<div id="report_dialog" style="top: 250px; left: 343.5px;"><div id="panel_report">
+    <div class="panel_head">不良信息举报</div>
+    <form method="post" id="frmReport" class="panel_body">
+        <table border="0" cellpadding="0" cellspacing="4" class="pop_table">
+            <tbody><tr><td colspan="2">您举报文章：<a href="http://blog.csdn.net/iodjSVf8U1J7KYc/article/details/79070936" target="_blank">用 Python 和 OpenCV 来测量相机到目标的距离</a></td></tr>
+            <tr>
+                <th style="width:60px;">举报原因：</th>
+                <td id="panel_reporttype">
+                    <label><input type="radio" class="report_type" id="report_sex" name="report_type" value="1">色情</label>
+                    <label><input type="radio" class="report_type" id="report_Politics" name="report_type" value="2">政治</label>
+                    <label><input type="radio" class="report_type" id="report_copy" name="report_type" value="3">抄袭</label>
+                    <label><input type="radio" class="report_type" id="report_ad" name="report_type" value="4">广告</label>
+                    <label><input type="radio" class="report_type" id="report_want" name="report_type" value="5">招聘</label>
+                    <label><input type="radio" class="report_type" id="report_call" name="report_type" value="6">骂人</label>
+                    <br>
+                    <label><input type="radio" class="report_type" id="report_other" name="report_type" value="7">其他</label>
+                    <input type="text" name="report_other_content" id="report_other_content" maxlength="30" style="display: none;">
+                </td>
+            </tr>
+            <tr id="panel_originalurl" style="display: none;">
+                <th>原文地址：</th>
+                <td>
+                    <input id="originalurl" value="http://" name="originalurl" type="text" style="width: 90%;">
+                </td>
+            </tr>
+            <tr>
+                <th id="sp_reason">原因补充：</th>
+                <td>
+                    <textarea id="report_description" style="width: 300px;" rows="3" name="report_description"></textarea>
+                    <p id="sp_n" style="color:#999;margin:0px;padding:0px;">(最多只允许输入30个字)</p>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input id="btnSubmitReport" name="submit" type="image" align="middle" class="btn_1" src="http://csdnimg.cn/release/phoenix/images/btn_submit.jpg">
+                    <span style="padding-left:20px;"></span>
+                    <img id="btnCloseReportDialog" src="http://csdnimg.cn/release/phoenix/images/btn_cancel.jpg" align="middle">
+                    <div id="error" style="color: Red">
+                    </div>
+                </td>
+            </tr>
+            </tbody></table>
+    </form>
+</div>
+    <script language="javascript" type="text/javascript">
+        var isComment=0;
+        //显示隐藏地址
+        $(function () {
+          console.log("version:phoenix");
+            if(isComment){
+                $("#report_description").attr("disabled",true);
+                $("#sp_n").hide();
+                $("#sp_reason").html("评论内容：");
+            }
+            $(".report_type").click(function () {
+                $("#panel_originalurl,#report_other_content").hide();
+                switch ($(this).val()) {
+                    case '3':
+                        $("#panel_originalurl").show();
+                        $("#originalurl").focus();
+                        break;
+                    case '7':
+                        if(isComment){
+                            $("#report_other_content").show().focus();
+                        }
+                        break;
+                }
+
+            });
+
+            $("#frmReport").submit(function () {
+                if (!currentUserName) {
+
+                    if (confirm("您的操作必须登录，是否登录？")) {
+                        location.href = "http://passport.csdn.net/account/login?from=" + encodeURIComponent(location.href);
+                        return false;
+                    }
+                    return false;
+                }
+
+                var reportType = $("input[name=report_type]:checked").val();
+                if(!reportType){
+                    alert("请选择举报原因！");
+                    return false;
+                }
+                var otherInfo = "";
+                switch (reportType) {
+                    case '3':
+                        otherInfo = $("#originalurl").val();
+                        if (otherInfo == ""||otherInfo=="http://") {
+                            alert("举报抄袭必须提供原创文章地址！");
+                            $("#originalurl").focus();
+                            return false;
+                        } else if(!checkeURL(otherInfo)) {
+                            alert("请输入正确的原创文章地址！");
+                            $("#originalurl").focus();
+                            return false;
+                        }
+                        break;
+                    case '7':
+                        otherInfo = $("#report_other_content").val();
+                        if (isComment && !otherInfo) {
+                            alert("请填写举报的具体原因！");
+                            $("#report_other_content").focus();
+                            return false;
+                        }
+                        if(!isComment){
+                            if(!$("#report_description").val()){
+                                alert("请填写举报的具体原因！");
+                                $("#report_description").focus();
+                                return false;
+                            }
+                        }
+                        break;
+                }
+                if(!isComment){
+                    if($("#report_description").val().length>30){
+                        alert("举报原因最多只允许输入30个字！");
+                        return false;
+                    }
+                }
+	            nowTime = {
+		            year: new Date().getFullYear(),
+		            month: parseInt(new Date().getMonth())+1,
+		            day: new Date().getDate(),
+		            hours: parseInt(new Date().getHours())+1,
+		            minutes: parseInt(new Date().getMinutes())+1,
+		            seconds: parseInt(new Date().getSeconds())+1
+	            };
+	            var data = {
+		            articleId: fileName,
+		            commentId: 0,
+		            reportType: reportType,
+		            originalurl: $("#originalurl").val(),
+		            report_other_content: $("#report_other_content").val(),
+		            report_description: $("#report_description").val(),
+		            currentUserName: currentUserName,
+		            updatetime: nowTime.year+'/'+nowTime.month+'/'+nowTime.day+' '+ nowTime.hours+':'+nowTime.minutes+':'+seconds,
+		            blogUser: username
+	            };
+	            if(!isComment){//如果是举报文章
+		            data.report_other_content = data.report_description;
+		            // data.report_description = "1. 神经网络这是一个常见的神经网络的图：这是一个常见的三层神经网络的基本构成，Layer L1是输入层，Layer L2是隐含层";
+	            }
+
+	            $.post(blog_address + "/common/report?id="+fileName+"&t=2", data, function (data) {
+		            if (data.result == 1){
+			            SetError("感谢您的举报，我们会尽快审核！");
+		            }else{
+			            if (data.content) alert(data.content);
+		            }
+
+	            });
+                return false;
+            });
+
+            $("#btnCloseReportDialog").click(function () {
+                CloseDiv();
+            });
+
+        });
+
+        //提示后关闭方法
+        function SetError(error) {
+            $("#btnCloseReportDialog").trigger("click");
+            alert(error);
+            CloseDiv();
+        }
+
+        //关闭方法
+        function CloseDiv() {
+
+            $.removeMask();
+            $("#report_dialog").hide();
+            return false;
+        }
+
+        //验证url
+        function checkeURL(url){
+            return /^http(s)?:\/\/([\w-]+\.)+[\w-]+/i.test(url);
+        }
+    </script>
+</div>
+<!--  fixme 后期清理掉  -->
+<div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+    <script id="adJs52b5334"></script>
+    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+</div>
+<!-- <script type="text/javascript" src="http://passport.csdn.net/content/loginbox/login.js"></script> -->
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<script type="text/javascript" >
+    if($(".article_collect li").length==1){$(".article_collect").hide();}
+    if($(".article_tags li").length==1){$(".article_tags").hide();}
+    $(".edit a").attr("href","http://mp.blog.csdn.net/postedit/"+fileName);
+    $.each($(".edu_li a"),function(){$(this).attr("href",$(this).attr("href").replace("blog7","blog9"))});
+    new CNick('#uid').showNickname();
+
+    if($("#fan").html()=="")
+    {
+	    $("#fan").html(0);
+    }
+</script>
+<script src="http://c.csdnimg.cn/public/common/append_mark/appendMark.min.js?v=5.00.43" type="text/javascript"></script>
+<script type="text/javascript">
+    appendMark($('.recommend_list').children('a').find('dt'),$('.extension_other'),$('.yd_a_d_feed_cla'))
+</script>
+<div class=""id="loginWrap"></div>
+<div class="" id="dlMask"></div>
+</body>

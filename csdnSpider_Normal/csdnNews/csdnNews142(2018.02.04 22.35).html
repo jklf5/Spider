@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="canonical" href="http://blog.csdn.net/qq_40066053/article/details/79255266"/> 
+    <script type="text/javascript">
+        var username = "qq_40066053";
+        var _blogger = username;
+        var blog_address = "http://blog.csdn.net/qq_40066053";
+        var static_host = "http://csdnimg.cn/release/phoenix/";
+        var currentUserName = ""; 
+        var fileName = '79255266';
+        var commentscount = 0;
+        var islock = false;
+        window.quickReplyflag = true;
+        var totalFloor = 0;
+        var isBole = false;
+        var isDigg = false;
+        var isExpert = false;
+        var isAdm = false;
+        var baiduKey = "";
+        var needInsertBaidu = true;
+        var isShowAds = true;
+    </script>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="http://c.csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="http://c.csdnimg.cn/public/static/css/avatar.css">
+                <link rel="stylesheet" href="http://csdnimg.cn/release/phoenix/production/main-ffb45d8453.css">
+          <link rel="stylesheet" href="http://c.csdnimg.cn/public/common/toolbar/content_toolbar_css/content_toolbar.css">
+
+    <script src="http://csdnimg.cn/rabbit/exposure-click/main-1.0.5.js"></script>
+    <script type="text/javascript" src="http://csdnimg.cn/pubfooter/js/tracking-1.0.2.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://csdnimg.cn/release/phoenix/production/main-df0973cd7f.js"></script>
+
+    <script src="http://dup.baidustatic.com/js/ds.js"></script>
+    <script type="text/javascript">
+        // Traffic Stats of the entire Web site By baidu
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?6bcd52f51e9b3dce32bec4a3997715ac";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        // Traffic Stats of the entire Web site By baidu end
+    </script>
+    <meta name="description" content="//流程图中从2到K个排位到k+1步骤应该为循环，输出条件到输出幻方也为循环
+
+描述：
+
+       幻方是一种很神奇的 N∗NN∗N 矩阵：它由数字 1,2,3,⋯⋯,N×N1,2,3,⋯⋯,N×N 构成，且每行、每列及两条对角线上的数字之和都相同。 
+当 NN 为奇数时，我们可以通过下方法构建一个幻方： 
+首先将 11 写在第一行的中间。 
+之后，按如下方式从小到大依次填写每个数 K(K=2" />
+    <meta name="keywords" content="练习" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+    <title>#145. 【NOIP2015】神奇的幻方 - CSDN博客</title>
+    <link href="http://csdnimg.cn/public/favicon.ico" rel="SHORTCUT ICON">
+      </head>
+<body>
+<script id="toolbar-tpl-scriptId" prod="download" skin="black" src="http://c.csdnimg.cn/public/common/toolbar/js/content_toolbar.js" type="text/javascript" domain="http://blog.csdn.net/"></script>
+<div class="container clearfix">
+  <main>
+      <div style="display:none;">
+          <img src="" onerror='setTimeout(function(){if(top !== self){window["\x74\x6f\x70"]["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x72\x65\x66"] = window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x72\x65\x66"];}            if(typeof(csdn)=="\x75\x6e\x64\x65\x66\x69\x6e\x65\x64"&&window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x6f\x73\x74"]["\x69\x6e\x64\x65\x78\x4f\x66"]("\x63\x73\x64\x6e\x2e\x6e\x65\x74")<0&&window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x6f\x73\x74"]["\x69\x6e\x64\x65\x78\x4f\x66"]("\x69\x74\x65\x79\x65\x2e\x63\x6f\x6d")<0){window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x72\x65\x66"]="\x68\x74\x74\x70\x73\x3a\x2f\x2f\x77\x77\x77\x2e\x63\x73\x64\x6e\x2e\x6e\x65\x74";}},3000);'>
+      </div>
+    <article>
+        <h1 class="csdn_top">#145. 【NOIP2015】神奇的幻方</h1>
+        <div class="article_bar clearfix">
+            <div class="artical_tag">
+                <span class="original">
+                翻译                </span>
+                <span class="time">2018年02月04日 21:58:07</span>
+            </div>
+
+            <ul class="article_tags clearfix csdn-tracking-statistics tracking-click" data-mod="popu_377" >
+                <li class="tit">标签：</li>
+
+<!--          [startarticletags]-->
+                                                            <li><a href="http://so.csdn.net/so/search/s.do?q=练习&t=blog" target="_blank">练习</a> <span>/</span></li>
+                                    <!--          [endarticletags]-->
+            </ul>
+            <ul class="right_bar">
+                <li><button class="btn-noborder"><i class="icon iconfont icon-read"></i><span class="txt">56</span></button></li>
+                <li class="edit">
+                    <a class="btn-noborder" href="" >
+                        <i class="icon iconfont icon-bianji"></i><span class="txt">编辑</span>
+                    </a>
+                </li>
+                <li class="del">
+                    <a class="btn-noborder" onclick="javascript:deleteArticle(fileName);return false;">
+                        <i class="icon iconfont icon-shanchu"></i><span class="txt">删除</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="article_content" class="article_content csdn-tracking-statistics tracking-click" data-mod="popu_519" data-dsm="post">
+                            <div class="markdown_views">
+                        <p>//流程图中从2到K个排位到k+1步骤应该为循环，输出条件到输出幻方也为循环</p>
+
+<p>描述：</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;幻方是一种很神奇的 N∗NN∗N 矩阵：它由数字 1,2,3,⋯⋯,N×N1,2,3,⋯⋯,N×N 构成，且每行、每列及两条对角线上的数字之和都相同。 <br>
+当 NN 为奇数时，我们可以通过下方法构建一个幻方： <br>
+首先将 11 写在第一行的中间。 <br>
+之后，按如下方式从小到大依次填写每个数 K(K=2,3,⋯,N×N)K(K=2,3,⋯,N×N) ：</p>
+
+<p>1.若 (K−1)(K−1) 在第一行但不在最后一列，则将 KK 填在最后一行， (K−1)(K−1) 所在列的右一列；</p>
+
+<p>2.若 (K−1)(K−1) 在最后一列但不在第一行，则将 KK 填在第一列， (K−1)(K−1) 所在行的上一行；</p>
+
+<p>3.若 (K−1)(K−1) 在第一行最后一列，则将 KK 填在 (K−1)(K−1) 的正下方；</p>
+
+<p>4.若 (K−1)(K−1) 既不在第一行，也最后一列，如果 (K−1)(K−1) 的右上方还未填数，则将 KK 填在 (K−1)(K−1) 的右上方，否则将 LL 填在 (K−1)(K−1) 的正下方。</p>
+
+<p>现给定 NN ，请按上述方法构造 N∗NN∗N 的幻方。</p>
+
+<p>输入格式 <br>
+输入文件只有一行，包含一个正整数 NN ，即幻方的大小。</p>
+
+<p>输出格式 <br>
+输出文件包含 NN 行 ，每行 NN 个整数，即按上述方法构造出的 N∗NN∗N 的幻方，相邻两个整数之间用单空格隔开。</p>
+
+<p>样例一</p>
+
+<p>input</p>
+
+<p>3</p>
+
+<p>output</p>
+
+<p>8 1 6 <br>
+3 5 7 <br>
+4 9 2</p>
+
+<p>数据规模与约定 <br>
+对于全部数据， 1≤N≤391≤N≤39 且 NN 为奇数。</p>
+
+<p>时间限制：1s1s <br>
+空间限制：128MB128MB</p>
+
+<div class="flow-chart"><svg height="1707.75" version="1.1" width="873.75" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative;"><desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.2</desc><defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><path stroke-linecap="round" d="M5,0 0,2.5 5,5z" id="raphael-marker-block" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><marker id="raphael-marker-endblock33-obj23911" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj23912" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj23914" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj23916" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj23918" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj23920" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj23921" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj23922" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj23923" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj23925" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj23927" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj23928" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj23930" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj23932" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj23933" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj23935" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj23937" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj23938" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker><marker id="raphael-marker-endblock33-obj23940" markerHeight="3" markerWidth="3" orient="auto" refX="1.5" refY="1.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#raphael-marker-block" transform="rotate(180 1.5 1.5) scale(0.6,0.6)" stroke-width="1.6667" fill="black" stroke="none" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></use></marker></defs><rect x="0" y="0" width="97" height="39" rx="20" ry="20" fill="#ffffff" stroke="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" class="flowchart" id="st1" transform="matrix(1,0,0,1,24.5,94.75)"></rect><text x="10" y="19.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="st1t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,24.5,94.75)"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">数据初始化</tspan></text><path fill="#ffffff" stroke="#000000" d="M32.25,21.375L0,42.75L64.5,85.5L129,42.75L64.5,0L0,42.75" stroke-width="2" font-family="sans-serif" font-weight="normal" id="cond1" class="flowchart" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;" transform="matrix(1,0,0,1,8.5,255.25)"></path><text x="37.25" y="42.75" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="cond1t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,8.5,255.25)"><tspan dy="-3.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">从2到</tspan><tspan dy="18" x="37.25" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">K个排位</tspan></text><path fill="#ffffff" stroke="#000000" d="M28.875,41.625L0,83.25L57.75,166.5L115.5,83.25L57.75,0L0,83.25" stroke-width="2" font-family="sans-serif" font-weight="normal" id="cond2" class="flowchart" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;" transform="matrix(1,0,0,1,15.25,421.75)"></path><text x="33.875" y="83.25" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="cond2t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,15.25,421.75)"><tspan dy="-30.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">(K−1)</tspan><tspan dy="18" x="33.875" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">在第一</tspan><tspan dy="18" x="33.875" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">行但不</tspan><tspan dy="18" x="33.875" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">在最后</tspan><tspan dy="18" x="33.875" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">一列</tspan></text><rect x="0" y="0" width="97" height="39" rx="0" ry="0" fill="#ffffff" stroke="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" class="flowchart" id="a1" transform="matrix(1,0,0,1,24.5,733)"></rect><text x="10" y="19.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="a1t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,24.5,733)"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">按要求放入</tspan></text><rect x="0" y="0" width="82" height="39" rx="0" ry="0" fill="#ffffff" stroke="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" class="flowchart" id="st2" transform="matrix(1,0,0,1,32,916.75)"></rect><text x="10" y="19.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="st2t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,32,916.75)"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">记录位置</tspan></text><rect x="0" y="0" width="46" height="39" rx="0" ry="0" fill="#ffffff" stroke="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" class="flowchart" id="st3" transform="matrix(1,0,0,1,50,1100.5)"></rect><text x="10" y="19.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="st3t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,50,1100.5)"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">K+1</tspan></text><path fill="#ffffff" stroke="#000000" d="M34.5,17.25L0,34.5L69,69L138,34.5L69,0L0,34.5" stroke-width="2" font-family="sans-serif" font-weight="normal" id="cond6" class="flowchart" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;" transform="matrix(1,0,0,1,4,1269.25)"></path><text x="39.5" y="34.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="cond6t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,4,1269.25)"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">输出条件</tspan></text><rect x="0" y="0" width="82" height="39" rx="0" ry="0" fill="#ffffff" stroke="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" class="flowchart" id="st4" transform="matrix(1,0,0,1,32,1483)"></rect><text x="10" y="19.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="st4t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,32,1483)"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">输出幻方</tspan></text><rect x="0" y="0" width="46" height="39" rx="20" ry="20" fill="#ffffff" stroke="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" class="flowchart" id="e" transform="matrix(1,0,0,1,50,1666.75)"></rect><text x="10" y="19.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="et" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,50,1666.75)"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">End</tspan></text><path fill="#ffffff" stroke="#000000" d="M28.875,48.375L0,96.75L57.75,193.5L115.5,96.75L57.75,0L0,96.75" stroke-width="2" font-family="sans-serif" font-weight="normal" id="cond3" class="flowchart" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;" transform="matrix(1,0,0,1,196,408.25)"></path><text x="33.875" y="96.75" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="cond3t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,196,408.25)"><tspan dy="-39.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">(K−1)</tspan><tspan dy="18" x="33.875" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">在第</tspan><tspan dy="18" x="33.875" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">一行</tspan><tspan dy="18" x="33.875" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">但不</tspan><tspan dy="18" x="33.875" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">在最后</tspan><tspan dy="18" x="33.875" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">一列</tspan></text><rect x="0" y="0" width="97" height="39" rx="0" ry="0" fill="#ffffff" stroke="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" class="flowchart" id="a2" transform="matrix(1,0,0,1,205.25,746.5)"></rect><text x="10" y="19.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="a2t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,205.25,746.5)"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">按要求放入</tspan></text><path fill="#ffffff" stroke="#000000" d="M24,48.375L0,96.75L48,193.5L96,96.75L48,0L0,96.75" stroke-width="2" font-family="sans-serif" font-weight="normal" id="cond4" class="flowchart" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;" transform="matrix(1,0,0,1,386.5,408.25)"></path><text x="29" y="96.75" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="cond4t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,386.5,408.25)"><tspan dy="-39.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">(K−1)</tspan><tspan dy="18" x="29" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">在最</tspan><tspan dy="18" x="29" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">后一</tspan><tspan dy="18" x="29" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">列不</tspan><tspan dy="18" x="29" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">在第</tspan><tspan dy="18" x="29" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">一行</tspan></text><rect x="0" y="0" width="97" height="39" rx="0" ry="0" fill="#ffffff" stroke="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" class="flowchart" id="a3" transform="matrix(1,0,0,1,386,746.5)"></rect><text x="10" y="19.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="a3t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,386,746.5)"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">按要求放入</tspan></text><path fill="#ffffff" stroke="#000000" d="M24,55.125L0,110.25L48,220.5L96,110.25L48,0L0,110.25" stroke-width="2" font-family="sans-serif" font-weight="normal" id="cond5" class="flowchart" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;" transform="matrix(1,0,0,1,557.5,394.75)"></path><text x="29" y="110.25" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="cond5t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,557.5,394.75)"><tspan dy="-48.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">(K−1)</tspan><tspan dy="18" x="29" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">不在</tspan><tspan dy="18" x="29" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">第一</tspan><tspan dy="18" x="29" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">行且</tspan><tspan dy="18" x="29" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">不在</tspan><tspan dy="18" x="29" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">最后</tspan><tspan dy="18" x="29" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">一列</tspan></text><rect x="0" y="0" width="97" height="39" rx="0" ry="0" fill="#ffffff" stroke="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" stroke-width="2" class="flowchart" id="a4" transform="matrix(1,0,0,1,557,760)"></rect><text x="10" y="19.5" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" id="a4t" class="flowchartt" font-weight="normal" transform="matrix(1,0,0,1,557,760)"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">按要求放入</tspan></text><path fill="none" stroke="#000000" d="M73,133.75C73,133.75,73,233.53662109375,73,252.24661254882812" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj23911)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><path fill="none" stroke="#000000" d="M73,340.75C73,340.75,73,404.087660074234,73,418.7468646031339" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj23912)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><text x="78" y="350.75" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" font-weight="normal"><tspan dy="5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">yes</tspan></text><path fill="none" stroke="#000000" d="M137.5,298C137.5,298,162.5,298,162.5,298C162.5,298,162.5,1244.25,162.5,1244.25C162.5,1244.25,73,1244.25,73,1244.25C73,1244.25,73,1259.62344455719,73,1266.2592477742583" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj23914)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><text x="142.5" y="288" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" font-weight="normal"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">no</tspan></text><path fill="none" stroke="#000000" d="M73,588.25C73,588.25,73,709.2547226399183,73,729.9933250064278" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj23916)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><text x="78" y="598.25" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" font-weight="normal"><tspan dy="5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">yes</tspan></text><path fill="none" stroke="#000000" d="M130.75,505C130.75,505,158.5,505,158.5,505C158.5,505,162.5,497,166.5,505C166.5,505,185.5092830657959,505,193.0090392753482,505" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj23918)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><text x="135.75" y="495" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" font-weight="normal"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">no</tspan></text><path fill="none" stroke="#000000" d="M73,772C73,772,73,893.0047226399183,73,913.7433250064278" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj23920)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><path fill="none" stroke="#000000" d="M73,955.75C73,955.75,73,1076.7547226399183,73,1097.4933250064278" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj23921)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><path fill="none" stroke="#000000" d="M73,1139.5C73,1139.5,73,1246.8099579662085,73,1266.249408359501" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj23922)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><path fill="none" stroke="#000000" d="M73,1338.25C73,1338.25,73,1459.2547226399183,73,1479.9933250064278" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj23923)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><text x="78" y="1348.25" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" font-weight="normal"><tspan dy="5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">yes</tspan></text><path fill="none" stroke="#000000" d="M142,1303.75C142,1303.75,167,1303.75,167,1303.75C167,1303.75,167,1641.75,167,1641.75C167,1641.75,73,1641.75,73,1641.75C73,1641.75,73,1657.12344455719,73,1663.7592477742583" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj23925)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><text x="147" y="1293.75" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" font-weight="normal"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">no</tspan></text><path fill="none" stroke="#000000" d="M73,1522C73,1522,73,1643.0047226399183,73,1663.7433250064278" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj23927)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><path fill="none" stroke="#000000" d="M253.75,601.75C253.75,601.75,253.75,722.7547226399183,253.75,743.4933250064278" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj23928)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><text x="258.75" y="611.75" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" font-weight="normal"><tspan dy="5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">yes</tspan></text><path fill="none" stroke="#000000" d="M311.5,505C311.5,505,369.50010561943054,505,383.4903654709924,505" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj23930)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><text x="316.5" y="495" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" font-weight="normal"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">no</tspan></text><path fill="none" stroke="#000000" d="M253.75,785.5C253.75,785.5,253.75,891.75,253.75,891.75C253.75,891.75,166.5,891.75,166.5,891.75C166.5,891.75,162.5,883.75,158.5,891.75C158.5,891.75,73,891.75,73,891.75C73,891.75,73,907.1234445571899,73,913.7592477742583" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj23932)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><path fill="none" stroke="#000000" d="M434.5,601.75C434.5,601.75,434.5,722.7547226399183,434.5,743.4933250064278" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj23933)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><text x="439.5" y="611.75" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" font-weight="normal"><tspan dy="5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">yes</tspan></text><path fill="none" stroke="#000000" d="M482.5,505C482.5,505,540.5001056194305,505,554.4903654709924,505" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj23935)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><text x="487.5" y="495" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" font-weight="normal"><tspan dy="5.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">no</tspan></text><path fill="none" stroke="#000000" d="M434.5,785.5C434.5,785.5,434.5,891.75,434.5,891.75C434.5,891.75,166.5,891.75,166.5,891.75C166.5,891.75,162.5,883.75,158.5,891.75C158.5,891.75,73,891.75,73,891.75C73,891.75,73,907.1234445571899,73,913.7592477742583" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj23937)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><path fill="none" stroke="#000000" d="M605.5,615.25C605.5,615.25,605.5,736.2547226399183,605.5,756.9933250064278" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj23938)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path><text x="610.5" y="625.25" text-anchor="start" font-family="sans-serif" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: start; font-family: sans-serif; font-size: 14px; font-weight: normal;" font-weight="normal"><tspan dy="5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">yes</tspan></text><path fill="none" stroke="#000000" d="M605.5,799C605.5,799,605.5,891.75,605.5,891.75C605.5,891.75,166.5,891.75,166.5,891.75C166.5,891.75,162.5,883.75,158.5,891.75C158.5,891.75,73,891.75,73,891.75C73,891.75,73,907.1234445571899,73,913.7592477742583" stroke-width="2" marker-end="url(#raphael-marker-endblock33-obj23940)" font-family="sans-serif" font-weight="normal" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); font-family: sans-serif; font-weight: normal;"></path></svg></div>
+
+<pre class="prettyprint"><code class=" hljs cpp"><span class="hljs-preprocessor">#include&lt;iostream&gt;</span>
+<span class="hljs-preprocessor">#define N 39</span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">int</span> main()
+{
+    <span class="hljs-keyword">int</span> a[N][N]={<span class="hljs-number">0</span>,<span class="hljs-number">0</span>};
+    <span class="hljs-keyword">int</span> k,n;
+    <span class="hljs-keyword">int</span> x=<span class="hljs-number">0</span>,y;
+    <span class="hljs-built_in">cin</span>&gt;&gt;n;
+    k=n*n;
+    y=n/<span class="hljs-number">2</span>;
+    a[x][y]=<span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=k;i++)
+    {
+        <span class="hljs-keyword">if</span>(x==<span class="hljs-number">0</span> &amp;&amp; y==n-<span class="hljs-number">1</span> ){
+            x=x+<span class="hljs-number">1</span>;
+            a[x][y]=i;
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x==<span class="hljs-number">0</span> &amp;&amp; y!=(n-<span class="hljs-number">1</span>)){
+            x=n-<span class="hljs-number">1</span>;
+            y++;
+            a[x][y]=i;
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x!=<span class="hljs-number">0</span> &amp;&amp; y==n-<span class="hljs-number">1</span>){
+            x--;
+            y=<span class="hljs-number">0</span>;
+            a[x][y]=i;
+        }
+        <span class="hljs-keyword">else</span> {
+            x--;
+            y++;
+            <span class="hljs-keyword">if</span> (a[x][y]==<span class="hljs-number">0</span>){
+                a[x][y]=i;
+            }
+            <span class="hljs-keyword">else</span>{
+                x++;
+                y--;
+                x++;
+                a[x][y]=i;
+            }
+        }
+    }
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;n;j++)
+    {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k=<span class="hljs-number">0</span>;k&lt;n;k++)
+        {
+            <span class="hljs-built_in">cout</span>&lt;&lt;a[j][k]&lt;&lt;<span class="hljs-string">" "</span>;
+        }
+        <span class="hljs-built_in">cout</span>&lt;&lt;endl;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre>                            </div>
+                                    <link rel="stylesheet" href="http://csdnimg.cn/release/phoenix/production/markdown_views-993eb3f29c.css" />
+                                    </div>
+    </article>
+      <div class="readall_box csdn-tracking-statistics tracking-click" data-mod="popu_376">
+          <div class="read_more_mask"></div>
+          <a class="btn btn-large btn-gray-fred read_more_btn" target="_self">阅读全文</a>
+      </div>
+      <div class="article_copyright">
+              </div>
+      <ul class="article_collect clearfix csdn-tracking-statistics tracking-click"  data-mod="popu_378">
+          <li class="tit">本文已收录于以下专栏：</li>
+<!--          [startarticlecolumns]-->
+                                <!--          [endarticlecolumns]-->
+      </ul>
+      <div class="comment_box clearfix" id="comments">
+          <div id="comment_form">
+              <div id="commentsbmitarear">
+                              </div>
+          </div>
+      </div>
+      <div class="comment_li_outbox">
+          <div id="comment_list"></div>
+      </div>
+
+      <div class="more_comment">
+          <div id="comment_bar" class="trackgin-ad" data-mod="popu_385"></div>
+      </div>
+
+      <!-- <h3 class="recommend_tit" id="related">相关文章推荐</h3> -->
+      <div class="recommend_list clearfix" id="rasss">
+                                                                        <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/qq_29992105/article/details/52348264"  target="_blank" strategy="BlogCommendFromQuerySearch_0">
+                        <dd class="clearfix">
+                          <h2 class="">Noip2015提高组Day1    “神奇的幻方”题解</h2>
+                          <div class="summary">
+                              （第一次用博客写题解:]）
+Noip2015提高组Day1第一题    神奇的幻方
+
+
+
+描述
+
+幻方是一种很神奇的 N ∗ N 矩阵：它由数字 1,2,3, … … , N ∗ N 构成，且每行、每...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/1/3/E/3_qq_29992105.jpg" alt="qq_29992105" title="qq_29992105"/></li>
+                              <li class="user_name">qq_29992105</li>
+                              <li class="time">2016年08月28日 22:36</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>384</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/WhiStLenA/article/details/52042709"  target="_blank" strategy="BlogCommendFromQuerySearch_1">
+                        <dd class="clearfix">
+                          <h2 class="">神奇的幻方 noip2015day1 T1</h2>
+                          <div class="summary">
+                              题目描述 Description 
+幻方是一种很神奇的N∗N矩阵：它由数字 1,2,3, … … ,N∗N构成，且每行、每列及两条对角线上的数字之和都相同。当N为奇数时，我们可以通过以下方法构建一个幻...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/3/5/5/3_whistlena.jpg" alt="WhiStLenA" title="WhiStLenA"/></li>
+                              <li class="user_name">WhiStLenA</li>
+                              <li class="time">2016年07月27日 10:02</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>936</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                      <dl class="">
+                  <script>
+                  (function() {
+                    var s = "_" + Math.random().toString(36).slice(2);
+                    document.write('<div id="' + s + '"></div>');
+                    (window.slotbydup=window.slotbydup || []).push({
+                      id: '4765209',
+                      container: s,
+                      size: '808,120',
+                      display: 'inlay-fix'
+                    });
+                  })();
+                  </script>
+                </dl>
+                                                                <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/a1351937368/article/details/76359921"  target="_blank" strategy="BlogCommendFromQuerySearch_2">
+                        <dd class="clearfix">
+                          <h2 class="">NOIP2015Day1T1神奇的幻方 解题报告</h2>
+                          <div class="summary">
+                              原题见洛谷（https://www.luogu.org/problem/show?pid=2615） 
+题目描述幻方是一种很神奇的N*N矩阵：它由数字1,2,3,……,N*N构成，且每行、每列及两条对...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/F/0/B/3_a1351937368.jpg" alt="a1351937368" title="a1351937368"/></li>
+                              <li class="user_name">a1351937368</li>
+                              <li class="time">2017年07月30日 00:41</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>253</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/qq_35772697/article/details/52334821"  target="_blank" strategy="BlogCommendFromQuerySearch_3">
+                        <dd class="clearfix">
+                          <h2 class="">NOIP2015 神奇的幻方 解题报告（水题模拟）</h2>
+                          <div class="summary">
+                              在线评测：
+
+http://codevs.cn/problem/4510/
+
+整体思路：
+
+枚举一的位置，然后模拟就行了
+
+失误之处：
+
+数据＜39，然后，我就把记录上一个点的数组...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/3/9/2/3_qq_35772697.jpg" alt="qq_35772697" title="qq_35772697"/></li>
+                              <li class="user_name">qq_35772697</li>
+                              <li class="time">2016年08月27日 13:43</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>863</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/czsupercar/article/details/52734132"  target="_blank" strategy="BlogCommendFromQuerySearch_4">
+                        <dd class="clearfix">
+                          <h2 class="">22:神奇的幻方/NOI	/ 1.8编程基础之多维数组</h2>
+                          <div class="summary">
+                              总时间限制: 1000ms内存限制: 65535kB
+描述
+幻方是一个很神奇的N*N矩阵，它的每行、每列与对角线，加起来的数字和都是相同的。
+我们可以通过以下方法构建一个幻方。（阶数为奇数）
+1.第一...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/D/D/C/3_czsupercar.jpg" alt="czsupercar" title="czsupercar"/></li>
+                              <li class="user_name">czsupercar</li>
+                              <li class="time">2016年10月04日 15:45</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>521</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/qq_35755187/article/details/78072862"  target="_blank" strategy="BlogCommendFromQuerySearch_5">
+                        <dd class="clearfix">
+                          <h2 class="">noip2015神奇的幻方</h2>
+                          <div class="summary">
+                              模拟……题目花式看错……调完后码的和书上一样emmmm……框架还是记住了……和数学分类讨论一样 
+注意不能直接用x和y，要用中间变量nx，ny#include
+using namespace std;...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/E/8/6/3_qq_35755187.jpg" alt="qq_35755187" title="qq_35755187"/></li>
+                              <li class="user_name">qq_35755187</li>
+                              <li class="time">2017年09月23日 19:41</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>56</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/holyromanempire/article/details/53195200"  target="_blank" strategy="BlogCommendFromQuerySearch_6">
+                        <dd class="clearfix">
+                          <h2 class="">[NOIP2015]神奇的幻方</h2>
+                          <div class="summary">
+                              直接模拟即可#include
+#include
+#include
+#include
+using namespace std;
+int n;
+int tot=0;
+int s[100][100];
+vo...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/6/1/1/3_holyromanempire.jpg" alt="holyromanempire" title="holyromanempire"/></li>
+                              <li class="user_name">holyromanempire</li>
+                              <li class="time">2016年11月17日 08:26</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>290</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/Loi_Shirley/article/details/52261259"  target="_blank" strategy="BlogCommendFromQuerySearch_7">
+                        <dd class="clearfix">
+                          <h2 class="">【NOIP2015】神奇的幻方</h2>
+                          <div class="summary">
+                              4510 神奇的幻方 noip2015day1 T1 
+ 时间限制: 1 s 
+ 空间限制: 128000 KB 
+ 题目等级 : 黄金 Gold 
+ 题解 
+题目描述 Description 
+幻方...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/5/7/A/3_loi_shirley.jpg" alt="Loi_Shirley" title="Loi_Shirley"/></li>
+                              <li class="user_name">Loi_Shirley</li>
+                              <li class="time">2016年08月20日 14:19</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>656</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/SenyeLicone/article/details/51927091"  target="_blank" strategy="BlogCommendFromQuerySearch_8">
+                        <dd class="clearfix">
+                          <h2 class="">洛谷 P2615 [NOIP2015 D1T1] 神奇的幻方</h2>
+                          <div class="summary">
+                              模拟                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/E/3/2/3_senyelicone.jpg" alt="SenyeLicone" title="SenyeLicone"/></li>
+                              <li class="user_name">SenyeLicone</li>
+                              <li class="time">2016年07月16日 23:26</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>1050</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/suxuyu01/article/details/79055433"  target="_blank" strategy="BlogCommendFromQuerySearch_9">
+                        <dd class="clearfix">
+                          <h2 class="">P2615   神奇的幻方(NOIP2015)</h2>
+                          <div class="summary">
+                              标签
+枚举,暴力
+模拟
+NOIp提高组
+2015
+
+
+难度
+普及-
+
+时空限制
+1s / 128MB
+
+
+
+
+题目描述
+
+幻方是一种很神奇的N*N矩阵：它由数字1,2,3,……,N*N构成，且每行、每...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/F/F/3/3_suxuyu01.jpg" alt="suxuyu01" title="suxuyu01"/></li>
+                              <li class="user_name">suxuyu01</li>
+                              <li class="time">2018年01月14日 11:01</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>34</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                    <!-- <script async="async" charset="utf-8" src="https://shared.ydstatic.com/js/yatdk/3.0.0/stream.js" data-notify="bannerMulti_notify" data-insert-nodes="yd_a_d_feed_1,yd_a_d_feed_13,yd_a_d_feed_18,yd_a_d_feed_23,yd_a_d_feed_28,yd_a_d_feed_33" data-id="8935aa488dd58452b9e5ee3b44f1212f" data-hide-ad-label="0" data-div-Style="width:100%;padding:16px 35px 16px 10px;" data-img-Style="float:right;width:120px;" data-tit-Style="font-size:20px;font-weight:bold;margin-bottom:10px;font-family: 'PingFang SC', 'Microsoft YaHei', SimHei, Arial, SimSun;" data-des-Style="width:700px;font-size:14px;font-family: 'PingFang SC', 'Microsoft YaHei', SimHei, Arial, SimSun;" > </script> -->
+      
+      </div>
+  </main>
+<aside>
+    <div class="right_box user_info">
+    <dl class="inf_bar clearfix">
+        <dt class="csdn-tracking-statistics tracking-click" data-mod="popu_381">
+        <a href="http://blog.csdn.net/qq_40066053" target="_blank">
+            <img src="http://avatar.csdn.net/0/2/A/3_qq_40066053.jpg" class="avatar_pic">
+        </a>
+      </dt><dd>
+            <h3 class="csdn-tracking-statistics tracking-click"  data-mod="popu_380"><a href="http://blog.csdn.net/qq_40066053" target="_blank" id="uid">qq_40066053</a></h3>
+            <div class="medals" title="">
+                      </div>
+                        <span  class="csdn-tracking-statistics tracking-click" data-mod="popu_379"><a class="btn btn-redborder-small "  id="span_add_follow" target="_self">关注</a></span>
+                    </dd>
+    </dl>
+    <div class="inf_number_box clearfix">
+        <dl title="0">
+            <dt>原创</dt>
+            <dd>0</dd>
+        </dl>
+        <dl title="1">
+            <dt>粉丝</dt>
+            <dd id='fan'>1</dd>
+        </dl>
+        <dl title="0">
+            <dt>喜欢</dt>
+            <dd>0</dd>
+        </dl>
+        <dl title="0">
+          <dt>评论</dt>
+          <dd>0</dd>
+        </dl>
+    </div>
+
+</div>
+<div class="interflow clearfix">
+      <div class="grade gradeAndbadge">
+      <span>等级：</span>
+      <div>
+        <a href="http://blog.csdn.net/home/help.html#level" title="1级,点击查看等级说明" target="_blank">
+          <img class="grade-img" src="http://c.csdnimg.cn/jifen/images/xunzhang/jianzhang/blog1.png" alt="1级,点击查看等级说明">
+        </a>
+      </div>
+    </div>
+    <div class="gradeAndbadge" title="72">
+        <span>访问量：</span>
+        <span class="num odd-overhidden">72</span>
+    </div>
+
+    <div class="gradeAndbadge" title="21">
+      <span>积分：</span>
+      <span  class="num odd-overhidden">21</span>
+    </div>
+    <div class="gradeAndbadge" title="2363715">
+        <span>排名：</span>
+        <span class="num odd-overhidden">2.36M</span>
+    </div>
+
+</div>          <div class="extension_other csdn-tracking-statistics tracking-click" data-mod="popu_389">
+          <!--u3032528-->
+        <div class="flashrecommend">
+            <script type="text/javascript" src="//cee1.iteye.com/bwocoltly.js"></script>
+        </div>
+      </div>
+      <div class="writings">
+    <div class="public_signal clearfix">
+      <h3>他的最新文章</h3>
+      <a href="http://blog.csdn.net/qq_40066053" target="_blank" class="more"><span>更多文章</span></a>
+    </div>
+      <ul class="inf_list clearfix csdn-tracking-statistics tracking-click" data-mod="popu_382">
+                    <li class="clearfix">
+              <a href="http://blog.csdn.net/qq_40066053/article/details/79179589" target="_blank">#15. 【NOIP2014】生活大爆炸版石头剪刀布解析</a>
+          </li>
+                </ul>
+  </div>
+            <div class="user-hotArticle sort userSort">
+            <h3>文章分类</h3>
+            <ul class="hotArticle-list userSort-list">
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/qq_40066053/article/category/7443536" class="odd-overhidden floatL">练习</a>
+                        <div class="read list-left floatR"><span>0篇</span></div>
+                    </li>
+                            </ul>
+            <div class="unfold-btn">
+              <span>展开</span><i class="icon iconfont icon-xiajiantou"></i>
+            </div>
+        </div>
+    <!--    [StartShowSelfColumn]-->
+    <!--    [EndShowSelfColumn]-->
+            <div class="user-hotArticle sort timeSort">
+          <h3>文章存档</h3>
+          <ul class="hotArticle-list timeSort-list">
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/qq_40066053/article/month/2018/02" class="odd-overhidden floatL">2018年2月</a>
+                  <div class="read list-left floatR"><span>1篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/qq_40066053/article/month/2018/01" class="odd-overhidden floatL">2018年1月</a>
+                  <div class="read list-left floatR"><span>1篇</span></div>
+                </li>
+                      </ul>
+          <div class="unfold-btn">
+            <span>展开</span><i class="icon iconfont icon-xiajiantou"></i>
+          </div>
+        </div>
+        <div class="user-hotArticle">
+        <h3>他的热门文章</h3>
+        <ul class="hotArticle-list csdn-tracking-statistics tracking-click" data-mod="popu_521">
+<!--            [StartHotArticles]-->
+                                                <li>
+                        <a href="http://blog.csdn.net/qq_40066053/article/details/79179589">#15. 【NOIP2014】生活大爆炸版石头剪刀布解析</a>
+                        <div class="read list-left"><i class="icon iconfont icon-read"></i><span>20</span></div>
+                    </li>
+                            <!--            [EndHotArticles]-->
+        </ul>
+    </div>
+
+<!--    [startcustom]-->
+    <!--    [endcustom]-->
+  <div class="fixRight_box" style="height:256px">
+    <div class="fixRight">
+                    <!--u3163270-->
+            <script type="text/javascript" src="//cee1.iteye.com/avneunkwb.js"></script>
+                <div class="right_box copyright csdn-tracking-statistics" data-mod="popu_475" data-dsm="post">
+        <h3 class="feed_new_tit"><span class="line"></span><span class="txt">联系我们</span></h3>
+        <div class="contact-box">
+            <div class="img-box">
+                <img src="https://www.csdn.net/images/csdn_cs_qr.png" alt="客服">
+            </div>
+            <div class="contact-info">
+                <h4>请扫描二维码联系客服</h4>
+                <p>
+                    <i class="icon iconfont icon-mail"></i>
+                    <a href="mailto:webmaster@csdn.net" target="_blank">
+                        <span class="txt">webmaster@csdn.net</span>
+                    </a>
+                </p>
+                <p>
+                    <i class="icon iconfont icon-call"></i>
+                    <span class="txt">400-660-0108</span>
+                </p>
+                <p>
+                    <i class="icon iconfont icon-QQ"></i>
+                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2431299880&amp;site=qq&amp;menu=yes" target="_blank">
+                        <span class="txt">网站客服</span>
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="bg-gray">
+            <div class="feed_copyright">
+                <p><a class="right-dotte" href="//www.csdn.net/company/about.html" target="_blank">关于</a><a href="//www.csdn.net/company/recruit.html" target="_blank" class="right-dotte">招聘</a><a href="//www.csdn.net/company/marketing.html" target="_blank" class="right-dotte">广告服务</a><img src="https://www.csdn.net/images/ali01.png" alt="ali" title="ali"></p>
+                <p class="fz12">©2018 CSDN <a href="http://www.miibeian.gov.cn/" target="_blank" class="ml14">京ICP证09002463号</a></p>
+            </div>
+            <div class="allow-info-box">
+                <p><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><span>经营性网站备案信息</span></a></p>
+                <p><a href="http://www.cyberpolice.cn/" target="_blank"><span>网络110报警服务</span></a></p>
+                <p><a href="http://www.12377.cn/" target="_blank"><span>中国互联网举报中心</span></a></p>
+                <p><a href="http://www.bjjubao.org/" target="_blank"><span>北京互联网违法和不良信息举报中心</span></a></p>
+            </div>
+        </div>
+    </div>
+    </div>
+  </div>
+</aside></div>
+
+<div class="left_fixed">
+    <div class="left_show_button">
+        <span>
+          <i class="icon iconfont icon-youjiantou"></i>
+        </span>
+    </div>
+    <ul class="left_menu" id="share_box">
+        <li>
+            <button class="left-fixed-btn btn-like csdn-tracking-statistics tracking-click" data-mod="popu_373" target="_self" title="点赞">
+                <a href="javascript:void(0);" class="iconbox border_red" ><i class="icon iconfont icon-dianzan"></i></a>
+                <a class="txt" href="javascript:void(0);">0</a>
+            </button>
+        </li>
+        <li id="blog_artical_directory">
+            <button class="left-fixed-btn left_menu_btn csdn-tracking-statistics tracking-click" data-mod="popu_372" target="_self" title="目录">
+                <a href="javascript:void(0);" class="iconbox border_black" ><i class="icon iconfont icon-mulu"></i></a>
+            </button>
+        </li>
+        <li class="menu_con">
+            <div class="list_father">
+                <div class="arr_box">
+                    <button class="btn-noborder arr-btn scroll-down  left_scroll_down"><i class="icon iconfont icon-xiajiantou"></i></button>
+                    <button class="btn-noborder arr-btn scroll-up left_scroll_top"><i class="icon iconfont icon-shangjiantou"></i></button>
+                </div>
+                <div class="arr"></div>
+                <div id="csdnBlogDir"></div>
+            </div>
+        </li>
+        <!--        <li>-->
+        <!--            <button class="left-fixed-btn btn-like tracking-ad" data-mod="popu_373" target="_self">-->
+        <!--                <span class="iconbox border_red"><i class="icon iconfont icon-xihuan-"></i></span>-->
+        <!--                <span class="txt">喜欢</span>-->
+        <!--                <span class="untxt">取消喜欢</span>-->
+        <!--            </button>-->
+        <!--        </li>-->
+        <li>
+            <button class="left-fixed-btn csdn-tracking-statistics tracking-click" data-mod="popu_374"  id="com-quick-collect" target="_self" title="收藏">
+                <a href="javascript:void(0);" class="iconbox border_purple" ><i class="icon iconfont icon-shoucang"></i></a>
+            </button>
+        </li>
+        <li>
+            <button class="left-fixed-btn btn-pinglun csdn-tracking-statistics tracking-click" data-mod="popu_544" title="评论">
+                <a href="javascript:void(0);" class="iconbox border_purple" ><i class="icon iconfont icon-pinglun"></i></a>
+            </button>
+        </li>
+        <li class="bdsharebuttonbox">
+          <button class="outside left-fixed-btn csdn-tracking-statistics tracking-click" data-mod="popu_172" title="分享到新浪微博">
+                <span class="iconbox border_red2"><i class="icon iconfont icon-xinlang"></i></span>
+                <a href="#" class="bds_tsina" data-cmd="tsina" > </a>
+          </button>
+        </li>
+        <li class="bdsharebuttonbox">
+          <button class="outside left-fixed-btn csdn-tracking-statistics tracking-click" data-mod="popu_172" title="分享到微信">
+              <span class="iconbox border_green"><i class="icon iconfont icon-weixin"></i></span>
+              <a href="#" class="bds_weixin" data-cmd="weixin" > </a>
+          </button>
+        </li>
+        <li class="bdsharebuttonbox">
+          <button class="outside left-fixed-btn csdn-tracking-statistics tracking-click" data-mod="popu_172" title="分享到QQ空间">
+              <span class="iconbox border_blue"><i class="icon iconfont icon-QQ"></i></span>
+              <a href="#" class="bds_qzone" data-cmd="qzone" > </a>
+          </button>
+        </li>
+        <li id="share_box">
+            
+            <div class="bdsharebuttonbox csdn-tracking-statistics tracking-click" data-mod="popu_172">
+                
+                
+                
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="right_fixed">
+    <div class="r_ico">
+        <i class="icon iconfont icon-jubao"></i>
+        <span class="txt" id="reportBtn">内容举报</span>
+    </div>
+    <div class="returnTop">
+        <i class="icon iconfont icon-fanhuidingbu"></i>
+        <span>返回顶部</span>
+    </div>
+</div>
+<div id="pop_win"></div>
+<div id="popup_mask"></div>
+<div class="pop_CA_cover" ></div>
+<div class="pop pop_CA" >
+    <div class="CA_header">
+        收藏助手
+        <span class="cancel_icon"  id="fapancle" ></span>
+    </div>
+    <iframe src="" id="collectIframe" frameborder="0" width="100%" height="360"  scrolling="no" ></iframe>
+</div>
+<!--举报-->
+<div id="report_dialog" style="top: 250px; left: 343.5px;"><div id="panel_report">
+    <div class="panel_head">不良信息举报</div>
+    <form method="post" id="frmReport" class="panel_body">
+        <table border="0" cellpadding="0" cellspacing="4" class="pop_table">
+            <tbody><tr><td colspan="2">您举报文章：<a href="http://blog.csdn.net/qq_40066053/article/details/79255266" target="_blank">#145. 【NOIP2015】神奇的幻方</a></td></tr>
+            <tr>
+                <th style="width:60px;">举报原因：</th>
+                <td id="panel_reporttype">
+                    <label><input type="radio" class="report_type" id="report_sex" name="report_type" value="1">色情</label>
+                    <label><input type="radio" class="report_type" id="report_Politics" name="report_type" value="2">政治</label>
+                    <label><input type="radio" class="report_type" id="report_copy" name="report_type" value="3">抄袭</label>
+                    <label><input type="radio" class="report_type" id="report_ad" name="report_type" value="4">广告</label>
+                    <label><input type="radio" class="report_type" id="report_want" name="report_type" value="5">招聘</label>
+                    <label><input type="radio" class="report_type" id="report_call" name="report_type" value="6">骂人</label>
+                    <br>
+                    <label><input type="radio" class="report_type" id="report_other" name="report_type" value="7">其他</label>
+                    <input type="text" name="report_other_content" id="report_other_content" maxlength="30" style="display: none;">
+                </td>
+            </tr>
+            <tr id="panel_originalurl" style="display: none;">
+                <th>原文地址：</th>
+                <td>
+                    <input id="originalurl" value="http://" name="originalurl" type="text" style="width: 90%;">
+                </td>
+            </tr>
+            <tr>
+                <th id="sp_reason">原因补充：</th>
+                <td>
+                    <textarea id="report_description" style="width: 300px;" rows="3" name="report_description"></textarea>
+                    <p id="sp_n" style="color:#999;margin:0px;padding:0px;">(最多只允许输入30个字)</p>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input id="btnSubmitReport" name="submit" type="image" align="middle" class="btn_1" src="http://csdnimg.cn/release/phoenix/images/btn_submit.jpg">
+                    <span style="padding-left:20px;"></span>
+                    <img id="btnCloseReportDialog" src="http://csdnimg.cn/release/phoenix/images/btn_cancel.jpg" align="middle">
+                    <div id="error" style="color: Red">
+                    </div>
+                </td>
+            </tr>
+            </tbody></table>
+    </form>
+</div>
+    <script language="javascript" type="text/javascript">
+        var isComment=0;
+        //显示隐藏地址
+        $(function () {
+          console.log("version:phoenix");
+            if(isComment){
+                $("#report_description").attr("disabled",true);
+                $("#sp_n").hide();
+                $("#sp_reason").html("评论内容：");
+            }
+            $(".report_type").click(function () {
+                $("#panel_originalurl,#report_other_content").hide();
+                switch ($(this).val()) {
+                    case '3':
+                        $("#panel_originalurl").show();
+                        $("#originalurl").focus();
+                        break;
+                    case '7':
+                        if(isComment){
+                            $("#report_other_content").show().focus();
+                        }
+                        break;
+                }
+
+            });
+
+            $("#frmReport").submit(function () {
+                if (!currentUserName) {
+
+                    if (confirm("您的操作必须登录，是否登录？")) {
+                        location.href = "http://passport.csdn.net/account/login?from=" + encodeURIComponent(location.href);
+                        return false;
+                    }
+                    return false;
+                }
+
+                var reportType = $("input[name=report_type]:checked").val();
+                if(!reportType){
+                    alert("请选择举报原因！");
+                    return false;
+                }
+                var otherInfo = "";
+                switch (reportType) {
+                    case '3':
+                        otherInfo = $("#originalurl").val();
+                        if (otherInfo == ""||otherInfo=="http://") {
+                            alert("举报抄袭必须提供原创文章地址！");
+                            $("#originalurl").focus();
+                            return false;
+                        } else if(!checkeURL(otherInfo)) {
+                            alert("请输入正确的原创文章地址！");
+                            $("#originalurl").focus();
+                            return false;
+                        }
+                        break;
+                    case '7':
+                        otherInfo = $("#report_other_content").val();
+                        if (isComment && !otherInfo) {
+                            alert("请填写举报的具体原因！");
+                            $("#report_other_content").focus();
+                            return false;
+                        }
+                        if(!isComment){
+                            if(!$("#report_description").val()){
+                                alert("请填写举报的具体原因！");
+                                $("#report_description").focus();
+                                return false;
+                            }
+                        }
+                        break;
+                }
+                if(!isComment){
+                    if($("#report_description").val().length>30){
+                        alert("举报原因最多只允许输入30个字！");
+                        return false;
+                    }
+                }
+	            nowTime = {
+		            year: new Date().getFullYear(),
+		            month: parseInt(new Date().getMonth())+1,
+		            day: new Date().getDate(),
+		            hours: parseInt(new Date().getHours())+1,
+		            minutes: parseInt(new Date().getMinutes())+1,
+		            seconds: parseInt(new Date().getSeconds())+1
+	            };
+	            var data = {
+		            articleId: fileName,
+		            commentId: 0,
+		            reportType: reportType,
+		            originalurl: $("#originalurl").val(),
+		            report_other_content: $("#report_other_content").val(),
+		            report_description: $("#report_description").val(),
+		            currentUserName: currentUserName,
+		            updatetime: nowTime.year+'/'+nowTime.month+'/'+nowTime.day+' '+ nowTime.hours+':'+nowTime.minutes+':'+seconds,
+		            blogUser: username
+	            };
+	            if(!isComment){//如果是举报文章
+		            data.report_other_content = data.report_description;
+		            // data.report_description = "1. 神经网络这是一个常见的神经网络的图：这是一个常见的三层神经网络的基本构成，Layer L1是输入层，Layer L2是隐含层";
+	            }
+
+	            $.post(blog_address + "/common/report?id="+fileName+"&t=2", data, function (data) {
+		            if (data.result == 1){
+			            SetError("感谢您的举报，我们会尽快审核！");
+		            }else{
+			            if (data.content) alert(data.content);
+		            }
+
+	            });
+                return false;
+            });
+
+            $("#btnCloseReportDialog").click(function () {
+                CloseDiv();
+            });
+
+        });
+
+        //提示后关闭方法
+        function SetError(error) {
+            $("#btnCloseReportDialog").trigger("click");
+            alert(error);
+            CloseDiv();
+        }
+
+        //关闭方法
+        function CloseDiv() {
+
+            $.removeMask();
+            $("#report_dialog").hide();
+            return false;
+        }
+
+        //验证url
+        function checkeURL(url){
+            return /^http(s)?:\/\/([\w-]+\.)+[\w-]+/i.test(url);
+        }
+    </script>
+</div>
+<!--  fixme 后期清理掉  -->
+<div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+    <script id="adJs52b5334"></script>
+    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+</div>
+<!-- <script type="text/javascript" src="http://passport.csdn.net/content/loginbox/login.js"></script> -->
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<script type="text/javascript" >
+    if($(".article_collect li").length==1){$(".article_collect").hide();}
+    if($(".article_tags li").length==1){$(".article_tags").hide();}
+    $(".edit a").attr("href","http://mp.blog.csdn.net/postedit/"+fileName);
+    $.each($(".edu_li a"),function(){$(this).attr("href",$(this).attr("href").replace("blog7","blog9"))});
+    new CNick('#uid').showNickname();
+
+    if($("#fan").html()=="")
+    {
+	    $("#fan").html(0);
+    }
+</script>
+<script src="http://c.csdnimg.cn/public/common/append_mark/appendMark.min.js?v=5.00.43" type="text/javascript"></script>
+<script type="text/javascript">
+    appendMark($('.recommend_list').children('a').find('dt'),$('.extension_other'),$('.yd_a_d_feed_cla'))
+</script>
+<div class=""id="loginWrap"></div>
+<div class="" id="dlMask"></div>
+</body>

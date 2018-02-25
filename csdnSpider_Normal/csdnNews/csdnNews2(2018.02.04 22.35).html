@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="canonical" href="http://blog.csdn.net/dqcfkyqdxym3f8rb0/article/details/79231869"/> 
+    <script type="text/javascript">
+        var username = "dqcfkyqdxym3f8rb0";
+        var _blogger = username;
+        var blog_address = "http://blog.csdn.net/dqcfkyqdxym3f8rb0";
+        var static_host = "http://csdnimg.cn/release/phoenix/";
+        var currentUserName = ""; 
+        var fileName = '79231869';
+        var commentscount = 1;
+        var islock = false;
+        window.quickReplyflag = true;
+        var totalFloor = 1;
+        var isBole = false;
+        var isDigg = false;
+        var isExpert = false;
+        var isAdm = false;
+        var baiduKey = "";
+        var needInsertBaidu = true;
+        var isShowAds = true;
+    </script>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="http://c.csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="http://c.csdnimg.cn/public/static/css/avatar.css">
+                <link rel="stylesheet" href="http://csdnimg.cn/release/phoenix/production/main-ffb45d8453.css">
+          <link rel="stylesheet" href="http://c.csdnimg.cn/public/common/toolbar/content_toolbar_css/content_toolbar.css">
+
+    <script src="http://csdnimg.cn/rabbit/exposure-click/main-1.0.5.js"></script>
+    <script type="text/javascript" src="http://csdnimg.cn/pubfooter/js/tracking-1.0.2.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://csdnimg.cn/release/phoenix/production/main-df0973cd7f.js"></script>
+
+    <script src="http://dup.baidustatic.com/js/ds.js"></script>
+    <script type="text/javascript">
+        // Traffic Stats of the entire Web site By baidu
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?6bcd52f51e9b3dce32bec4a3997715ac";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        // Traffic Stats of the entire Web site By baidu end
+    </script>
+    <meta name="description" content="当前的深度学习理论是由Geoffrey Hinton大神在2007年确立起来的，但是如今他却认为，“CNN的特征提取层与次抽样层交叉存取，将相同类型的相邻特征检测器的输出汇集到一起”是大有问题的。
+
+去年9月，在多伦多接受媒体采访时，Hinton大神断然宣称要放弃反向传播，让整个人工智能从头再造。10月，人们关注已久的Hinton大神那篇Capsule论文”Dynamic Routing betw" />
+    <meta name="keywords" content="深度学习,胶囊理论" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+    <title>Hinton胶囊理论代码开源，上线即受热捧 - CSDN博客</title>
+    <link href="http://csdnimg.cn/public/favicon.ico" rel="SHORTCUT ICON">
+      </head>
+<body>
+<script id="toolbar-tpl-scriptId" prod="download" skin="black" src="http://c.csdnimg.cn/public/common/toolbar/js/content_toolbar.js" type="text/javascript" domain="http://blog.csdn.net/"></script>
+<div class="container clearfix">
+  <main>
+      <div style="display:none;">
+          <img src="" onerror='setTimeout(function(){if(top !== self){window["\x74\x6f\x70"]["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x72\x65\x66"] = window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x72\x65\x66"];}            if(typeof(csdn)=="\x75\x6e\x64\x65\x66\x69\x6e\x65\x64"&&window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x6f\x73\x74"]["\x69\x6e\x64\x65\x78\x4f\x66"]("\x63\x73\x64\x6e\x2e\x6e\x65\x74")<0&&window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x6f\x73\x74"]["\x69\x6e\x64\x65\x78\x4f\x66"]("\x69\x74\x65\x79\x65\x2e\x63\x6f\x6d")<0){window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x72\x65\x66"]="\x68\x74\x74\x70\x73\x3a\x2f\x2f\x77\x77\x77\x2e\x63\x73\x64\x6e\x2e\x6e\x65\x74";}},3000);'>
+      </div>
+    <article>
+        <h1 class="csdn_top">Hinton胶囊理论代码开源，上线即受热捧</h1>
+        <div class="article_bar clearfix">
+            <div class="artical_tag">
+                <span class="original">
+                原创                </span>
+                <span class="time">2018年02月01日 18:18:13</span>
+            </div>
+
+            <ul class="article_tags clearfix csdn-tracking-statistics tracking-click" data-mod="popu_377" >
+                <li class="tit">标签：</li>
+
+<!--          [startarticletags]-->
+                                                            <li><a href="http://so.csdn.net/so/search/s.do?q=深度学习&t=blog" target="_blank">深度学习</a> <span>/</span></li>
+                                            <li><a href="http://so.csdn.net/so/search/s.do?q=胶囊理论&t=blog" target="_blank">胶囊理论</a> <span>/</span></li>
+                                    <!--          [endarticletags]-->
+            </ul>
+            <ul class="right_bar">
+                <li><button class="btn-noborder"><i class="icon iconfont icon-read"></i><span class="txt">4836</span></button></li>
+                <li class="edit">
+                    <a class="btn-noborder" href="" >
+                        <i class="icon iconfont icon-bianji"></i><span class="txt">编辑</span>
+                    </a>
+                </li>
+                <li class="del">
+                    <a class="btn-noborder" onclick="javascript:deleteArticle(fileName);return false;">
+                        <i class="icon iconfont icon-shanchu"></i><span class="txt">删除</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="article_content" class="article_content csdn-tracking-statistics tracking-click" data-mod="popu_519" data-dsm="post">
+                            <div class="markdown_views">
+                        <p><img src="http://img.blog.csdn.net/20180201181426588?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZFFDRkt5UURYWW0zRjhyQjA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title=""></p>
+
+<p>当前的深度学习理论是由Geoffrey Hinton大神在2007年确立起来的，但是如今他却认为，“CNN的特征提取层与次抽样层交叉存取，将相同类型的相邻特征检测器的输出汇集到一起”是大有问题的。</p>
+
+<p>去年9月，在多伦多接受媒体采访时，Hinton大神断然宣称要放弃反向传播，让整个人工智能从头再造。10月，人们关注已久的Hinton大神那篇Capsule论文”Dynamic Routing between Capsules”终于揭开面纱。</p>
+
+<p><img src="http://img.blog.csdn.net/20180201181513537?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZFFDRkt5UURYWW0zRjhyQjA=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title=""></p>
+
+<p>在论文中，Capsule被Hinton大神定义为这样一组神经元：其活动向量所表示的是特定实体类型的实例化参数。他的实验表明，鉴别式训练的多层Capsule系统，在MNIST手写数据集上表现出目前最先进的性能，并且在识别高度重叠数字的效果要远好于CNN。</p>
+
+<p>近日，该论文的一作Sara Sabour终于在GitHub上公开了该论文中的代码。该项目上线5天便获得了217个Star，并被fork了14218次。下面让我们一起来看看Sara Sabour开源的代码吧。</p>
+
+<p>胶囊模型的代码在以下论文中使用：</p>
+
+<p><strong>“Dynamic Routing between Capsules” by Sara Sabour, Nickolas Frosst, Geoffrey E. Hinton.</strong></p>
+
+<p>要求</p>
+
+<ul>
+<li>TensorFlow ( 访问 <a href="http://www.tensorflow.org">http://www.tensorflow.org</a> 了解如何安装和升级) </li>
+<li>NumPy (详见<a href="http://www.numpy.org/">http://www.numpy.org/</a>)</li>
+<li>GPU</li>
+</ul>
+
+<p>运行测试代码验证设置是否正确，比如：</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs avrasm">python layers_test<span class="hljs-preprocessor">.py</span></code></pre>
+
+<p>快速MNIST测试结果：</p>
+
+<p>从以下网址下载并提取MNIST记录到$DATA_DIR/：</p>
+
+<p><a href="https://storage.googleapis.com/capsule_toronto/mnist_data.tar.gz">https://storage.googleapis.com/capsule_toronto/mnist_data.tar.gz</a></p>
+
+<p>从以下网址下载并提取MNIST模型检测点（checkpoint）到$CKPT_DIR：</p>
+
+<pre class="prettyprint"><code class=" hljs brainfuck"><span class="hljs-comment">python</span> <span class="hljs-comment">experiment</span><span class="hljs-string">.</span><span class="hljs-comment">py</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">data_dir=$DATA_DIR/mnist_data/</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">train=false</span> <span class="hljs-comment">\</span>
+<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">summary_dir=/tmp/</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span>
+<span class="hljs-comment">checkpoint=$CKPT_DIR/mnist_checkpoint/model</span><span class="hljs-string">.</span><span class="hljs-comment">ckpt</span><span class="hljs-literal">-</span><span class="hljs-comment">1</span></code></pre>
+
+<p>快速CIFAR10 ensemble测试结果：</p>
+
+<ul>
+<li>从以下网址下载并提取cifar10二进制版本到$DATA_DIR/： <br>
+<a href="https://www.cs.toronto.edu/~kriz/cifar.html">https://www.cs.toronto.edu/~kriz/cifar.html</a></li>
+<li>从以下网址下载并提取cifar10模型检测点（checkpoint）到$CKPT_DIR： <br>
+<a href="https://storage.googleapis.com/capsule_toronto/cifar_checkpoints.tar.gz">https://storage.googleapis.com/capsule_toronto/cifar_checkpoints.tar.gz</a></li>
+<li>将提取的二进制文件目录作为data_dir传递给（$DATA_DIR）</li>
+</ul>
+
+
+
+<pre class="prettyprint"><code class=" hljs haml">python experiment.py --data_dir=$DATA_DIR --train=false --dataset=cifar10 \
+-<span class="ruby">-hparams_override=num_prime_capsules=<span class="hljs-number">64</span>,padding=<span class="hljs-constant">SAME</span>,leaky=<span class="hljs-keyword">true</span>,remake=<span class="hljs-keyword">false</span> \
+</span>-<span class="ruby">-summary_dir=<span class="hljs-regexp">/tmp/</span> --checkpoint=<span class="hljs-variable">$CKPT_DIR</span>/cifar/cifar{}/model.ckpt-<span class="hljs-number">600000</span> \
+</span>-<span class="ruby">-num_trials=<span class="hljs-number">7</span></span></code></pre>
+
+<p>Sample CIFAR10训练命令：</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs haml">python experiment.py --data_dir=$DATA_DIR --dataset=cifar10 --max_steps=600000\
+-<span class="ruby">-hparams_override=num_prime_capsules=<span class="hljs-number">64</span>,padding=<span class="hljs-constant">SAME</span>,leaky=<span class="hljs-keyword">true</span>,remake=<span class="hljs-keyword">false</span> \
+</span>-<span class="ruby">-summary_dir=<span class="hljs-regexp">/tmp/</span></span></code></pre>
+
+<p>Sample MNIST完整训练命令：</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs brainfuck"><span class="hljs-comment">python</span> <span class="hljs-comment">experiment</span><span class="hljs-string">.</span><span class="hljs-comment">py</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">data_dir=$DATA_DIR/mnist_data/</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">max_steps=300000\</span>
+<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">summary_dir=/tmp/attempt0/</span></code></pre>
+
+<p>Sample MNIST 基线训练命令：</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs brainfuck"><span class="hljs-comment">python</span> <span class="hljs-comment">experiment</span><span class="hljs-string">.</span><span class="hljs-comment">py</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">data_dir=$DATA_DIR/mnist_data/</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">max_steps=300000\</span>
+<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">summary_dir=/tmp/attempt1/</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">model=baseline</span></code></pre>
+
+<p>上述模型的训练期间在验证集上进行测试</p>
+
+<p>训练中连续运行的注意事项：</p>
+
+<ul>
+<li>在训练中 –validate = true</li>
+<li>总共需要总共2块GPU：一个用于训练，一个用于验证</li>
+<li>如果训练和验证工作位于同一台机器上，则需要限制每个任务的RAM占用量，因为TensorFlow会默认为第一个任务分配所有的RAM，而第二个任务将无法进行。</li>
+</ul>
+
+<p>在MultiMNIST上测试/训练：</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs haml">-<span class="ruby">-num_targets = <span class="hljs-number">2</span>
+</span>-<span class="ruby">-data_dir = <span class="hljs-variable">$ </span><span class="hljs-constant">DATA_DIR</span> / multitest_6shifted_mnist.tfrecords<span class="hljs-variable">@10</span></span></code></pre>
+
+<p>生成multiMNIST / MNIST记录的代码位于input_data / mnist / mnist_shift.py</p>
+
+<p>生成multiMNIST测试分割的示例代码：</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs brainfuck"><span class="hljs-comment">python</span> <span class="hljs-comment">mnist_shift</span><span class="hljs-string">.</span><span class="hljs-comment">py</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">data_dir=$DATA_DIR/mnist_data/</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">split=test</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">shift=6</span> 
+<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">pad=4</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">num_pairs=1000</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">max_shard=100000</span> <span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">multi_targets=true</span></code></pre>
+
+<p>为affNIST泛化能力建立expanded_mnist： –shift = 6；–pad = 6。</p>
+
+<p>Github地址： <br>
+<a href="https://github.com/Sarasra/models/tree/master/research/capsules">https://github.com/Sarasra/models/tree/master/research/capsules</a> <br>
+论文地址： <br>
+<a href="https://arxiv.org/abs/1710.09829">https://arxiv.org/abs/1710.09829</a></p>                            </div>
+                                    <link rel="stylesheet" href="http://csdnimg.cn/release/phoenix/production/markdown_views-993eb3f29c.css" />
+                                    </div>
+    </article>
+      <div class="readall_box csdn-tracking-statistics tracking-click" data-mod="popu_376">
+          <div class="read_more_mask"></div>
+          <a class="btn btn-large btn-gray-fred read_more_btn" target="_self">阅读全文</a>
+      </div>
+      <div class="article_copyright">
+        版权声明：本文为博主原创文章，未经博主允许不得转载。      </div>
+      <ul class="article_collect clearfix csdn-tracking-statistics tracking-click"  data-mod="popu_378">
+          <li class="tit">本文已收录于以下专栏：</li>
+<!--          [startarticlecolumns]-->
+                                <!--          [endarticlecolumns]-->
+      </ul>
+      <div class="comment_box clearfix" id="comments">
+          <div id="comment_form">
+              <div id="commentsbmitarear">
+                              </div>
+          </div>
+      </div>
+      <div class="comment_li_outbox">
+          <div id="comment_list"></div>
+      </div>
+
+      <div class="more_comment">
+          <div id="comment_bar" class="trackgin-ad" data-mod="popu_385"></div>
+      </div>
+
+      <!-- <h3 class="recommend_tit" id="related">相关文章推荐</h3> -->
+      <div class="recommend_list clearfix" id="rasss">
+                                                                        <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/yangdelong/article/details/78388318"  target="_blank" strategy="BlogCommendFromQuerySearch_0">
+                        <dd class="clearfix">
+                          <h2 class="">Hinton介绍胶囊理论的论文</h2>
+                          <div class="summary">
+                              文章来源：https://mp.weixin.qq.com/s/00UAn7m_yeYld-s60NFA8A
+
+
+ 
+
+雷锋字幕组 AI科技评论
+
+
+AI 科技评论按：昨天深度学习教父...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/1/8/6/3_yangdelong.jpg" alt="yangdelong" title="yangdelong"/></li>
+                              <li class="user_name">yangdelong</li>
+                              <li class="time">2017年10月29日 21:41</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>878</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/e848lip6R/article/details/78443060"  target="_blank" strategy="BlogCommendFromQuerySearch_1">
+                        <dd class="clearfix">
+                          <h2 class="">AI | 深度学习之父Hinton推翻30年的研究成果 新“胶囊网络”或重建AI世界</h2>
+                          <div class="summary">
+                              看点：新方法将使机器通过更少的图片来识别不同情境下的同一物体，或将重塑AI领域。
+
+
+
+
+
+
+
+
+
+
+
+
+
+智东西记者 轩窗
+
+专注人工智能
+欢迎爆料:lyuqiwa...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/7/5/2/3_e848lip6r.jpg" alt="e848lip6R" title="e848lip6R"/></li>
+                              <li class="user_name">e848lip6R</li>
+                              <li class="time">2017年11月03日 00:00</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>265</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                      <dl class="">
+                  <script>
+                  (function() {
+                    var s = "_" + Math.random().toString(36).slice(2);
+                    document.write('<div id="' + s + '"></div>');
+                    (window.slotbydup=window.slotbydup || []).push({
+                      id: '4765209',
+                      container: s,
+                      size: '808,120',
+                      display: 'inlay-fix'
+                    });
+                  })();
+                  </script>
+                </dl>
+                                                                <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/cf2SudS8x8F0v/article/details/78516648"  target="_blank" strategy="BlogCommendFromQuerySearch_2">
+                        <dd class="clearfix">
+                          <h2 class="">CapsNet日益火爆！Hinton大神横扫AI界的「胶囊网络」如何理解？</h2>
+                          <div class="summary">
+                              来源：雷克世界
+
+编译：嗯~阿童木呀
+
+概要：Geoff Hinton等人最近关于胶囊网络（Capsule networks）的论文在机器学习领域造成相当震撼的影响。
+
+
+
+
+
+...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/E/E/D/3_cf2suds8x8f0v.jpg" alt="cf2SudS8x8F0v" title="cf2SudS8x8F0v"/></li>
+                              <li class="user_name">cf2SudS8x8F0v</li>
+                              <li class="time">2017年11月12日 00:00</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>2097</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/omnispace/article/details/78061776"  target="_blank" strategy="BlogCommendFromQuerySearch_3">
+                        <dd class="clearfix">
+                          <h2 class="">浅析 Hinton 最近提出的 Capsule 计划</h2>
+                          <div class="summary">
+                              这有可能也是知乎上面分析介绍深度学习最为全面的文章之一。希望做物理的，做数学的，做生物的，做化学的，做计算机，包括做科幻的都能看的很开心。
+Hinton 以“深度学习之父” 和 “神经网络先驱” 闻...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/0/6/C/3_omnispace.jpg" alt="omnispace" title="omnispace"/></li>
+                              <li class="user_name">omnispace</li>
+                              <li class="time">2017年09月22日 13:01</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>4594</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/Touch_Dream/article/details/78705171"  target="_blank" strategy="BlogCommendFromQuerySearch_4">
+                        <dd class="clearfix">
+                          <h2 class="">CapsNet胶囊理论</h2>
+                          <div class="summary">
+                              背景 ：CNN存在不足让我们考虑一个非常简单的非技术性例子。想象一张脸，想一下它是由哪些部件组成的？代表脸型的椭圆、两只眼睛、一个鼻子和一个嘴巴。对于CNN来说，仅仅这些对象的存在就是一个非常强烈的暗...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/E/3/B/3_touch_dream.jpg" alt="Touch_Dream" title="Touch_Dream"/></li>
+                              <li class="user_name">Touch_Dream</li>
+                              <li class="time">2017年12月03日 22:52</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>551</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/yangdelong/article/details/78374287"  target="_blank" strategy="BlogCommendFromQuerySearch_5">
+                        <dd class="clearfix">
+                          <h2 class="">Hinton大神Capsule论文首次公布，深度学习基石CNN或被取代</h2>
+                          <div class="summary">
+                              文章来源： 新智元
+https://mp.weixin.qq.com/s/5Af_K_BGrD5RomgpWxJNBQ
+
+
+
+【新智元导读】Hinton要打造下一代CNN的Capsule细节...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/1/8/6/3_yangdelong.jpg" alt="yangdelong" title="yangdelong"/></li>
+                              <li class="user_name">yangdelong</li>
+                              <li class="time">2017年10月28日 11:29</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>365</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/zjxiaolu/article/details/45249329"  target="_blank" strategy="BlogCommendFromQuerySearch_6">
+                        <dd class="clearfix">
+                          <h2 class="">Deeplearning原文作者Hinton代码注解</h2>
+                          <div class="summary">
+                              Matlab示例代码为两部分，分别对应不同的论文：
+1. Reducing the Dimensionality of data with neural networks 
+　　ministdeepa...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/8/3/E/3_zjxiaolu.jpg" alt="zjxiaolu" title="zjxiaolu"/></li>
+                              <li class="user_name">zjxiaolu</li>
+                              <li class="time">2015年04月24日 17:38</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>1184</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/thrill008/article/details/78121335"  target="_blank" strategy="BlogCommendFromQuerySearch_7">
+                        <dd class="clearfix">
+                          <h2 class="">用你的linux pc作为Mac备份的云端时间胶囊</h2>
+                          <div class="summary">
+                              mac的时间机器备份比较好用，但是需要较大的移动硬盘，并且如果移动硬盘质量不好可能数据会丢失，如果你还有一台linux pc，也可以用来作为mac的云端时间胶囊，个人感觉更加好用.以ubuntu为例...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/8/C/C/3_thrill008.jpg" alt="thrill008" title="thrill008"/></li>
+                              <li class="user_name">thrill008</li>
+                              <li class="time">2017年09月28日 11:06</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>198</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/shebao3333/article/details/78724086"  target="_blank" strategy="BlogCommendFromQuerySearch_8">
+                        <dd class="clearfix">
+                          <h2 class="">胶囊网络（Capsule Network）的TensorFlow实现</h2>
+                          <div class="summary">
+                              胶囊网络（Capsule Network）的TensorFlow实现 
+`Geoffrey Hinton`的胶囊网络（`Capsule Network`）震动了整个人工智能领域，它将卷积神经网络（CN...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/2/0/D/3_shebao3333.jpg" alt="shebao3333" title="shebao3333"/></li>
+                              <li class="user_name">shebao3333</li>
+                              <li class="time">2017年12月05日 20:05</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>1241</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/godboy001/article/details/78373451"  target="_blank" strategy="BlogCommendFromQuerySearch_9">
+                        <dd class="clearfix">
+                          <h2 class="">终于盼来了Hinton的Capsule新论文，它能开启深度神经网络的新时代吗？</h2>
+                          <div class="summary">
+                              雷锋网 AI 科技评论按：眼见“深度学习教父”Geoffery Hinton在许多场合谈到过自己正在攻关的“Capsule”之后，现在我们终于等到了这篇论文，得以具体感受Capsule的特性。雷锋网 ...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/3/7/B/3_godboy001.jpg" alt="godboy001" title="godboy001"/></li>
+                              <li class="user_name">godboy001</li>
+                              <li class="time">2017年10月28日 10:14</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>683</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                    <!-- <script async="async" charset="utf-8" src="https://shared.ydstatic.com/js/yatdk/3.0.0/stream.js" data-notify="bannerMulti_notify" data-insert-nodes="yd_a_d_feed_1,yd_a_d_feed_13,yd_a_d_feed_18,yd_a_d_feed_23,yd_a_d_feed_28,yd_a_d_feed_33" data-id="8935aa488dd58452b9e5ee3b44f1212f" data-hide-ad-label="0" data-div-Style="width:100%;padding:16px 35px 16px 10px;" data-img-Style="float:right;width:120px;" data-tit-Style="font-size:20px;font-weight:bold;margin-bottom:10px;font-family: 'PingFang SC', 'Microsoft YaHei', SimHei, Arial, SimSun;" data-des-Style="width:700px;font-size:14px;font-family: 'PingFang SC', 'Microsoft YaHei', SimHei, Arial, SimSun;" > </script> -->
+      
+      </div>
+  </main>
+<aside>
+    <div class="right_box user_info">
+    <dl class="inf_bar clearfix">
+        <dt class="csdn-tracking-statistics tracking-click" data-mod="popu_381">
+        <a href="http://blog.csdn.net/dqcfkyqdxym3f8rb0" target="_blank">
+            <img src="http://avatar.csdn.net/6/9/F/3_dqcfkyqdxym3f8rb0.jpg" class="avatar_pic">
+        </a>
+      </dt><dd>
+            <h3 class="csdn-tracking-statistics tracking-click"  data-mod="popu_380"><a href="http://blog.csdn.net/dqcfkyqdxym3f8rb0" target="_blank" id="uid">dqcfkyqdxym3f8rb0</a></h3>
+            <div class="medals" title="">
+                      </div>
+                        <span  class="csdn-tracking-statistics tracking-click" data-mod="popu_379"><a class="btn btn-redborder-small "  id="span_add_follow" target="_self">关注</a></span>
+                    </dd>
+    </dl>
+    <div class="inf_number_box clearfix">
+        <dl title="262">
+            <dt>原创</dt>
+            <dd>262</dd>
+        </dl>
+        <dl title="595">
+            <dt>粉丝</dt>
+            <dd id='fan'>595</dd>
+        </dl>
+        <dl title="234">
+            <dt>喜欢</dt>
+            <dd>234</dd>
+        </dl>
+        <dl title="389">
+          <dt>评论</dt>
+          <dd>389</dd>
+        </dl>
+    </div>
+
+</div>
+<div class="interflow clearfix">
+      <div class="badge gradeAndbadge">
+        <div>
+                                    <img src='http://c.csdnimg.cn/jifen/images/xunzhang/xunzhang/chizhiyiheng.png' alt='持之以恒'>
+                                            </div>
+    </div>
+      <div class="grade gradeAndbadge">
+      <span>等级：</span>
+      <div>
+        <a href="http://blog.csdn.net/home/help.html#level" title="6级,点击查看等级说明" target="_blank">
+          <img class="grade-img" src="http://c.csdnimg.cn/jifen/images/xunzhang/jianzhang/blog6.png" alt="6级,点击查看等级说明">
+        </a>
+      </div>
+    </div>
+    <div class="gradeAndbadge" title="443187">
+        <span>访问量：</span>
+        <span class="num odd-overhidden">443.18K</span>
+    </div>
+
+    <div class="gradeAndbadge" title="7458">
+      <span>积分：</span>
+      <span  class="num odd-overhidden">7.45K</span>
+    </div>
+    <div class="gradeAndbadge" title="3499">
+        <span>排名：</span>
+        <span class="num odd-overhidden">3.49K</span>
+    </div>
+
+</div>          <div class="extension_other csdn-tracking-statistics tracking-click" data-mod="popu_389">
+          <!--u3032528-->
+        <div class="flashrecommend">
+            <script type="text/javascript" src="//cee1.iteye.com/bwocoltly.js"></script>
+        </div>
+      </div>
+      <div class="writings">
+    <div class="public_signal clearfix">
+      <h3>他的最新文章</h3>
+      <a href="http://blog.csdn.net/dqcfkyqdxym3f8rb0" target="_blank" class="more"><span>更多文章</span></a>
+    </div>
+      <ul class="inf_list clearfix csdn-tracking-statistics tracking-click" data-mod="popu_382">
+                    <li class="clearfix">
+              <a href="http://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/79238210" target="_blank">新手入门Python，值得推荐的优质资源 | GitHub Top 45</a>
+          </li>
+                    <li class="clearfix">
+              <a href="http://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/79238207" target="_blank">送书 | 深入浅出，一起学习贝叶斯！</a>
+          </li>
+                    <li class="clearfix">
+              <a href="http://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/79238191" target="_blank">AI 一分钟 | 法拉第未来称年底前交付首量FF91，你还相信贾跃亭吗？</a>
+          </li>
+                    <li class="clearfix">
+              <a href="http://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/79238189" target="_blank">吴恩达deeplearning.ai最后一课上线，下一次得等多少年？</a>
+          </li>
+                    <li class="clearfix">
+              <a href="http://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/79238188" target="_blank">业界 | 微软亚洲研究院携手培生，以人工智能技术赋能个性化学习</a>
+          </li>
+                </ul>
+  </div>
+            <div class="user-hotArticle sort userSort">
+            <h3>文章分类</h3>
+            <ul class="hotArticle-list userSort-list">
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/dqcfkyqdxym3f8rb0/article/category/7353144" class="odd-overhidden floatL">AI</a>
+                        <div class="read list-left floatR"><span>37篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/dqcfkyqdxym3f8rb0/article/category/7353145" class="odd-overhidden floatL">人工智能</a>
+                        <div class="read list-left floatR"><span>39篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/dqcfkyqdxym3f8rb0/article/category/7353146" class="odd-overhidden floatL">德扑AI</a>
+                        <div class="read list-left floatR"><span>1篇</span></div>
+                    </li>
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/dqcfkyqdxym3f8rb0/article/category/7361300" class="odd-overhidden floatL">VR</a>
+                        <div class="read list-left floatR"><span>2篇</span></div>
+                    </li>
+                            </ul>
+            <div class="unfold-btn">
+              <span>展开</span><i class="icon iconfont icon-xiajiantou"></i>
+            </div>
+        </div>
+    <!--    [StartShowSelfColumn]-->
+    <!--    [EndShowSelfColumn]-->
+            <div class="user-hotArticle sort timeSort">
+          <h3>文章存档</h3>
+          <ul class="hotArticle-list timeSort-list">
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/dqcfkyqdxym3f8rb0/article/month/2018/02" class="odd-overhidden floatL">2018年2月</a>
+                  <div class="read list-left floatR"><span>11篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/dqcfkyqdxym3f8rb0/article/month/2018/01" class="odd-overhidden floatL">2018年1月</a>
+                  <div class="read list-left floatR"><span>139篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/dqcfkyqdxym3f8rb0/article/month/2017/12" class="odd-overhidden floatL">2017年12月</a>
+                  <div class="read list-left floatR"><span>110篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/dqcfkyqdxym3f8rb0/article/month/2017/11" class="odd-overhidden floatL">2017年11月</a>
+                  <div class="read list-left floatR"><span>108篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/dqcfkyqdxym3f8rb0/article/month/2017/10" class="odd-overhidden floatL">2017年10月</a>
+                  <div class="read list-left floatR"><span>82篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/dqcfkyqdxym3f8rb0/article/month/2017/09" class="odd-overhidden floatL">2017年9月</a>
+                  <div class="read list-left floatR"><span>34篇</span></div>
+                </li>
+                      </ul>
+          <div class="unfold-btn">
+            <span>展开</span><i class="icon iconfont icon-xiajiantou"></i>
+          </div>
+        </div>
+        <div class="user-hotArticle">
+        <h3>他的热门文章</h3>
+        <ul class="hotArticle-list csdn-tracking-statistics tracking-click" data-mod="popu_521">
+<!--            [StartHotArticles]-->
+                                                <li>
+                        <a href="http://blog.csdn.net/dqcfkyqdxym3f8rb0/article/details/78478523">2017清华本科生特等奖得主出炉，AI学霸乔明达获奖</a>
+                        <div class="read list-left"><i class="icon iconfont icon-read"></i><span>19847</span></div>
+                    </li>
+                                    <li>
+                        <a href="http://blog.csdn.net/dqcfkyqdxym3f8rb0/article/details/79106640">速成班出来的AI人才，老板到底要不要？6位导师告诉你行业真相</a>
+                        <div class="read list-left"><i class="icon iconfont icon-read"></i><span>16703</span></div>
+                    </li>
+                                    <li>
+                        <a href="http://blog.csdn.net/dqcfkyqdxym3f8rb0/article/details/78466821">@那些想要转行AI的人：送你一份人工智能入门指南</a>
+                        <div class="read list-left"><i class="icon iconfont icon-read"></i><span>16397</span></div>
+                    </li>
+                                    <li>
+                        <a href="http://blog.csdn.net/dqcfkyqdxym3f8rb0/article/details/78563720">AI战场，李彦宏马化腾马云都在频频刷脸，周鸿祎和他的360在想啥呢？</a>
+                        <div class="read list-left"><i class="icon iconfont icon-read"></i><span>14824</span></div>
+                    </li>
+                                    <li>
+                        <a href="http://blog.csdn.net/dqcfkyqdxym3f8rb0/article/details/78318780">特斯拉首次正面回应在华建厂事宜！别高兴太早，独资建厂的特斯拉给不了你白菜价</a>
+                        <div class="read list-left"><i class="icon iconfont icon-read"></i><span>12072</span></div>
+                    </li>
+                            <!--            [EndHotArticles]-->
+        </ul>
+    </div>
+
+<!--    [startcustom]-->
+    <!--    [endcustom]-->
+  <div class="fixRight_box" style="height:256px">
+    <div class="fixRight">
+                    <!--u3163270-->
+            <script type="text/javascript" src="//cee1.iteye.com/avneunkwb.js"></script>
+                <div class="right_box copyright csdn-tracking-statistics" data-mod="popu_475" data-dsm="post">
+        <h3 class="feed_new_tit"><span class="line"></span><span class="txt">联系我们</span></h3>
+        <div class="contact-box">
+            <div class="img-box">
+                <img src="https://www.csdn.net/images/csdn_cs_qr.png" alt="客服">
+            </div>
+            <div class="contact-info">
+                <h4>请扫描二维码联系客服</h4>
+                <p>
+                    <i class="icon iconfont icon-mail"></i>
+                    <a href="mailto:webmaster@csdn.net" target="_blank">
+                        <span class="txt">webmaster@csdn.net</span>
+                    </a>
+                </p>
+                <p>
+                    <i class="icon iconfont icon-call"></i>
+                    <span class="txt">400-660-0108</span>
+                </p>
+                <p>
+                    <i class="icon iconfont icon-QQ"></i>
+                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2431299880&amp;site=qq&amp;menu=yes" target="_blank">
+                        <span class="txt">网站客服</span>
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="bg-gray">
+            <div class="feed_copyright">
+                <p><a class="right-dotte" href="//www.csdn.net/company/about.html" target="_blank">关于</a><a href="//www.csdn.net/company/recruit.html" target="_blank" class="right-dotte">招聘</a><a href="//www.csdn.net/company/marketing.html" target="_blank" class="right-dotte">广告服务</a><img src="https://www.csdn.net/images/ali01.png" alt="ali" title="ali"></p>
+                <p class="fz12">©2018 CSDN <a href="http://www.miibeian.gov.cn/" target="_blank" class="ml14">京ICP证09002463号</a></p>
+            </div>
+            <div class="allow-info-box">
+                <p><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><span>经营性网站备案信息</span></a></p>
+                <p><a href="http://www.cyberpolice.cn/" target="_blank"><span>网络110报警服务</span></a></p>
+                <p><a href="http://www.12377.cn/" target="_blank"><span>中国互联网举报中心</span></a></p>
+                <p><a href="http://www.bjjubao.org/" target="_blank"><span>北京互联网违法和不良信息举报中心</span></a></p>
+            </div>
+        </div>
+    </div>
+    </div>
+  </div>
+</aside></div>
+
+<div class="left_fixed">
+    <div class="left_show_button">
+        <span>
+          <i class="icon iconfont icon-youjiantou"></i>
+        </span>
+    </div>
+    <ul class="left_menu" id="share_box">
+        <li>
+            <button class="left-fixed-btn btn-like csdn-tracking-statistics tracking-click" data-mod="popu_373" target="_self" title="点赞">
+                <a href="javascript:void(0);" class="iconbox border_red" ><i class="icon iconfont icon-dianzan"></i></a>
+                <a class="txt" href="javascript:void(0);">3</a>
+            </button>
+        </li>
+        <li id="blog_artical_directory">
+            <button class="left-fixed-btn left_menu_btn csdn-tracking-statistics tracking-click" data-mod="popu_372" target="_self" title="目录">
+                <a href="javascript:void(0);" class="iconbox border_black" ><i class="icon iconfont icon-mulu"></i></a>
+            </button>
+        </li>
+        <li class="menu_con">
+            <div class="list_father">
+                <div class="arr_box">
+                    <button class="btn-noborder arr-btn scroll-down  left_scroll_down"><i class="icon iconfont icon-xiajiantou"></i></button>
+                    <button class="btn-noborder arr-btn scroll-up left_scroll_top"><i class="icon iconfont icon-shangjiantou"></i></button>
+                </div>
+                <div class="arr"></div>
+                <div id="csdnBlogDir"></div>
+            </div>
+        </li>
+        <!--        <li>-->
+        <!--            <button class="left-fixed-btn btn-like tracking-ad" data-mod="popu_373" target="_self">-->
+        <!--                <span class="iconbox border_red"><i class="icon iconfont icon-xihuan-"></i></span>-->
+        <!--                <span class="txt">喜欢</span>-->
+        <!--                <span class="untxt">取消喜欢</span>-->
+        <!--            </button>-->
+        <!--        </li>-->
+        <li>
+            <button class="left-fixed-btn csdn-tracking-statistics tracking-click" data-mod="popu_374"  id="com-quick-collect" target="_self" title="收藏">
+                <a href="javascript:void(0);" class="iconbox border_purple" ><i class="icon iconfont icon-shoucang"></i></a>
+            </button>
+        </li>
+        <li>
+            <button class="left-fixed-btn btn-pinglun csdn-tracking-statistics tracking-click" data-mod="popu_544" title="评论">
+                <a href="javascript:void(0);" class="iconbox border_purple" ><i class="icon iconfont icon-pinglun"></i></a>
+            </button>
+        </li>
+        <li class="bdsharebuttonbox">
+          <button class="outside left-fixed-btn csdn-tracking-statistics tracking-click" data-mod="popu_172" title="分享到新浪微博">
+                <span class="iconbox border_red2"><i class="icon iconfont icon-xinlang"></i></span>
+                <a href="#" class="bds_tsina" data-cmd="tsina" > </a>
+          </button>
+        </li>
+        <li class="bdsharebuttonbox">
+          <button class="outside left-fixed-btn csdn-tracking-statistics tracking-click" data-mod="popu_172" title="分享到微信">
+              <span class="iconbox border_green"><i class="icon iconfont icon-weixin"></i></span>
+              <a href="#" class="bds_weixin" data-cmd="weixin" > </a>
+          </button>
+        </li>
+        <li class="bdsharebuttonbox">
+          <button class="outside left-fixed-btn csdn-tracking-statistics tracking-click" data-mod="popu_172" title="分享到QQ空间">
+              <span class="iconbox border_blue"><i class="icon iconfont icon-QQ"></i></span>
+              <a href="#" class="bds_qzone" data-cmd="qzone" > </a>
+          </button>
+        </li>
+        <li id="share_box">
+            
+            <div class="bdsharebuttonbox csdn-tracking-statistics tracking-click" data-mod="popu_172">
+                
+                
+                
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="right_fixed">
+    <div class="r_ico">
+        <i class="icon iconfont icon-jubao"></i>
+        <span class="txt" id="reportBtn">内容举报</span>
+    </div>
+    <div class="returnTop">
+        <i class="icon iconfont icon-fanhuidingbu"></i>
+        <span>返回顶部</span>
+    </div>
+</div>
+<div id="pop_win"></div>
+<div id="popup_mask"></div>
+<div class="pop_CA_cover" ></div>
+<div class="pop pop_CA" >
+    <div class="CA_header">
+        收藏助手
+        <span class="cancel_icon"  id="fapancle" ></span>
+    </div>
+    <iframe src="" id="collectIframe" frameborder="0" width="100%" height="360"  scrolling="no" ></iframe>
+</div>
+<!--举报-->
+<div id="report_dialog" style="top: 250px; left: 343.5px;"><div id="panel_report">
+    <div class="panel_head">不良信息举报</div>
+    <form method="post" id="frmReport" class="panel_body">
+        <table border="0" cellpadding="0" cellspacing="4" class="pop_table">
+            <tbody><tr><td colspan="2">您举报文章：<a href="http://blog.csdn.net/dQCFKyQDXYm3F8rB0/article/details/79231869" target="_blank">Hinton胶囊理论代码开源，上线即受热捧</a></td></tr>
+            <tr>
+                <th style="width:60px;">举报原因：</th>
+                <td id="panel_reporttype">
+                    <label><input type="radio" class="report_type" id="report_sex" name="report_type" value="1">色情</label>
+                    <label><input type="radio" class="report_type" id="report_Politics" name="report_type" value="2">政治</label>
+                    <label><input type="radio" class="report_type" id="report_copy" name="report_type" value="3">抄袭</label>
+                    <label><input type="radio" class="report_type" id="report_ad" name="report_type" value="4">广告</label>
+                    <label><input type="radio" class="report_type" id="report_want" name="report_type" value="5">招聘</label>
+                    <label><input type="radio" class="report_type" id="report_call" name="report_type" value="6">骂人</label>
+                    <br>
+                    <label><input type="radio" class="report_type" id="report_other" name="report_type" value="7">其他</label>
+                    <input type="text" name="report_other_content" id="report_other_content" maxlength="30" style="display: none;">
+                </td>
+            </tr>
+            <tr id="panel_originalurl" style="display: none;">
+                <th>原文地址：</th>
+                <td>
+                    <input id="originalurl" value="http://" name="originalurl" type="text" style="width: 90%;">
+                </td>
+            </tr>
+            <tr>
+                <th id="sp_reason">原因补充：</th>
+                <td>
+                    <textarea id="report_description" style="width: 300px;" rows="3" name="report_description"></textarea>
+                    <p id="sp_n" style="color:#999;margin:0px;padding:0px;">(最多只允许输入30个字)</p>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input id="btnSubmitReport" name="submit" type="image" align="middle" class="btn_1" src="http://csdnimg.cn/release/phoenix/images/btn_submit.jpg">
+                    <span style="padding-left:20px;"></span>
+                    <img id="btnCloseReportDialog" src="http://csdnimg.cn/release/phoenix/images/btn_cancel.jpg" align="middle">
+                    <div id="error" style="color: Red">
+                    </div>
+                </td>
+            </tr>
+            </tbody></table>
+    </form>
+</div>
+    <script language="javascript" type="text/javascript">
+        var isComment=0;
+        //显示隐藏地址
+        $(function () {
+          console.log("version:phoenix");
+            if(isComment){
+                $("#report_description").attr("disabled",true);
+                $("#sp_n").hide();
+                $("#sp_reason").html("评论内容：");
+            }
+            $(".report_type").click(function () {
+                $("#panel_originalurl,#report_other_content").hide();
+                switch ($(this).val()) {
+                    case '3':
+                        $("#panel_originalurl").show();
+                        $("#originalurl").focus();
+                        break;
+                    case '7':
+                        if(isComment){
+                            $("#report_other_content").show().focus();
+                        }
+                        break;
+                }
+
+            });
+
+            $("#frmReport").submit(function () {
+                if (!currentUserName) {
+
+                    if (confirm("您的操作必须登录，是否登录？")) {
+                        location.href = "http://passport.csdn.net/account/login?from=" + encodeURIComponent(location.href);
+                        return false;
+                    }
+                    return false;
+                }
+
+                var reportType = $("input[name=report_type]:checked").val();
+                if(!reportType){
+                    alert("请选择举报原因！");
+                    return false;
+                }
+                var otherInfo = "";
+                switch (reportType) {
+                    case '3':
+                        otherInfo = $("#originalurl").val();
+                        if (otherInfo == ""||otherInfo=="http://") {
+                            alert("举报抄袭必须提供原创文章地址！");
+                            $("#originalurl").focus();
+                            return false;
+                        } else if(!checkeURL(otherInfo)) {
+                            alert("请输入正确的原创文章地址！");
+                            $("#originalurl").focus();
+                            return false;
+                        }
+                        break;
+                    case '7':
+                        otherInfo = $("#report_other_content").val();
+                        if (isComment && !otherInfo) {
+                            alert("请填写举报的具体原因！");
+                            $("#report_other_content").focus();
+                            return false;
+                        }
+                        if(!isComment){
+                            if(!$("#report_description").val()){
+                                alert("请填写举报的具体原因！");
+                                $("#report_description").focus();
+                                return false;
+                            }
+                        }
+                        break;
+                }
+                if(!isComment){
+                    if($("#report_description").val().length>30){
+                        alert("举报原因最多只允许输入30个字！");
+                        return false;
+                    }
+                }
+	            nowTime = {
+		            year: new Date().getFullYear(),
+		            month: parseInt(new Date().getMonth())+1,
+		            day: new Date().getDate(),
+		            hours: parseInt(new Date().getHours())+1,
+		            minutes: parseInt(new Date().getMinutes())+1,
+		            seconds: parseInt(new Date().getSeconds())+1
+	            };
+	            var data = {
+		            articleId: fileName,
+		            commentId: 0,
+		            reportType: reportType,
+		            originalurl: $("#originalurl").val(),
+		            report_other_content: $("#report_other_content").val(),
+		            report_description: $("#report_description").val(),
+		            currentUserName: currentUserName,
+		            updatetime: nowTime.year+'/'+nowTime.month+'/'+nowTime.day+' '+ nowTime.hours+':'+nowTime.minutes+':'+seconds,
+		            blogUser: username
+	            };
+	            if(!isComment){//如果是举报文章
+		            data.report_other_content = data.report_description;
+		            // data.report_description = "1. 神经网络这是一个常见的神经网络的图：这是一个常见的三层神经网络的基本构成，Layer L1是输入层，Layer L2是隐含层";
+	            }
+
+	            $.post(blog_address + "/common/report?id="+fileName+"&t=2", data, function (data) {
+		            if (data.result == 1){
+			            SetError("感谢您的举报，我们会尽快审核！");
+		            }else{
+			            if (data.content) alert(data.content);
+		            }
+
+	            });
+                return false;
+            });
+
+            $("#btnCloseReportDialog").click(function () {
+                CloseDiv();
+            });
+
+        });
+
+        //提示后关闭方法
+        function SetError(error) {
+            $("#btnCloseReportDialog").trigger("click");
+            alert(error);
+            CloseDiv();
+        }
+
+        //关闭方法
+        function CloseDiv() {
+
+            $.removeMask();
+            $("#report_dialog").hide();
+            return false;
+        }
+
+        //验证url
+        function checkeURL(url){
+            return /^http(s)?:\/\/([\w-]+\.)+[\w-]+/i.test(url);
+        }
+    </script>
+</div>
+<!--  fixme 后期清理掉  -->
+<div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+    <script id="adJs52b5334"></script>
+    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+</div>
+<!-- <script type="text/javascript" src="http://passport.csdn.net/content/loginbox/login.js"></script> -->
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<script type="text/javascript" >
+    if($(".article_collect li").length==1){$(".article_collect").hide();}
+    if($(".article_tags li").length==1){$(".article_tags").hide();}
+    $(".edit a").attr("href","http://mp.blog.csdn.net/postedit/"+fileName);
+    $.each($(".edu_li a"),function(){$(this).attr("href",$(this).attr("href").replace("blog7","blog9"))});
+    new CNick('#uid').showNickname();
+
+    if($("#fan").html()=="")
+    {
+	    $("#fan").html(0);
+    }
+</script>
+<script src="http://c.csdnimg.cn/public/common/append_mark/appendMark.min.js?v=5.00.43" type="text/javascript"></script>
+<script type="text/javascript">
+    appendMark($('.recommend_list').children('a').find('dt'),$('.extension_other'),$('.yd_a_d_feed_cla'))
+</script>
+<div class=""id="loginWrap"></div>
+<div class="" id="dlMask"></div>
+</body>

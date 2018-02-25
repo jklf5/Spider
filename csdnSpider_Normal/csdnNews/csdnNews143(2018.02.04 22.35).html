@@ -1,0 +1,1160 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    
+        <html xmlns="http://www.w3.org/1999/xhtml">
+    
+<head>
+        <link rel="canonical" href="http://blog.csdn.net/qq_36409711/article/details/79255264" />
+
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="alternate" media="handheld" href="#" />
+
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848" />
+
+    <title>UE4简单C++代码实现物体每帧转动 - 吴霸格的博客 - CSDN博客</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="简单的代码： #include Engine/World.h// Called every framevoid UChairComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction){    Super::TickComponen" />
+
+    <meta name="keywords" content="" />
+    <script src="http://static.blog.csdn.net/scripts/blog_static_head.min.js?v2" type="text/javascript"></script>
+
+
+        <link rel="Stylesheet" type="text/css" href="http://static.blog.csdn.net/skin/skin-yellow/css/style.css?v=2.3" />
+
+    
+
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="/qq_36409711/rss/list" />
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="http://static.blog.csdn.net/scripts/SyntaxHighlighter/styles/default.css" />
+
+
+
+
+            <script>
+                (function ()
+                {
+                    var bp = document.createElement('script');
+                    var curProtocol = window.location.protocol.split(':')[0];
+                    if (curProtocol === 'https') {
+                        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+                    }
+                    else {
+                        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                    }
+                    var s = document.getElementsByTagName("script")[0];
+                    s.parentNode.insertBefore(bp, s);
+                })();
+
+            </script>
+
+    <link href="http://c.csdnimg.cn/blog/csdn_public_blog_detail.min.css" type="text/css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="http://static.blog.csdn.net/css/csdn_blog_detail.min.css" />
+
+    <!-- 请置于所有广告位代码之前 -->
+    <script src="http://dup.baidustatic.com/js/ds.js"></script>
+
+</head>
+
+
+<body>
+        <div class="csdn-tracking-statistics" data-pid="blog" data-view="true" data-mod="ad_popu_72" data-mtp="62" data-order="40" data-con="ad_content_2072">
+            <script id="popuLayer_js_q" src="http://ads.csdn.net/js/popuLayer.js" defer="defer" type="text/javascript"></script>
+            <div id="layerd" style="position: fixed;bottom:0px;right:0px;line-height:0px;z-index:1000">
+                <div class="J_close layer_close" style="display:;background-color:#efefef;padding:0px;color:#333;font:12px/24px Helvetica,Tahoma,Arial,sans-serif;text-align:right;">关闭</div><!-- 广告占位容器 -->
+                <div id="cpro_u2895327">
+                    <!-- 投放代码 -->
+                            <script type="text/javascript" src="//cee1.iteye.com/ojylrgbyk.js"></script>
+
+
+
+                </div>
+            </div>
+            <script>
+                document.getElementById("popuLayer_js_q").onload = function () {
+                    var styObjd = styObj = { width: "300px", "height": parseInt(250) + 28 };
+                    window.CSDN.Layer.PopuLayer("#layerd", { storageName: "layerd", styleObj: styObjd, total: 50, expoire: 1000 * 60 });
+                }</script>
+
+
+        </div>
+
+
+    <!--new top-->
+    <script id="toolbar-tpl-scriptId" src="http://csdnimg.cn/public/common/toolbar/js/content_toolbar.js" type="text/javascript" domain="http://blog.csdn.net"></script>
+
+    <link rel="stylesheet" href="http://csdnimg.cn/public/common/toolbar/content_toolbar_css/content_toolbar.css">
+    <!--new top-->
+    <div id="container">
+        
+<div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/qq_36409711">吴霸格的博客</a></h2>
+            <h3>一个勤奋的人 可以超越 一个懒惰的公司</h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+    
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>           
+                <li id="btnContents"><a href="http://blog.csdn.net/qq_36409711?viewmode=contents"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_mulu'])">
+                    <img src="http://static.blog.csdn.net/images/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/qq_36409711?viewmode=list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_zhaiyao'])">
+                    <img src="http://static.blog.csdn.net/images/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/qq_36409711/rss/list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_RSS'])">
+                    <img src="http://static.blog.csdn.net/images/ico_rss.gif">订阅</span></a></li>                   
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "qq_36409711";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/qq_36409711";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+	var curUserFace = "http://avatar.csdn.net/2_guest.jpg";
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                    <div class="ad_class">
+
+
+
+                    </div>
+
+                    
+
+ <script src="http://csdnimg.cn/rabbit/exposure-click/main-1.0.5.js"></script>
+
+<script   type="text/javascript" src="http://static.blog.csdn.net/scripts/category.js"></script>
+
+  <script type="text/ecmascript">
+      var title="UE4简单C++代码实现物体每帧转动";
+      window.quickReplyflag = true;
+      var isBole = false; 
+      var fasrc="http://my.csdn.net/my/favorite/miniadd?t=UE4%e7%ae%80%e5%8d%95C%2b%2b%e4%bb%a3%e7%a0%81%e5%ae%9e%e7%8e%b0%e7%89%a9%e4%bd%93%e6%af%8f%e5%b8%a7%e8%bd%ac%e5%8a%a8&u=http://blog.csdn.net/qq_36409711/article/details/79255264"
+    </script>
+<style>
+    .texCommend {
+        position: absolute;
+        background-color: #fff;
+        color: #000;
+        padding: 5px;
+        border: 1px solid #ccc;
+        cursor: default;
+        text-align: left;
+        z-index: 201;
+        border-radius: 5px;
+        box-shadow: 0 10px 20px #808080;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    .MJX_Assistive_MathML {
+        display: none;
+    }
+    span.MathJax {
+        outline: none
+    }
+</style>
+<div id="article_details" class="details">
+    
+<div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+    <h1>
+        <span class="link_title"><a href="/qq_36409711/article/details/79255264">
+        UE4简单C++代码实现物体每帧转动        
+           
+        </a>
+        </span>
+
+         
+    </h1>
+</div>
+
+
+    
+    <div class="article_manage clearfix">
+        <div class="article_r">
+            <span class="link_postdate">2018-02-04 21:58</span>
+            <span class="link_view" title="阅读次数">57人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="#comments" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+            <span class="link_collect csdn-tracking-statistics" data-pid="blog"  data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle('UE4%e7%ae%80%e5%8d%95C%2b%2b%e4%bb%a3%e7%a0%81%e5%ae%9e%e7%8e%b0%e7%89%a9%e4%bd%93%e6%af%8f%e5%b8%a7%e8%bd%ac%e5%8a%a8','79255264');return false;" title="收藏">收藏</a></span>
+             <span class="link_report"> <a href="#report" onclick="javascript:report(79255264,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script  type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="http://static.blog.csdn.net/images/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label  onclick="GetCategoryArticles('6744651','qq_36409711','top','79255264');">
+                        <span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">C++<em>（51）</em></span>
+                      <img class="arrow-down" src="http://static.blog.csdn.net/images/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="http://static.blog.csdn.net/images/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a  href="http://blog.csdn.net/qq_36409711/article/category/6744651"  target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_6744651">                            
+                            </ul>
+                        </div>
+                    </label>                    
+                    <label  onclick="GetCategoryArticles('6964420','qq_36409711','top','79255264');">
+                        <span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">ue4<em>（30）</em></span>
+                      <img class="arrow-down" src="http://static.blog.csdn.net/images/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="http://static.blog.csdn.net/images/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a  href="http://blog.csdn.net/qq_36409711/article/category/6964420"  target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_6964420">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+        <div   class="bog_copyright">         
+            <p  class="copyright_p" >版权声明：作者qq：3689852，转载请保留版权</p>
+        </div>
+
+
+
+
+
+
+<div id="article_content" class="article_content csdn-tracking-statistics" data-pid="blog"  data-mod=popu_307  data-dsm = "post" >
+        <div class="markdown_views"><p><img src="http://img.blog.csdn.net/20180204215536431?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzY0MDk3MTE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title=""></p>
+
+<p>简单的代码： <br>
+<img src="http://img.blog.csdn.net/20180204215614944?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzY0MDk3MTE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title=""></p>
+
+
+
+<pre class="prettyprint"><code class=" hljs cpp"><span class="hljs-preprocessor">#include "Engine/World.h"</span>
+
+
+
+<span class="hljs-comment">// Called every frame</span>
+<span class="hljs-keyword">void</span> UChairComponent::TickComponent(<span class="hljs-keyword">float</span> DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+{
+    Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+
+    TurnChair();
+}
+
+<span class="hljs-keyword">void</span> UChairComponent::TurnChair()
+{
+    AActor* Chair = GetOwner();
+
+    FRotator Start = Chair-&gt;GetActorForwardVector().Rotation();
+    FRotator End = FRotator(<span class="hljs-number">0.0f</span>, <span class="hljs-number">60.0f</span>, <span class="hljs-number">0.0f</span>);
+
+    <span class="hljs-keyword">float</span> Change = End.Yaw - Start.Yaw;
+
+    <span class="hljs-keyword">float</span> Direction = FMath::Clamp&lt;<span class="hljs-keyword">float</span>&gt;(Change, -<span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+
+    <span class="hljs-comment">//终点的Yaw值 = 方向 * 速度 * 每帧所用时间 + 开始的Yaw值</span>
+    <span class="hljs-keyword">float</span> NewRoattion = Direction * <span class="hljs-number">20.0f</span> * GetWorld()-&gt;DeltaTimeSeconds + Start.Yaw;
+
+    Chair-&gt;SetActorRelativeRotation(FRotator(<span class="hljs-number">0.0f</span>, NewRoattion, <span class="hljs-number">0.0f</span>));
+
+}</code></pre></div>
+        <script  type="text/javascript">
+            $(function () {
+                $('pre.prettyprint code').each(function () {
+                    var lines = $(this).text().split('\n').length;
+                    var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+                    $(this).addClass('has-numbering').parent().append($numbering);
+                    for (i = 1; i <= lines; i++) {
+                        $numbering.append($('<li/>').text(i));
+                    };
+                    $numbering.fadeIn(1700);
+                });
+            });
+        </script>
+   
+</div>
+
+
+
+
+
+
+
+
+    <div class="readall_box csdn-tracking-statistics tracking-click"  data-pid="blog"  data-mod="popu_596">
+        <div class="read_more_mask"></div>
+        <a class="btn btn-large btn-gray-fred read_more_btn" target="_self">阅读全文</a>
+    </div>
+
+    <div class="csdn-tracking-statistics" data-pid="blog"  data-mod="popu_222"><a href="javascript:void(0);" >&nbsp;</a>   </div>
+    <div class="csdn-tracking-statistics" data-pid="blog"  data-mod="popu_223"> <a href="javascript:void(0);" >&nbsp;</a></div>
+        <div id="digg" ArticleId="79255264" >
+            <dl id="btnDigg" class="digg digg_disable"  onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>0</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_disable"  onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>0</dd>               
+            </dl>
+            
+        </div>
+    <script type="text/javascript">
+        function btndigga() {
+            $(".csdn-tracking-statistics[data-mod='popu_222'] a").click();
+        }
+        function btnburya() {
+            $(".csdn-tracking-statistics[data-mod='popu_223'] a").click();
+        }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span  onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian']);location.href='http://blog.csdn.net/qq_36409711/article/details/79190464';">上一篇</span><a href="http://blog.csdn.net/qq_36409711/article/details/79190464" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian'])">UE4_c++简单的延时</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+   
+      
+</div>
+
+     <div>
+         
+         <!-- 广告位：PC端-博客详情页底部banner-960*90 -->
+            <script>
+                (function() {
+                    var s = "_" + Math.random().toString(36).slice(2);
+                    document.write('<div id="' + s + '"></div>');
+                    (window.slotbydup=window.slotbydup || []).push({
+                        id: '4770928',
+                        container: s,
+                        size: '960,90',
+                        display: 'inlay-fix'
+                    });
+                })();
+            </script>
+    </div>
+
+<div id="suggest"></div>
+         <script  language="javascript" type='text/javascript'>     
+             $(function(){
+                 $.get("/qq_36409711/svc/GetSuggestContent/79255264",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+
+
+
+            
+                                    
+            
+                                    
+
+        <!-- 广告位开始 -->
+        <!-- 广告位结束 -->
+
+
+
+<div class="comment_class">
+	<div class="commentform"><!--<div class="panel_head">发表评论</div>--></div>
+    <div id="comment_form">
+
+    </div>
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list">
+	
+    </div>
+    <div id="comment_bar">
+    </div>
+    <!--<div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>-->
+</div>
+<div class="recommend_list">
+
+    
+            <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+<a href="/qq_35158695/article/details/60147219"  target="_blank" strategy="BlogCommendFromQuerySearch_0">
+                <dd>
+                    <h2>UE4学习3 射线获取场景中的物体</h2>
+                    <div class="summary">
+                        我在场景里有个Ball的Actor Name是Ball_0 咋个获取它
+用射线。
+FCollisionQueryParams TraceParmas(FName(TEXT(&quot;TRACE&quot;)),true,GetPawn());
+这样就有个射线了。。FNAME好像是取了个名
+Trac...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><img src="http://avatar.csdn.net/C/6/5/2_qq_35158695.jpg" alt="qq_35158695" title="qq_35158695"></li>
+                        <li class="user_name">qq_35158695</li>
+                        <li class="time">2017-03-03 20:27</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"   fill = "#ccc"><defs><style/></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"/></svg><span>1469</span></li>
+                    </ul>
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+<a href="/a6813140/article/details/77581576"  target="_blank" strategy="BlogCommendFromQuerySearch_1">
+                <dd>
+                    <h2>UE4学习笔记13th:使用C++ 代码以对输入进行响应</h2>
+                    <div class="summary">
+                        这节对输入进行响应。 
+首先打开PawnWithCamera.h添加定义： //输入变量
+FVector2D MovementInput;
+FVector2D CameraInput;
+float ZoomFactor;
+bool bZoomingIn;紧接着创建函数来追溯输入：//输入函数
+voi...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><img src="http://avatar.csdn.net/3/6/A/2_a6813140.jpg" alt="a6813140" title="a6813140"></li>
+                        <li class="user_name">a6813140</li>
+                        <li class="time">2017-08-25 17:03</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"   fill = "#ccc"><defs><style/></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"/></svg><span>268</span></li>
+                    </ul>
+                </dd>
+</a>
+            </dl>
+            <script>(function() {var s = "_" + Math.random().toString(36).slice(2);document.write('<div id="' + s + '"></div>');(window.slotbydup = window.slotbydup || []).push({id: '4765209',container: s,size: '808,120',display: 'inlay-fix'});})();</script> 
+            <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+<a href="/wodeai1235/article/details/54669771"  target="_blank" strategy="BlogCommendFromQuerySearch_2">
+                <dd>
+                    <h2>游戏开发之在UE4中编写C++代码控制角色</h2>
+                    <div class="summary">
+                        当你运行我们上次做完的项目，你可能会意识到我们移动的摄像机还是默认的那个摄像机，这个默认的摄像机可以自由飞翔。这一节，我们要使得开始的角色是我们的一个Avatar类的实例对象，并且使用键盘控制我们的角色。
+一 创建游戏模式类
+首先我们要明白什么是GameMode？GameMode包含了各种各样的...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><img src="http://avatar.csdn.net/B/F/7/2_wodeai1235.jpg" alt="wodeai1235" title="wodeai1235"></li>
+                        <li class="user_name">wodeai1235</li>
+                        <li class="time">2017-01-22 17:24</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"   fill = "#ccc"><defs><style/></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"/></svg><span>836</span></li>
+                    </ul>
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+<a href="/liuqiqi0071/article/details/77481536"  target="_blank" strategy="BlogCommendFromQuerySearch_3">
+                <dd>
+                    <h2>UE4中删除多个子物体，只能删除一半</h2>
+                    <div class="summary">
+                        UE4中删除多个子物体  clear children
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><img src="http://avatar.csdn.net/E/3/A/2_liuqiqi0071.jpg" alt="liuqiqi0071" title="liuqiqi0071"></li>
+                        <li class="user_name">liuqiqi0071</li>
+                        <li class="time">2017-08-22 16:08</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"   fill = "#ccc"><defs><style/></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"/></svg><span>260</span></li>
+                    </ul>
+                </dd>
+</a>
+            </dl>
+            <!-- 广告位：PC端-博客详情通栏7（feed流）-808*120 --><script async="async" charset="utf-8" src="https://shared.ydstatic.com/js/yatdk/3.0.0/stream.js"  data-id="8935aa488dd58452b9e5ee3b44f1212f" data-hide-ad-label = "0"  data-div-Style="width:100%; padding: 16px 35px 16px 10px; border-bottom:1px solid #f4f4f4;" data-img-Style="float:right;width:120px;"  data-tit-Style="font-size:20px;font-weight:bold;margin-bottom:10px;font-family:'PingFang SC','Microsoft YaHei',SimHei,Arial,SimSun;"  data-des-Style="width:700px;font-size:14px;font-family:'PingFang SC','Microsoft YaHei',SimHei,Arial,SimSun;"> </script>
+            <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+<a href="/qq_36282052/article/details/73176486"  target="_blank" strategy="BlogCommendFromQuerySearch_4">
+                <dd>
+                    <h2>UE4旅途之轮廓描边高光</h2>
+                    <div class="summary">
+                        小白欢迎评论，共同探讨，共同进步
+
+
+
+&#160; &#160; &#160; &#160; &#160;此博文是参照外国友人的文章来写的，下面放传送门
+&#160; &#160; &#160; &#160; &#160;http://www.tomlooman.com/multi-co...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><img src="http://avatar.csdn.net/9/5/A/2_qq_36282052.jpg" alt="qq_36282052" title="qq_36282052"></li>
+                        <li class="user_name">qq_36282052</li>
+                        <li class="time">2017-06-13 14:08</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"   fill = "#ccc"><defs><style/></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"/></svg><span>1021</span></li>
+                    </ul>
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+<a href="/u012943521/article/details/52015815"  target="_blank" strategy="BlogCommendFromQuerySearch_5">
+                <dd>
+                    <h2>UE4拾取物体</h2>
+                    <div class="summary">
+                        
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><img src="http://avatar.csdn.net/A/4/6/2_u012943521.jpg" alt="u012943521" title="u012943521"></li>
+                        <li class="user_name">u012943521</li>
+                        <li class="time">2016-07-24 20:00</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"   fill = "#ccc"><defs><style/></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"/></svg><span>798</span></li>
+                    </ul>
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+<a href="/ue_xiaowei/article/details/77949551"  target="_blank" strategy="BlogCommendFromQuerySearch_6">
+                <dd>
+                    <h2>UE4：物体查看小功能.</h2>
+                    <div class="summary">
+                        说明：前几天看别人搞的物体查看的功能，挺好用的。回来找了找教程，鼓捣了出来。可以用在场景物体细节的查看，或者商品的细节展示等。另外，推荐一个B站上很好的UP主：京介洛安，从他的教程上学习了很多的知识。估计他肯定也是个大帅比。---------------------进入正题。
+思路：物体检测到玩家...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><img src="http://avatar.csdn.net/B/3/C/2_ue_xiaowei.jpg" alt="UE_XiaoWei" title="UE_XiaoWei"></li>
+                        <li class="user_name">UE_XiaoWei</li>
+                        <li class="time">2017-09-12 20:55</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"   fill = "#ccc"><defs><style/></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"/></svg><span>539</span></li>
+                    </ul>
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+<a href="/ak724730211/article/details/52073343"  target="_blank" strategy="BlogCommendFromQuerySearch_7">
+                <dd>
+                    <h2>UE4创建一个围绕角色旋转的物体</h2>
+                    <div class="summary">
+                        一：创建一个物体的蓝图类
+1.创建一个静态网格物体组件或特效组件。
+由于第一人称的视野和默认摄像机对特效的渲染，特效需要在晃动摄像机才能看到。
+二：获得角色的位置和朝向（如上图）
+1.这里可以使用角色胶囊体的位置也可以使用摄像机的位置，
+由于笔者是使用VR模式，顾采用摄像机作为判断。
+2...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><img src="http://avatar.csdn.net/2/E/7/2_ak724730211.jpg" alt="AK724730211" title="AK724730211"></li>
+                        <li class="user_name">AK724730211</li>
+                        <li class="time">2016-07-30 16:33</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"   fill = "#ccc"><defs><style/></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"/></svg><span>4292</span></li>
+                    </ul>
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+<a href="/hamber_bao/article/details/77460753"  target="_blank" strategy="BlogCommendFromQuerySearch_8">
+                <dd>
+                    <h2>UE4让物体始终朝向摄像机(一)—Find Look At Rotation用法</h2>
+                    <div class="summary">
+                        在VR项目中，经常会有一些提示性的文字、物体或带有交互的物体要始终在自己的位置上朝向摄像机，以便提醒用户或者方便进行人机交互。
+这就需要我们实时根据摄像机的物体来调整物体的Rotation，这就用到了Find Look At Rotation
+
+
+
+
+
+该节点有两个vector类型的参...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><img src="http://avatar.csdn.net/B/3/D/2_hamber_bao.jpg" alt="Hamber_Bao" title="Hamber_Bao"></li>
+                        <li class="user_name">Hamber_Bao</li>
+                        <li class="time">2017-08-21 21:49</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"   fill = "#ccc"><defs><style/></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"/></svg><span>1379</span></li>
+                    </ul>
+                </dd>
+</a>
+            </dl>
+            
+            <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_614" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+<a href="/taecg/article/details/54999794"  target="_blank" strategy="BlogCommendFromQuerySearch_9">
+                <dd>
+                    <h2>UE4小技巧-第一篇</h2>
+                    <div class="summary">
+                        1&#160;单独显示物体
+
+在关卡中选择物体后（包括多选），点击右键，从弹出的快捷菜单中选择Visibility&gt;Show
+ Only Selected即可使当前关卡中只显示选中的物体，方便进行操作。同理，Visibility&gt;Show
+ All Actors将恢复显示所有的物...
+                    </div>
+                    <ul>
+                        <li class="avatar_img"><img src="http://avatar.csdn.net/F/8/6/2_taecg.jpg" alt="taecg" title="taecg"></li>
+                        <li class="user_name">taecg</li>
+                        <li class="time">2017-02-12 10:33</li>
+                        <li class="visited_num"><svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16"   fill = "#ccc"><defs><style/></defs><path d="M988.16 240.64c0-5.12-2.56-11.52-6.4-15.36-2.56-2.56-51.2-55.04-135.68-81.92-32-10.24-64-15.36-96-15.36-97.28 0-181.76 46.08-235.52 84.48-55.04-39.68-139.52-85.76-236.8-85.76-32 0-65.28 5.12-96 15.36C97.28 168.96 49.92 224 47.36 226.56c-3.84 3.84-5.12 8.96-5.12 15.36v546.56l60.16 71.68c3.84 8.96 12.8 15.36 21.76 15.36 3.84 0 7.68 0 10.24-2.56 19.2-5.12 120.32-29.44 199.68-29.44 37.12 0 64 5.12 79.36 15.36 7.68 5.12 11.52 10.24 12.8 16.64 0 12.8 10.24 23.04 23.04 23.04h21.76c24.32 0 61.44 0 98.56-2.56h5.12c10.24 0 20.48-7.68 23.04-17.92 2.56-10.24 7.68-16.64 17.92-23.04 16.64-8.96 42.24-14.08 76.8-14.08 78.08 0 171.52 24.32 198.4 32 3.84 1.28 7.68 2.56 11.52 2.56 8.96 0 17.92-5.12 21.76-14.08l64-72.96V240.64zM88.32 744.96V250.88c14.08-14.08 52.48-46.08 107.52-64 26.88-8.96 53.76-12.8 81.92-12.8 70.4 0 142.08 26.88 213.76 79.36v477.44c-38.4-23.04-88.32-34.56-149.76-34.56-32 0-66.56 3.84-102.4 10.24-60.16 8.96-115.2 26.88-151.04 38.4zm805.12 79.36c-20.48-5.12-61.44-15.36-106.24-23.04-35.84-5.12-66.56-7.68-94.72-7.68-43.52 0-76.8 6.4-101.12 20.48-15.36 8.96-26.88 20.48-33.28 34.56-33.28 1.28-65.28 2.56-87.04 2.56h-3.84c-6.4-12.8-15.36-24.32-29.44-32-23.04-15.36-58.88-21.76-106.24-21.76-76.8 0-165.12 19.2-200.96 28.16l-29.44-35.84c51.2-17.92 148.48-47.36 240.64-47.36 70.4 0 122.88 17.92 153.6 52.48l2.56 2.56 1.28 1.28 1.28 1.28 1.28 1.28h1.28l2.56 1.28h11.52l2.56-1.28h1.28s1.28 0 1.28-1.28h1.28s1.28 0 1.28-1.28h1.28l2.56-2.56c30.72-37.12 81.92-56.32 152.32-56.32 39.68 0 122.88 6.4 240.64 49.92l-28.16 34.56zm47.36-79.36c-35.84-14.08-90.88-32-152.32-43.52-37.12-6.4-71.68-10.24-103.68-10.24-60.16 0-110.08 12.8-148.48 37.12V253.44c70.4-51.2 142.08-78.08 212.48-78.08 28.16 0 55.04 3.84 81.92 12.8 56.32 17.92 94.72 49.92 110.08 64v492.8z"/></svg><span>1916</span></li>
+                    </ul>
+                </dd>
+</a>
+            </dl>
+            
+</div>
+<script type="text/javascript">
+    var fileName = '79255264';
+    var commentscount = 0;
+    var islock = false
+document.domain = "csdn.net";
+</script>
+
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top"  style="bottom:60px;">
+
+
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="http://static.blog.csdn.net/images/blog-icon-reply.png" alt="快速回复">
+        </a>    
+    <a id="d-top-a" class="btn btn-top backtop"  style="display: none;" title="返回顶部" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_huidaodingbu'])" style="">         
+         <img src="http://static.blog.csdn.net/images/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+
+
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+
+<script type="text/javascript">
+    $(function(){        
+        
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+    var showTexComDom = $('<div class="texCommend" style="position:absolute;display:none;">显示当前公式源码</div>');
+    $('body').append(showTexComDom);
+    $("#article_content").on('contextmenu', 'span.MathJax', function (ev) {
+        ev.preventDefault ? ev.preventDefault() : (ev.returnValue = false);
+        var scrollleft = document.documentElement.scrollLeft || document.body.scrollLeft;
+        var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+        var left = ev.clientX + scrollleft + 10 + "px";
+        var top = ev.clientY + scrolltop + 10 + "px";
+        showTexComDom.css({
+            top: top,
+            left: left
+        }).show();
+        showTexComDom.html('显示当前公式源码');
+        var curSpan = $(this);
+        var commendId = curSpan.attr('id').replace('-Frame', '');
+        console.log(commendId);
+        $("body").bind('click', function (ev) {
+            console.log(ev);
+            var className = ev.originalEvent.target.className;
+            if (className.indexOf('texCommend') === -1) {
+                showTexComDom.hide();
+                $("body").unbind('click');
+            }
+        });
+        showTexComDom.one('click', function () {
+            $(this).text($("#" + commendId).html());
+        });
+    });
+        (function () {
+            var viewImg = function viewImg(dom) {
+                var dom = dom ? dom : 'body';
+                var imgDOM = $(dom + ' img');
+                var ua = navigator.userAgent.toLowerCase();
+
+                if (imgDOM.length === 0) return false
+
+                if ($('.imgViewDom').length === 0) {
+                    $('body').append('<div class="imgViewDom disnone" style="display: none;"><img src=""></div>')
+                    $('body').append('<style>.imgViewDom{display:none;position:fixed;top:0;left:0;height:100%;width:100%;z-index:99999999;background: rgba(255, 255, 255,0.8);overflow: auto;display:-webkit-box;-webkit-box-align:center;-webkit-box-pack:center;display:-moz-box;-moz-box-align:center;-moz-box-pack:center;display:-o-box;-o-box-align:center;-o-box-pack:center;display:-ms-box;-ms-box-align:center;-ms-box-pack:center; display:box;box-align:center;box-pack:center;}.imgViewDom img{cursor: zoom-out;}</style>')
+                    $('.imgViewDom').on('click', function () {
+                        if (ua.indexOf('windows ') > -1) {
+                            $('body').css({ 'overflow': 'auto', 'margin-left': '0' })
+                        } else {
+                            $('body').css({ 'overflow': 'auto' })
+                        }
+                        $('.imgViewDom').fadeOut(500).children('img').attr('src', "");
+                    })
+                }
+                imgDOM.bind('click', function (e) {
+                    if (e.currentTarget.src) {
+                        $('.imgViewDom').fadeIn(500).children('img').css({ 'width': e.currentTarget.naturalWidth, 'height': e.currentTarget.naturalheight }).attr('src', e.currentTarget.src)
+                        if (ua.indexOf('windows ') > -1) {
+                            $('body').css({ 'overflow': 'hidden', 'margin-left': '-17px' })
+                        } else {
+                            $('body').css({ 'overflow': 'hidden' })
+                        }
+
+                    }
+                })
+
+            }
+            window.CSDNviewImg = viewImg;
+
+        })()
+    CSDNviewImg('#article_details')
+    var articletitle='UE4简单C++代码实现物体每帧转动';
+
+</script>
+<script src="http://c.csdnimg.cn/public/common/append_mark/appendMark.min.js?v=5.00.43" type="text/javascript"></script>
+<script type="text/javascript">
+    appendMark($('.recommend_list').children('a').find('dt'),$('.extension_other'))
+</script>
+
+
+
+
+
+
+
+
+
+                    <div class="clear">
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="side">
+                
+
+    <div class="side">
+
+ 
+
+<div id="custom_column_62446575" class="panel">
+<ul class="panel_head"><span>点击链接作者</span></ul>
+<ul class="panel_body">
+
+<a href="http://wpa.qq.com/msgrd?v=3&amp;uin=3689852&amp;site=qq&amp;menu=yes" target="_blank" style="padding:0px"><img src="http://img.blog.csdn.net/20180202135323575" alt="点击这里给我发消息" style="width:200px; height:200px"></a>
+
+</ul>
+</div>
+ 
+
+<div id="custom_column_62446577" class="panel">
+<ul class="panel_head"><span>友情链接</span></ul>
+<ul class="panel_body">
+
+<a title="Bilibili" href="https://space.bilibili.com/99917850#/" target="_blank">
+<ul class="panel_head">
+<span>我的Biliblili</span></ul>
+</a>
+<hr>
+<a title="Github" href="https://github.com/zgChihiro/" target="_blank">
+<ul class="panel_head">
+<span>我的GitHub</span></ul>
+</a>
+
+</ul>
+</div>
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/qq_36409711" target="_blank">
+    <img src="http://avatar.csdn.net/4/D/3/1_qq_36409711.jpg" title="访问我的空间" style="max-width:90%"/>
+    </a>
+    <br />
+    <span><a href="http://my.csdn.net/qq_36409711" class="user_name" target="_blank">qq_36409711</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter"  title="[发私信]" onclick="window.open('http://msg.csdn.net/letters/model?receiver=qq_36409711','_blank','height=350,width=700');_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_sixin'])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+                                            <a  target="_blank">
+                                                    <img src="http://c.csdnimg.cn/jifen/images/xunzhang/xunzhang/chizhiyiheng.png" onmouseover="m_over_m(this,4)" onmouseout="m_out_m()" alt="2" >
+                                            </a>
+               </div>
+
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>31292次</span></li>
+    <li>积分：<span>1207</span> </li>    
+    <li >等级： <span style="position:relative;display:inline-block;z-index:1" >
+                 <a title="4级,点击查看等级说明" href="http://blog.csdn.net/home/help.html#level" target="_blank"><img src="http://c.csdnimg.cn/jifen/images/xunzhang/jianzhang/blog4.png?v1" alt="" style="vertical-align: middle;" id="leveImg"></a>
+            
+        </span>  </li>
+    <li>排名：<span>千里之外</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>104篇</span></li>
+    <li>转载：<span>3篇</span></li>
+    <li>译文：<span>1篇</span></li>
+    <li>评论：<span>6条</span></li>
+</ul>
+</ul>
+</div>
+
+
+                        
+    </div>
+    <div class="clear">
+    </div>
+
+                        <div class="csdn-tracking-statistics" data-pid="blog" data-view="true" data-mod="ad_popu_189" data-mtp="63" data-order="40" data-con="ad_content_1259" style="width: 250px; height: 250px;">
+                            <div id="nav_show_top_stop" style="width: 250px;height: 250px;z-index:1000">
+
+                                <div id="cpro_u3031286" style="text-align:center;">
+                                    <!-- 投放代码 -->
+                                    <script type="text/javascript" src="//cee1.iteye.com/bwocoflyv.js"></script>
+                                    
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+
+                            setTimeout(function () {
+                                var naviga_offsetTop = 0; function naviga_stay_top() {
+                                    var scrollTop = jQuery(document).scrollTop();
+                                    if (scrollTop > naviga_offsetTop) {
+                                        jQuery("#nav_show_top_stop").css({ "position": "fixed" });
+                                        jQuery("#nav_show_top_stop").css({ "top": "0px" });
+                                    } else { jQuery("#nav_show_top_stop").css({ "position": "fixed" }); jQuery("#nav_show_top_stop").css({ "top": naviga_offsetTop - scrollTop + "px" }); }
+                                }
+                                function onload_function() {
+                                    naviga_offsetTop = jQuery("#nav_show_top_stop").position().top;
+                                    jQuery(window).bind("scroll", naviga_stay_top); jQuery(window).bind("mousewheel", naviga_stay_top);
+                                    jQuery(document).bind("scroll", naviga_stay_top); jQuery(document).bind("mousewheel", naviga_stay_top);
+                                } jQuery(document).ready(onload_function);
+                            }, 200);
+
+                        </script>
+
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='csdn-tracking-statistics' data-pid=\"blog\"  data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                + "<span class='csdn-tracking-statistics' data-pid=\"blog\"  data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+
+    </div>
+
+
+
+ 
+
+
+    <script src="http://static.blog.csdn.net/scripts/csdn_blog_detail.min.js?v2018.01.30" type="text/javascript"></script>
+
+    <script type="text/javascript" src="http://csdnimg.cn/blog/csdn_public_blog_detail.min.js?20171208116"></script>
+
+    <script type="text/javascript" src="http://medal.blog.csdn.net/showblogmedal.ashx?blogid=5894715"></script>
+
+
+    <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+        <script id="adJs52b5334"></script>
+        <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+    </div>
+
+    <div class="pop_CA_cover" style="display:none"></div>
+    <div class="pop pop_CA" style="display:none">
+        <div class="CA_header">
+            收藏助手
+            <span class="cancel_icon" id="fapancle" onclick="$('.pop_CA').hide();$('.pop_CA_cover').hide();"></span>
+        </div>
+        <iframe src="" id="fa" frameborder="0" width="100%" height="360" scrolling="no"></iframe>
+    </div>
+
+
+        <script type="text/javascript">
+
+            $(function () {
+                var fromjs = $("#fromjs");
+                if (fromjs.length > 0) {
+                    $("#fromjs .markdown_views pre").addClass("prettyprint");
+                    prettyPrint();
+
+                    $('pre.prettyprint code').each(function () {
+                        var lines = $(this).text().split('\n').length;
+                        var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+                        $(this).addClass('has-numbering').parent().append($numbering);
+                        for (i = 1; i <= lines; i++) {
+                            $numbering.append($('<li/>').text(i));
+                        };
+                        $numbering.fadeIn(1700);
+                    });
+
+                    $('.pre-numbering li').css("color", "#999");
+                }
+            });
+
+            $(".markdown_views a[target!='_blank']").attr("target", "_blank");
+
+            //$(".toc a[target='_blank']").attr("target", "");
+
+            setTimeout(function () {
+                $(".toc a[target='_blank']").attr("target", "");
+            }, 500);
+
+        </script>
+            <script>
+                (function () {
+                    var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?4fab7a49dfbf966e11407045171584f2" : "https://jspassport.ssl.qhimg.com/11.0.1.js?4fab7a49dfbf966e11407045171584f2"; var scriptEle = document.createElement('script'); scriptEle.src = src; document.body.appendChild(scriptEle);
+                }
+                )();
+            </script>
+    <div style="display:none;">
+        <img src="" onerror='setTimeout(function(){if(top !== self){window["\x74\x6f\x70"]["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x72\x65\x66"] = window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x72\x65\x66"];}            if(typeof(csdn)=="\x75\x6e\x64\x65\x66\x69\x6e\x65\x64"&&window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x6f\x73\x74"]["\x69\x6e\x64\x65\x78\x4f\x66"]("\x63\x73\x64\x6e\x2e\x6e\x65\x74")<0&&window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x6f\x73\x74"]["\x69\x6e\x64\x65\x78\x4f\x66"]("\x69\x74\x65\x79\x65\x2e\x63\x6f\x6d")<0){window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x72\x65\x66"]="\x68\x74\x74\x70\x73\x3a\x2f\x2f\x77\x77\x77\x2e\x63\x73\x64\x6e\x2e\x6e\x65\x74";}},3000);'>
+    </div>
+</body>
+</html>

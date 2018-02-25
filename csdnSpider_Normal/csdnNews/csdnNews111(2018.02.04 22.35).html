@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="canonical" href="http://blog.csdn.net/HUIJINJAVA/article/details/79232189"/> 
+    <script type="text/javascript">
+        var username = "huijinjava";
+        var _blogger = username;
+        var blog_address = "http://blog.csdn.net/huijinjava";
+        var static_host = "http://csdnimg.cn/release/phoenix/";
+        var currentUserName = ""; 
+        var fileName = '79232189';
+        var commentscount = 0;
+        var islock = false;
+        window.quickReplyflag = true;
+        var totalFloor = 0;
+        var isBole = false;
+        var isDigg = false;
+        var isExpert = false;
+        var isAdm = false;
+        var baiduKey = "";
+        var needInsertBaidu = true;
+        var isShowAds = true;
+    </script>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <script src="http://c.csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="http://c.csdnimg.cn/public/static/css/avatar.css">
+                <link rel="stylesheet" href="http://csdnimg.cn/release/phoenix/production/main-ffb45d8453.css">
+          <link rel="stylesheet" href="http://c.csdnimg.cn/public/common/toolbar/content_toolbar_css/content_toolbar.css">
+
+    <script src="http://csdnimg.cn/rabbit/exposure-click/main-1.0.5.js"></script>
+    <script type="text/javascript" src="http://csdnimg.cn/pubfooter/js/tracking-1.0.2.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://csdnimg.cn/release/phoenix/production/main-df0973cd7f.js"></script>
+
+    <script src="http://dup.baidustatic.com/js/ds.js"></script>
+    <script type="text/javascript">
+        // Traffic Stats of the entire Web site By baidu
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?6bcd52f51e9b3dce32bec4a3997715ac";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        // Traffic Stats of the entire Web site By baidu end
+    </script>
+    <meta name="description" content="图解虎嗅爬虫优化方案
+
+
+
+
+
+
+
+
+
+pom 如下:
+
+
+
+org.apache.httpcomponents
+httpclient
+4.5.3
+
+
+
+org.jsoup
+jsoup
+1.10.3
+
+
+
+org.springframework
+spring-jdbc
+4.2.6.RELEASE
+
+
+
+
+mysql
+mysql-c" />
+    <meta name="keywords" content="" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+    <title>java爬虫爬取网站使用多线程(虎嗅网站) - CSDN博客</title>
+    <link href="http://csdnimg.cn/public/favicon.ico" rel="SHORTCUT ICON">
+      </head>
+<body>
+<script id="toolbar-tpl-scriptId" prod="download" skin="black" src="http://c.csdnimg.cn/public/common/toolbar/js/content_toolbar.js" type="text/javascript" domain="http://blog.csdn.net/"></script>
+<div class="container clearfix">
+  <main>
+      <div style="display:none;">
+          <img src="" onerror='setTimeout(function(){if(top !== self){window["\x74\x6f\x70"]["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x72\x65\x66"] = window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x72\x65\x66"];}            if(typeof(csdn)=="\x75\x6e\x64\x65\x66\x69\x6e\x65\x64"&&window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x6f\x73\x74"]["\x69\x6e\x64\x65\x78\x4f\x66"]("\x63\x73\x64\x6e\x2e\x6e\x65\x74")<0&&window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x6f\x73\x74"]["\x69\x6e\x64\x65\x78\x4f\x66"]("\x69\x74\x65\x79\x65\x2e\x63\x6f\x6d")<0){window["\x6c\x6f\x63\x61\x74\x69\x6f\x6e"]["\x68\x72\x65\x66"]="\x68\x74\x74\x70\x73\x3a\x2f\x2f\x77\x77\x77\x2e\x63\x73\x64\x6e\x2e\x6e\x65\x74";}},3000);'>
+      </div>
+    <article>
+        <h1 class="csdn_top">java爬虫爬取网站使用多线程(虎嗅网站)</h1>
+        <div class="article_bar clearfix">
+            <div class="artical_tag">
+                <span class="original">
+                原创                </span>
+                <span class="time">2018年02月01日 19:08:15</span>
+            </div>
+
+            <ul class="article_tags clearfix csdn-tracking-statistics tracking-click" data-mod="popu_377" >
+                <li class="tit">标签：</li>
+
+<!--          [startarticletags]-->
+                <!--          [endarticletags]-->
+            </ul>
+            <ul class="right_bar">
+                <li><button class="btn-noborder"><i class="icon iconfont icon-read"></i><span class="txt">640</span></button></li>
+                <li class="edit">
+                    <a class="btn-noborder" href="" >
+                        <i class="icon iconfont icon-bianji"></i><span class="txt">编辑</span>
+                    </a>
+                </li>
+                <li class="del">
+                    <a class="btn-noborder" onclick="javascript:deleteArticle(fileName);return false;">
+                        <i class="icon iconfont icon-shanchu"></i><span class="txt">删除</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="article_content" class="article_content csdn-tracking-statistics tracking-click" data-mod="popu_519" data-dsm="post">
+                        
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+<a name="post_b" style="background-color:transparent;color:rgb(51,122,183);"><br /></a><br /></p>
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+<a href="http://www.wendaoxueyuan.com/post/detail/685#post_b" style="background-color:transparent;color:rgb(51,122,183);"><span style="font-weight:700;">图解虎嗅爬虫优化方案</span></a></p>
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+<br /></p>
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+<img src="http://oywfafg58.bkt.clouddn.com/course/img/201801301924432793891.png" title="course/img/201801221732090284852.png" alt="2018-01-22_172920.png" width="847" height="275" style="border:0px;vertical-align:middle;" /></p>
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+<br /></p>
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+pom 如下:</p>
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+&lt;dependencies&gt;<br /><span style="white-space:pre;"></span>&lt;dependency&gt;<br /><span style="white-space:pre;"></span>&lt;groupId&gt;org.apache.httpcomponents&lt;/groupId&gt;<br /><span style="white-space:pre;"></span>&lt;artifactId&gt;httpclient&lt;/artifactId&gt;<br /><span style="white-space:pre;"></span>&lt;version&gt;4.5.3&lt;/version&gt;<br /><span style="white-space:pre;"></span>&lt;/dependency&gt;<br /><span style="white-space:pre;"></span>&lt;!-- jsoup HTML parser library @ https://jsoup.org/ --&gt;<br /><span style="white-space:pre;"></span>&lt;dependency&gt;<br /><span style="white-space:pre;"></span>&lt;groupId&gt;org.jsoup&lt;/groupId&gt;<br /><span style="white-space:pre;"></span>&lt;artifactId&gt;jsoup&lt;/artifactId&gt;<br /><span style="white-space:pre;"></span>&lt;version&gt;1.10.3&lt;/version&gt;<br /><span style="white-space:pre;"></span>&lt;/dependency&gt;<br /><span style="white-space:pre;"></span>&lt;!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc --&gt;<br /><span style="white-space:pre;"></span>&lt;dependency&gt;<br /><span style="white-space:pre;"></span>&lt;groupId&gt;org.springframework&lt;/groupId&gt;<br /><span style="white-space:pre;"></span>&lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;<br /><span style="white-space:pre;"></span>&lt;version&gt;4.2.6.RELEASE&lt;/version&gt;<br /><span style="white-space:pre;"></span>&lt;/dependency&gt;<br /><br /><br /><span style="white-space:pre;"></span>&lt;dependency&gt;<br /><span style="white-space:pre;"></span>&lt;groupId&gt;mysql&lt;/groupId&gt;<br /><span style="white-space:pre;"></span>&lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;<br /><span style="white-space:pre;"></span>&lt;version&gt;5.1.41&lt;/version&gt;<br /><span style="white-space:pre;"></span>&lt;/dependency&gt;<br /><span style="white-space:pre;"></span>&lt;dependency&gt;<br /><span style="white-space:pre;"></span>&lt;groupId&gt;c3p0&lt;/groupId&gt;<br /><span style="white-space:pre;"></span>&lt;artifactId&gt;c3p0&lt;/artifactId&gt;<br /><span style="white-space:pre;"></span>&lt;version&gt;0.9.1.2&lt;/version&gt;<br /><span style="white-space:pre;"></span>&lt;/dependency&gt;<br /><br /><br /><span style="white-space:pre;"></span>&lt;dependency&gt;<br /><span style="white-space:pre;"></span>&lt;groupId&gt;com.alibaba&lt;/groupId&gt;<br /><span style="white-space:pre;"></span>&lt;artifactId&gt;fastjson&lt;/artifactId&gt;<br /><span style="white-space:pre;"></span>&lt;version&gt;1.2.31&lt;/version&gt;<br /><span style="white-space:pre;"></span>&lt;/dependency&gt;<br /><span style="white-space:pre;"></span>&lt;dependency&gt;<br /><span style="white-space:pre;"></span>&lt;groupId&gt;com.google.code.gson&lt;/groupId&gt;<br /><span style="white-space:pre;"></span>&lt;artifactId&gt;gson&lt;/artifactId&gt;<br /><span style="white-space:pre;"></span>&lt;version&gt;2.8.1&lt;/version&gt;<br /><span style="white-space:pre;"></span>&lt;/dependency&gt;<br /><span style="white-space:pre;"></span>&lt;dependency&gt;<br /><span style="white-space:pre;"></span>&lt;groupId&gt;redis.clients&lt;/groupId&gt;<br /><span style="white-space:pre;"></span>&lt;artifactId&gt;jedis&lt;/artifactId&gt;<br /><span style="white-space:pre;"></span>&lt;version&gt;2.9.0&lt;/version&gt;<br /><span style="white-space:pre;"></span>&lt;/dependency&gt;<br /><span style="white-space:pre;"></span>&lt;/dependencies&gt;<br /></p>
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+代码演示如下:</p>
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+package cn.itcast.huxiu.query;<br /><br /><br />
+import java.util.ArrayList;<br />
+import java.util.concurrent.ArrayBlockingQueue;<br />
+import java.util.concurrent.ExecutorService;<br />
+import java.util.concurrent.Executors;<br /><br /><br />
+import org.apache.http.HttpEntity;<br />
+import org.apache.http.client.entity.UrlEncodedFormEntity;<br />
+import org.apache.http.client.methods.CloseableHttpResponse;<br />
+import org.apache.http.client.methods.HttpGet;<br />
+import org.apache.http.client.methods.HttpPost;<br />
+import org.apache.http.impl.client.CloseableHttpClient;<br />
+import org.apache.http.impl.client.HttpClients;<br />
+import org.apache.http.message.BasicNameValuePair;<br />
+import org.apache.http.util.EntityUtils;<br />
+import org.jsoup.Jsoup;<br />
+import org.jsoup.nodes.Document;<br />
+import org.jsoup.nodes.Element;<br />
+import org.jsoup.select.Elements;<br /><br /><br />
+import com.google.gson.Gson;<br /><br /><br />
+import cn.itcast.huxiu.Article;<br />
+import cn.itcast.huxiu.ArticleDao;<br />
+import cn.itcast.huxiu.ResponseJson;<br /><br /><br />
+public class HuXiuTest {<br /><span style="white-space:pre;"></span>public static final ArticleDao articleDao = new ArticleDao();<br /><span style="white-space:pre;"></span>public static final ArrayBlockingQueue&lt;String&gt; blockingQueue = new ArrayBlockingQueue&lt;String&gt;(1000);<br /><span style="white-space:pre;"></span>public static final ExecutorService threadPool = Executors.newFixedThreadPool(10);<br /><span style="white-space:pre;"></span>public static final String prefix = "https://www.huxiu.com/article/";<br /><span style="white-space:pre;"></span>public static final String end = ".html";<br /><span style="white-space:pre;"></span>public static void main(String[] args) throws Exception {<br /><span style="white-space:pre;"></span>//创建线程<br /><span style="white-space:pre;"></span>for(int i=0;i&lt;30;i++){<br /><span style="white-space:pre;"></span>threadPool.execute(new ProcessPagingThreadQueue());<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>// 爬取首页的信息<br /><span style="white-space:pre;"></span>String indexHtml = getIndex();<br /><span style="white-space:pre;"></span>// 解析首页 得到首页里面的所有的id(根据id来查询每一个页面的信息) 存储到集合里面<br /><span style="white-space:pre;"></span>parseIndexHtml(indexHtml);<br /><span style="white-space:pre;"></span><br /><span style="white-space:pre;"></span>/**<br /><span style="white-space:pre;"></span>* 在首页的信息爬取了之后 就要准备爬取分页的信息 点击加载更多只时 就相当与是点击了下一页 点击之后 就会发送一个请求<br /><span style="white-space:pre;"></span>* 这个请求就可以加载下一页的数据了 得到的下一页所有数据之后 就要解析每一页的数据<br /><span style="white-space:pre;"></span>* <br /><span style="white-space:pre;"></span>*/<br /><span style="white-space:pre;"></span>// 根据首页的信息来得到加载下一页数据按钮的数据值<br /><span style="white-space:pre;"></span>String last_dateline = getValueAndIndexHtml(indexHtml);// 得到没加载一页数据的数值<br /><span style="white-space:pre;"></span>// 点击 加载下一页的数据<br /><span style="white-space:pre;"></span>for (int page = 2; page &lt; 10; page++) {<br /><span style="white-space:pre;"></span>// 获得请求的路径<br /><span style="white-space:pre;"></span>String url = "https://www.huxiu.com/v2_action/article_list";<br /><span style="white-space:pre;"></span>HttpPost httpPost = new HttpPost(url);<br /><span style="white-space:pre;"></span>// 请求参数<br /><span style="white-space:pre;"></span>ArrayList&lt;BasicNameValuePair&gt; list = new ArrayList&lt;BasicNameValuePair&gt;();<br /><span style="white-space:pre;"></span>list.add(new BasicNameValuePair("huxiu_hash_code", "647893ceb60219effa36193702fd89a3"));<br /><span style="white-space:pre;"></span>list.add(new BasicNameValuePair("page", page + ""));<br /><span style="white-space:pre;"></span>list.add(new BasicNameValuePair("last_dateline", last_dateline));<br /><span style="white-space:pre;"></span>// 参数设置<br /><span style="white-space:pre;"></span>httpPost.setEntity(new UrlEncodedFormEntity(list));<br /><span style="white-space:pre;"></span>// User-Agent<br /><span style="white-space:pre;"></span>httpPost.setHeader("User-Agent",<br /><span style="white-space:pre;"></span>"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0");<br /><span style="white-space:pre;"></span>// 发起请求<br /><span style="white-space:pre;"></span>CloseableHttpClient httpClient = HttpClients.createDefault();<br /><span style="white-space:pre;"></span>CloseableHttpResponse execute = httpClient.execute(httpPost);<br /><span style="white-space:pre;"></span>// 在发送请求之后 页面没有跳转 因为是在和首页的同一个页面下 所以不用判断 只有页面跳转才有状态码的判定<br /><span style="white-space:pre;"></span>// 请求发送之后 就有返回值了 主要注意的是返回值是json数据的形式来进行返回的<br /><span style="white-space:pre;"></span>String jsonDate = EntityUtils.toString(execute.getEntity());<br /><span style="white-space:pre;"></span>// 得到json数据值 就要水对json的数据进行解析 解析json的数据使用到的是gson<br /><span style="white-space:pre;"></span>Gson gson = new Gson();<br /><span style="white-space:pre;"></span>// 将数据进行解析并且映射到实体类中 实体类中是根据返回的参数来进行设置的<br /><span style="white-space:pre;"></span>// 得到分页数据的所有的信息 也就是分页数据的url<br /><span style="white-space:pre;"></span>ResponseJson fromJson = gson.fromJson(jsonDate, ResponseJson.class);<br /><span style="white-space:pre;"></span>// 得到的分页的每一个数据 每一个URL信息<br /><span style="white-space:pre;"></span>String data = fromJson.getData();// 得到分页的信息<br /><span style="white-space:pre;"></span>// 对分页的数据信息进行解析 也就要取得每一个详情信息页面的id值<br /><span style="white-space:pre;"></span>getDate(data);// 得到所有id值的集合<br /><span style="white-space:pre;"></span>System.out.println(page+"&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;");<br /><span style="white-space:pre;"></span>}<br /><br /><br /><span style="white-space:pre;"></span>}<br /><br /><br /><span style="white-space:pre;"></span>private static void getDate(String data) {<br /><span style="white-space:pre;"></span>if (data != null) {<br /><span style="white-space:pre;"></span>Document document = Jsoup.parse(data);<br /><span style="white-space:pre;"></span>Elements elements = document.select("div[data-aid]");<br /><span style="white-space:pre;"></span>for (Element element : elements) {<br /><span style="white-space:pre;"></span>try {<br /><span style="white-space:pre;"></span>blockingQueue.put(element.attr("data-aid"));<br /><span style="white-space:pre;"></span>System.out.println(element.attr("data-aid"));<br /><span style="white-space:pre;"></span>} catch (Exception e) {<br /><span style="white-space:pre;"></span>// TODO Auto-generated catch block<br /><span style="white-space:pre;"></span>e.printStackTrace();<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>}<br /><br /><br /><span style="white-space:pre;"></span>// 得到加载下一页信息的数据值<br /><span style="white-space:pre;"></span>private static String getValueAndIndexHtml(String indexHtml) {<br /><span style="white-space:pre;"></span>if (indexHtml != null) {<br /><span style="white-space:pre;"></span>Document document = Jsoup.parse(indexHtml);<br /><span style="white-space:pre;"></span>Elements select = document.select("div[data-last_dateline]");<br /><span style="white-space:pre;"></span>return select.get(0).attr("data-last_dateline");<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>return null;<br /><span style="white-space:pre;"></span>}<br /><br /><br /><span style="white-space:pre;"></span>public static Article parseXianQingYeMian(String html) {<br /><br /><br /><span style="white-space:pre;"></span>if (html != null) {<br /><span style="white-space:pre;"></span><br /><span style="white-space:pre;"></span>Article article = new Article();<br /><span style="white-space:pre;"></span>// 将详细页面的信息 转换为文档对象<br /><span style="white-space:pre;"></span>Document document = Jsoup.parse(html);<br /><span style="white-space:pre;"></span>// 获取文章的标题信息<br /><span style="white-space:pre;"></span>String ownText = document.select(".t-h1").get(0).ownText();<br /><span style="white-space:pre;"></span>article.setTitle(ownText);<br /><span style="white-space:pre;"></span>// 获取作者<br /><span style="white-space:pre;"></span>String author = document.select(".author-name").get(0).text();<br /><span style="white-space:pre;"></span>article.setAuthor(author);<br /><span style="white-space:pre;"></span>// 获取时间 根据页面上的信息可知时间有两种表示<br /><span style="white-space:pre;"></span>Elements elements = document.select("span[class=article-time pull-left]");<br /><span style="white-space:pre;"></span>if (elements.size() == 0) {<br /><span style="white-space:pre;"></span>String createTime = document.select(".article-time").get(0).ownText();<br /><span style="white-space:pre;"></span>article.setCreateTime(createTime);<br /><span style="white-space:pre;"></span>} else {<br /><span style="white-space:pre;"></span>String createTime = elements.get(0).ownText();<br /><span style="white-space:pre;"></span>article.setCreateTime(createTime);<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>// 获取文章内容<br /><span style="white-space:pre;"></span>String content = document.select(".article-content-wrap").get(0).text();<br /><span style="white-space:pre;"></span>article.setContent(content);<br /><span style="white-space:pre;"></span>// 获取点赞<br /><span style="white-space:pre;"></span>article.setZan(document.select(".num").get(0).ownText());<br /><span style="white-space:pre;"></span>// 获取评论<br /><span style="white-space:pre;"></span>article.setPl(document.select(".article-pl").get(0).ownText());<br /><span style="white-space:pre;"></span>System.out.println(article);<br /><span style="white-space:pre;"></span><br /><span style="white-space:pre;"></span>return article;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>return null;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span><br /><span style="white-space:pre;"></span><br /><br /><br /><span style="white-space:pre;"></span>// 解析数据 得到url<br /><span style="white-space:pre;"></span>private static void parseIndexHtml(String indexHtml) {<br /><span style="white-space:pre;"></span>// TODO Auto-generated method stub<br /><span style="white-space:pre;"></span>if (indexHtml != null) {<br /><span style="white-space:pre;"></span>// 解析得到的页面的信息 将其变成文档对象<br /><span style="white-space:pre;"></span>Document document = Jsoup.parse(indexHtml);<br /><span style="white-space:pre;"></span>// 得到document对象后 就可以通过document对象来得到需要的东西<br /><span style="white-space:pre;"></span>Elements elements = document.select(".mod-info-flow div[data-aid]");<br /><span style="white-space:pre;"></span>for (Element element : elements) {<br /><span style="white-space:pre;"></span>String aid = element.attr("data-aid");<br /><span style="white-space:pre;"></span>try {<br /><span style="white-space:pre;"></span>/**<br /><span style="white-space:pre;"></span>* 在单线层转变多线程中   主要的几个是 队列 线程的创建 线程池的创建<br /><span style="white-space:pre;"></span>* 这个主要是创建队列 并且把解析数据的详情的id传给了这个队列 <br /><span style="white-space:pre;"></span>* 队列的主要的作用是 防止单个线程被同时访问造成拥堵引起并发的问题<br /><span style="white-space:pre;"></span>* 队列就把这几个问题给解决了 <br /><span style="white-space:pre;"></span>*/<br /><span style="white-space:pre;"></span>blockingQueue.put(aid);<br /><span style="white-space:pre;"></span>} catch (InterruptedException e) {<br /><span style="white-space:pre;"></span>// TODO Auto-generated catch block<br /><span style="white-space:pre;"></span>e.printStackTrace();<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>}<br /><br /><br /><span style="white-space:pre;"></span>// 首页的获取<br /><span style="white-space:pre;"></span>private static String getIndex() throws Exception {<br /><span style="white-space:pre;"></span>String url = "https://www.huxiu.com";<br /><span style="white-space:pre;"></span>// 发起一个get请求<br /><span style="white-space:pre;"></span>HttpGet httpGet = new HttpGet(url);<br /><span style="white-space:pre;"></span>// 设置请求头<br /><span style="white-space:pre;"></span>httpGet.addHeader("User-Agent",<br /><span style="white-space:pre;"></span>"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36");<br /><span style="white-space:pre;"></span>// 返回页面的信息<br /><span style="white-space:pre;"></span>return getHtml(httpGet);<br /><span style="white-space:pre;"></span>}<br /><br /><br /><span style="white-space:pre;"></span>// 执行发送请求的方法<br /><span style="white-space:pre;"></span>public static String getHtml(HttpGet httpGet) throws Exception {<br /><span style="white-space:pre;"></span>// TODO Auto-generated method stub<br /><span style="white-space:pre;"></span>String html = null;<br /><span style="white-space:pre;"></span>CloseableHttpClient httpClient = HttpClients.createDefault();<br /><span style="white-space:pre;"></span>CloseableHttpResponse execute = httpClient.execute(httpGet);<br /><span style="white-space:pre;"></span>// 判断响应码是否为200<br /><span style="white-space:pre;"></span>if (execute.getStatusLine().getStatusCode() == 200) {<br /><span style="white-space:pre;"></span>HttpEntity entity = execute.getEntity();<br /><span style="white-space:pre;"></span>html = EntityUtils.toString(entity);<br /><span style="white-space:pre;"></span>System.out.println(html);// 返回的的页面的所有信息<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>return html;<br /><span style="white-space:pre;"></span>}<br /><br /><br />
+}<br /></p>
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+<br /></p>
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+<br /></p>
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+<br /></p>
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+**********************************************************************************************************************</p>
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+代码创建线程</p>
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+package cn.itcast.huxiu.query;<br /><br /><br />
+import org.apache.http.client.methods.HttpGet;<br /><br /><br />
+import cn.itcast.huxiu.Article;<br /><br /><br />
+public class ProcessPagingThreadQueue extends Thread {<br /><br /><br /><span style="white-space:pre;"></span>public void run() {<br /><span style="white-space:pre;"></span>// TODO Auto-generated method stub<br /><span style="white-space:pre;"></span>while (true) {<br /><span style="white-space:pre;"></span>//得到每一给详情页面的id 这里面用到了while循环  因为存在队列里面的id值不知道是多少个 而且出来也是一个一个的出来的 所以就使用到了循环<br /><span style="white-space:pre;"></span>try {<br /><span style="white-space:pre;"></span>String parseInt = HuXiuTest.blockingQueue.take();//得到详情页的id<br /><span style="white-space:pre;"></span>int id = Integer.parseInt(parseInt);<br /><span style="white-space:pre;"></span>//创建发送请求<br /><span style="white-space:pre;"></span>HttpGet httpGet = new HttpGet(HuXiuTest.prefix + id + HuXiuTest.end);<br /><span style="white-space:pre;"></span>// 消息头<br /><span style="white-space:pre;"></span>httpGet.addHeader("user-agent",<br /><span style="white-space:pre;"></span>"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36");<br /><span style="white-space:pre;"></span>String html = HuXiuTest.getHtml(httpGet);//得到页面的详情信息<br /><span style="white-space:pre;"></span>Article article = HuXiuTest.parseXianQingYeMian(html);<br /><span style="white-space:pre;"></span>if(article != null){<br /><span style="white-space:pre;"></span>article.setId(id);<br />
+//<span style="white-space:pre;"> </span>article.setUrl(HuXiuTest.prefix + id + HuXiuTest.end);<br /><span style="white-space:pre;"></span>HuXiuTest.articleDao.save(article);<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>} catch (Exception e) {<br /><span style="white-space:pre;"></span>// TODO Auto-generated catch blockArticle<br /><span style="white-space:pre;"></span>e.printStackTrace();<br /><span style="white-space:pre;"></span>} <br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span><br /><br /><br /><span style="white-space:pre;"></span>}<br /><br /><br />
+}<br /></p>
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+<span style="color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">**********************************************************************************************************************</span><br /></p>
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+<span style="color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">实体类</span></p>
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+<span style="color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);"></span></p>
+package cn.itcast.huxiu;<br /><br /><br />
+public class Article {<br /><span style="white-space:pre;"></span>private int id;<br /><span style="white-space:pre;"></span>private String title;<br /><span style="white-space:pre;"></span>private String author;<br /><span style="white-space:pre;"></span>private String createTime;<br /><span style="white-space:pre;"></span>private String sc;<br /><span style="white-space:pre;"></span>private String zan;<br /><span style="white-space:pre;"></span>private String pl;<br /><span style="white-space:pre;"></span>private String content;<br /><span style="white-space:pre;"></span>private String url;<br /><span style="white-space:pre;"></span><br /><span style="white-space:pre;"></span>public int getId() {<br /><span style="white-space:pre;"></span>return id;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public void setId(int id) {<br /><span style="white-space:pre;"></span>this.id = id;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public String getTitle() {<br /><span style="white-space:pre;"></span>return title;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public void setTitle(String title) {<br /><span style="white-space:pre;"></span>this.title = title;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public String getAuthor() {<br /><span style="white-space:pre;"></span>return author;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public void setAuthor(String author) {<br /><span style="white-space:pre;"></span>this.author = author;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public String getCreateTime() {<br /><span style="white-space:pre;"></span>return createTime;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public void setCreateTime(String createTime) {<br /><span style="white-space:pre;"></span>this.createTime = createTime;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public String getSc() {<br /><span style="white-space:pre;"></span>return sc;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public void setSc(String sc) {<br /><span style="white-space:pre;"></span>this.sc = sc;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public String getZan() {<br /><span style="white-space:pre;"></span>return zan;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public void setZan(String zan) {<br /><span style="white-space:pre;"></span>this.zan = zan;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public String getPl() {<br /><span style="white-space:pre;"></span>return pl;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public void setPl(String pl) {<br /><span style="white-space:pre;"></span>this.pl = pl;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public String getContent() {<br /><span style="white-space:pre;"></span>return content;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public void setContent(String content) {<br /><span style="white-space:pre;"></span>this.content = content;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public String getUrl() {<br /><span style="white-space:pre;"></span>return url;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public void setUrl(String url) {<br /><span style="white-space:pre;"></span>this.url = url;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>@Override<br /><span style="white-space:pre;"></span>public String toString() {<br /><span style="white-space:pre;"></span>return "Article [id=" + id + ", title=" + title + ", author=" + author + ", createTime=" + createTime + ", sc="<br /><span style="white-space:pre;"></span>+ sc + ", zan=" + zan + ", pl=" + pl + ", content=" + content + ", url=" + url + "]";<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span><br />
+}
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+<span style="color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);"><br /></span></p>
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+<span style="color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">数据库连接</span></p>
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+<span style="color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">package cn.itcast.huxiu;<br /><br /><br />
+import org.springframework.jdbc.core.JdbcTemplate;<br /><br /><br />
+import com.mchange.v2.c3p0.ComboPooledDataSource;<br /><br /><br />
+public class ArticleDao extends JdbcTemplate{<br /><span style="white-space:pre;"></span>public ArticleDao() {<br /><span style="white-space:pre;"></span>// 创建C3P0的datasource 1.配置 2.代码<br /><span style="white-space:pre;"></span>ComboPooledDataSource dataSource = new ComboPooledDataSource();<br /><span style="white-space:pre;"></span>// 1.url<br /><span style="white-space:pre;"></span>// 2.driver<br /><span style="white-space:pre;"></span>// 3.username&amp;password<br /><span style="white-space:pre;"></span>dataSource.setUser("root");<br /><span style="white-space:pre;"></span>dataSource.setPassword("123");<br /><span style="white-space:pre;"></span>dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/spider?characterEncoding=utf-8");<br /><span style="white-space:pre;"></span>setDataSource(dataSource);<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public void save(Article article) {<br /><span style="white-space:pre;"></span>String sql = "INSERT INTO huxiu_article (id, title, author, createTime, zan, pl, sc, content, url ) VALUES( ?,?,?,?,?,?,?,?,?)";<br /><span style="white-space:pre;"></span>update(sql, article.getId(),article.getTitle(),article.getAuthor(),article.getCreateTime(),article.getZan(),article.getPl(),article.getSc(),article.getContent(),article.getUrl());<br /><span style="white-space:pre;"></span>}<br />
+}<br /></span></p>
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+<span style="color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);"><br /></span></p>
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+实体类</p>
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+package cn.itcast.huxiu;<br /><br /><br />
+public class ResponseJson {<br /><span style="white-space:pre;"></span>private int result;<br /><span style="white-space:pre;"></span>private String msg;<br /><span style="white-space:pre;"></span>private String data;<br /><span style="white-space:pre;"></span>private double total_page;<br /><span style="white-space:pre;"></span>private double last_dateline;<br /><span style="white-space:pre;"></span>public int getResult() {<br /><span style="white-space:pre;"></span>return result;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public void setResult(int result) {<br /><span style="white-space:pre;"></span>this.result = result;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public String getMsg() {<br /><span style="white-space:pre;"></span>return msg;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public void setMsg(String msg) {<br /><span style="white-space:pre;"></span>this.msg = msg;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public String getData() {<br /><span style="white-space:pre;"></span>return data;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public void setData(String data) {<br /><span style="white-space:pre;"></span>this.data = data;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public double getTotal_page() {<br /><span style="white-space:pre;"></span>return total_page;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public void setTotal_page(double total_page) {<br /><span style="white-space:pre;"></span>this.total_page = total_page;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public double getLast_dateline() {<br /><span style="white-space:pre;"></span>return last_dateline;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>public void setLast_dateline(double last_dateline) {<br /><span style="white-space:pre;"></span>this.last_dateline = last_dateline;<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span>@Override<br /><span style="white-space:pre;"></span>public String toString() {<br /><span style="white-space:pre;"></span>return "ResponseJson [result=" + result + ", msg=" + msg + ", data=" + data + ", total_page=" + total_page<br /><span style="white-space:pre;"></span>+ ", last_dateline=" + last_dateline + "]";<br /><span style="white-space:pre;"></span>}<br /><span style="white-space:pre;"></span><br />
+}<br /></p>
+<p style="margin-bottom:10px;color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);">
+<span style="color:rgb(68,68,67);font-family:Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'Droid Sans Fallback', 'Microsoft YaHei', sans-serif;background-color:rgb(255,255,255);"><br /></span></p>
+                    </div>
+    </article>
+      <div class="readall_box csdn-tracking-statistics tracking-click" data-mod="popu_376">
+          <div class="read_more_mask"></div>
+          <a class="btn btn-large btn-gray-fred read_more_btn" target="_self">阅读全文</a>
+      </div>
+      <div class="article_copyright">
+              </div>
+      <ul class="article_collect clearfix csdn-tracking-statistics tracking-click"  data-mod="popu_378">
+          <li class="tit">本文已收录于以下专栏：</li>
+<!--          [startarticlecolumns]-->
+                                <!--          [endarticlecolumns]-->
+      </ul>
+      <div class="comment_box clearfix" id="comments">
+          <div id="comment_form">
+              <div id="commentsbmitarear">
+                              </div>
+          </div>
+      </div>
+      <div class="comment_li_outbox">
+          <div id="comment_list"></div>
+      </div>
+
+      <div class="more_comment">
+          <div id="comment_bar" class="trackgin-ad" data-mod="popu_385"></div>
+      </div>
+
+      <!-- <h3 class="recommend_tit" id="related">相关文章推荐</h3> -->
+      <div class="recommend_list clearfix" id="rasss">
+                                                                        <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/Seven__________7/article/details/70897420"  target="_blank" strategy="BlogCommendFromQuerySearch_0">
+                        <dd class="clearfix">
+                          <h2 class="">如何防止网站被爬虫爬取的几种办法</h2>
+                          <div class="summary">
+                              今天想对一个问题进行分析和讨论，就是关于爬虫对网站页面爬取的问题，有些网站通过爬虫去采集其它的网站页面信息作为己用，大量的爬取行为会对web服务器有比较性能有影响，主要的表现就是会变得很慢。
+
+对...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/8/6/A/3_seven__________7.jpg" alt="Seven__________7" title="Seven__________7"/></li>
+                              <li class="user_name">Seven__________7</li>
+                              <li class="time">2017年04月28日 11:52</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>1012</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/u010371710/article/details/74908689"  target="_blank" strategy="BlogCommendFromQuerySearch_1">
+                        <dd class="clearfix">
+                          <h2 class="">利用forenose前嗅数据采集器爬取网页数据</h2>
+                          <div class="summary">
+                              采集新浪体育（http://match.sports.sina.com.cn/football/opta_rank.php?dpc=1） 
+球队积分榜及球员信息 
+前嗅是一个爬虫软件，可以从网页上爬下...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/9/8/2/3_u010371710.jpg" alt="u010371710" title="u010371710"/></li>
+                              <li class="user_name">u010371710</li>
+                              <li class="time">2017年07月10日 09:42</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>537</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                      <dl class="">
+                  <script>
+                  (function() {
+                    var s = "_" + Math.random().toString(36).slice(2);
+                    document.write('<div id="' + s + '"></div>');
+                    (window.slotbydup=window.slotbydup || []).push({
+                      id: '4765209',
+                      container: s,
+                      size: '808,120',
+                      display: 'inlay-fix'
+                    });
+                  })();
+                  </script>
+                </dl>
+                                                                <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/u013761665/article/details/47447731"  target="_blank" strategy="BlogCommendFromQuerySearch_2">
+                        <dd class="clearfix">
+                          <h2 class="">网络爬虫：使用多线程爬取网页链接</h2>
+                          <div class="summary">
+                              经过前面两篇文章，你想大家应该已经知道网络爬虫是怎么一回事了。这篇文章会在之前做过的事情上做一些改进，以及说明之前的做法的不足之处。...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/1/8/1/3_u013761665.jpg" alt="u013761665" title="u013761665"/></li>
+                              <li class="user_name">u013761665</li>
+                              <li class="time">2015年08月17日 18:59</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>5795</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/sinat_28797501/article/details/70195443"  target="_blank" strategy="BlogCommendFromQuerySearch_3">
+                        <dd class="clearfix">
+                          <h2 class="">Python网络爬虫爬取虎扑步行街爆照区话题</h2>
+                          <div class="summary">
+                              Python网络爬虫爬取虎扑步行街爆照区话题
+作者：郜科科
+
+
+最近的任务挺多的，但是心情很烦躁，想做一些自己喜欢的东西，前些时候感觉Python爬虫很好玩，就自学了一下。
+本人比较喜欢逛街——虎扑步...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/8/E/F/3_sinat_28797501.jpg" alt="sinat_28797501" title="sinat_28797501"/></li>
+                              <li class="user_name">sinat_28797501</li>
+                              <li class="time">2017年04月16日 14:32</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>1046</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/ITrunnerboy/article/details/70295866"  target="_blank" strategy="BlogCommendFromQuerySearch_4">
+                        <dd class="clearfix">
+                          <h2 class="">java  网络爬虫之多线程抓取文件</h2>
+                          <div class="summary">
+                              记得这个是去年的东西了，今天重新拿出来重温，一些知识都模糊了很多。
+一共六个类文件加上一个jar包，Demo文件是主文件；DownloadFile文件的作用是从网络URL上下载文件下来，别人已经封装...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/7/0/C/3_itrunnerboy.jpg" alt="ITrunnerboy" title="ITrunnerboy"/></li>
+                              <li class="user_name">ITrunnerboy</li>
+                              <li class="time">2017年04月20日 19:33</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>1487</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/HUIJINJAVA/article/details/79224351"  target="_blank" strategy="BlogCommendFromQuerySearch_5">
+                        <dd class="clearfix">
+                          <h2 class="">java爬虫爬取虎嗅网站分页信息</h2>
+                          <div class="summary">
+                              java爬虫爬取首页信息并且爬取分页信息保存数据库
+代码
+package cn.itcast.huxiu;
+
+
+import java.io.IOException;
+import jav...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/4/5/B/3_huijinjava.jpg" alt="HUIJINJAVA" title="HUIJINJAVA"/></li>
+                              <li class="user_name">HUIJINJAVA</li>
+                              <li class="time">2018年02月01日 09:45</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>39</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/fullerhua/article/details/51595188"  target="_blank" strategy="BlogCommendFromQuerySearch_6">
+                        <dd class="clearfix">
+                          <h2 class="">Python爬虫实战（1）：爬取Drupal论坛帖子列表</h2>
+                          <div class="summary">
+                              在《Python即时网络爬虫项目: 内容提取器的定义》一文我们定义了一个通用的python网络爬虫类，期望通过这个项目节省程序员一半以上的时间。本文将用一个实例讲解怎样使用这个爬虫类。我们将爬集搜客老...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/F/9/3/3_fullerhua.jpg" alt="fullerhua" title="fullerhua"/></li>
+                              <li class="user_name">fullerhua</li>
+                              <li class="time">2016年06月06日 14:16</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>1907</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/qq827245563/article/details/62042325"  target="_blank" strategy="BlogCommendFromQuerySearch_7">
+                        <dd class="clearfix">
+                          <h2 class="">java网络编程____最简单的爬虫(爬取网站美女图片)</h2>
+                          <div class="summary">
+                              package com.company.reptile;
+
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import ...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/B/9/8/3_qq827245563.jpg" alt="qq827245563" title="qq827245563"/></li>
+                              <li class="user_name">qq827245563</li>
+                              <li class="time">2017年03月14日 14:16</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>796</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/github_35160620/article/details/52431532"  target="_blank" strategy="BlogCommendFromQuerySearch_8">
+                        <dd class="clearfix">
+                          <h2 class="">Python 网络爬虫 002 (入门) 爬取一个网站之前，要了解的知识</h2>
+                          <div class="summary">
+                              网站站点的背景调研1. 检查 robots.txt网站都会定义robots.txt 文件，这个文件就是给 网络爬虫 来了解爬取该网站时存在哪些限制。当然了，这个限制仅仅只是一个建议，你可以遵守，也可以...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/F/7/0/3_github_35160620.jpg" alt="github_35160620" title="github_35160620"/></li>
+                              <li class="user_name">github_35160620</li>
+                              <li class="time">2016年09月04日 11:53</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>15062</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                                                      <dl class="clearfix csdn-tracking-statistics recommend_article" data-mod="popu_387" data-poputype="feed"  data-feed-show="false"  data-dsm="post">
+                      <a href="http://blog.csdn.net/wangzhuo0978/article/details/52402478"  target="_blank" strategy="BlogCommendFromQuerySearch_9">
+                        <dd class="clearfix">
+                          <h2 class="">python爬虫之嗅事百科笑话</h2>
+                          <div class="summary">
+                              基础爬虫参考：http://www.cnblogs.com/xin-xin/p/4297852.html
+建议阅读这个，写的很清晰易懂
+
+
+说明文档：
+直接运行， 会将嗅事百科第1页到第20...                          </div>
+
+                          <ul class="">
+                              <li class="avatar_img"><img src="http://avatar.csdn.net/6/9/2/3_wangzhuo0978.jpg" alt="wangzhuo0978" title="wangzhuo0978"/></li>
+                              <li class="user_name">wangzhuo0978</li>
+                              <li class="time">2016年09月01日 18:44</li>
+                              <li class="visited_num"><i class="icon iconfont icon-read"></i><span>486</span></li>
+                          </ul>
+                        </dd>
+                      </a>
+                  </dl>
+                                                    <!-- <script async="async" charset="utf-8" src="https://shared.ydstatic.com/js/yatdk/3.0.0/stream.js" data-notify="bannerMulti_notify" data-insert-nodes="yd_a_d_feed_1,yd_a_d_feed_13,yd_a_d_feed_18,yd_a_d_feed_23,yd_a_d_feed_28,yd_a_d_feed_33" data-id="8935aa488dd58452b9e5ee3b44f1212f" data-hide-ad-label="0" data-div-Style="width:100%;padding:16px 35px 16px 10px;" data-img-Style="float:right;width:120px;" data-tit-Style="font-size:20px;font-weight:bold;margin-bottom:10px;font-family: 'PingFang SC', 'Microsoft YaHei', SimHei, Arial, SimSun;" data-des-Style="width:700px;font-size:14px;font-family: 'PingFang SC', 'Microsoft YaHei', SimHei, Arial, SimSun;" > </script> -->
+      
+      </div>
+  </main>
+<aside>
+    <div class="right_box user_info">
+    <dl class="inf_bar clearfix">
+        <dt class="csdn-tracking-statistics tracking-click" data-mod="popu_381">
+        <a href="http://blog.csdn.net/huijinjava" target="_blank">
+            <img src="http://avatar.csdn.net/4/5/B/3_huijinjava.jpg" class="avatar_pic">
+        </a>
+      </dt><dd>
+            <h3 class="csdn-tracking-statistics tracking-click"  data-mod="popu_380"><a href="http://blog.csdn.net/huijinjava" target="_blank" id="uid">huijinjava</a></h3>
+            <div class="medals" title="">
+                      </div>
+                        <span  class="csdn-tracking-statistics tracking-click" data-mod="popu_379"><a class="btn btn-redborder-small "  id="span_add_follow" target="_self">关注</a></span>
+                    </dd>
+    </dl>
+    <div class="inf_number_box clearfix">
+        <dl title="8">
+            <dt>原创</dt>
+            <dd>8</dd>
+        </dl>
+        <dl title="1">
+            <dt>粉丝</dt>
+            <dd id='fan'>1</dd>
+        </dl>
+        <dl title="5">
+            <dt>喜欢</dt>
+            <dd>5</dd>
+        </dl>
+        <dl title="1">
+          <dt>评论</dt>
+          <dd>1</dd>
+        </dl>
+    </div>
+
+</div>
+<div class="interflow clearfix">
+      <div class="grade gradeAndbadge">
+      <span>等级：</span>
+      <div>
+        <a href="http://blog.csdn.net/home/help.html#level" title="2级,点击查看等级说明" target="_blank">
+          <img class="grade-img" src="http://c.csdnimg.cn/jifen/images/xunzhang/jianzhang/blog2.png" alt="2级,点击查看等级说明">
+        </a>
+      </div>
+    </div>
+    <div class="gradeAndbadge" title="840">
+        <span>访问量：</span>
+        <span class="num odd-overhidden">840</span>
+    </div>
+
+    <div class="gradeAndbadge" title="102">
+      <span>积分：</span>
+      <span  class="num odd-overhidden">102</span>
+    </div>
+    <div class="gradeAndbadge" title="1800507">
+        <span>排名：</span>
+        <span class="num odd-overhidden">1.8M</span>
+    </div>
+
+</div>          <div class="extension_other csdn-tracking-statistics tracking-click" data-mod="popu_389">
+          <!--u3032528-->
+        <div class="flashrecommend">
+            <script type="text/javascript" src="//cee1.iteye.com/bwocoltly.js"></script>
+        </div>
+      </div>
+      <div class="writings">
+    <div class="public_signal clearfix">
+      <h3>他的最新文章</h3>
+      <a href="http://blog.csdn.net/huijinjava" target="_blank" class="more"><span>更多文章</span></a>
+    </div>
+      <ul class="inf_list clearfix csdn-tracking-statistics tracking-click" data-mod="popu_382">
+                    <li class="clearfix">
+              <a href="http://blog.csdn.net/HUIJINJAVA/article/details/79234030" target="_blank">java 文件的上传和下载的操作</a>
+          </li>
+                    <li class="clearfix">
+              <a href="http://blog.csdn.net/HUIJINJAVA/article/details/79233998" target="_blank">MySQL数据库的增删改查的操作</a>
+          </li>
+                    <li class="clearfix">
+              <a href="http://blog.csdn.net/HUIJINJAVA/article/details/79233970" target="_blank">struts2 执行流程</a>
+          </li>
+                    <li class="clearfix">
+              <a href="http://blog.csdn.net/HUIJINJAVA/article/details/79233431" target="_blank">安装linux虚拟机步骤</a>
+          </li>
+                    <li class="clearfix">
+              <a href="http://blog.csdn.net/HUIJINJAVA/article/details/79224351" target="_blank">java爬虫爬取虎嗅网站分页信息</a>
+          </li>
+                </ul>
+  </div>
+            <div class="user-hotArticle sort userSort">
+            <h3>文章分类</h3>
+            <ul class="hotArticle-list userSort-list">
+                                    <li class="clearfix">
+                        <a href="http://blog.csdn.net/huijinjava/article/category/7439032" class="odd-overhidden floatL">软件安装步骤</a>
+                        <div class="read list-left floatR"><span>1篇</span></div>
+                    </li>
+                            </ul>
+            <div class="unfold-btn">
+              <span>展开</span><i class="icon iconfont icon-xiajiantou"></i>
+            </div>
+        </div>
+    <!--    [StartShowSelfColumn]-->
+    <!--    [EndShowSelfColumn]-->
+            <div class="user-hotArticle sort timeSort">
+          <h3>文章存档</h3>
+          <ul class="hotArticle-list timeSort-list">
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/huijinjava/article/month/2018/02" class="odd-overhidden floatL">2018年2月</a>
+                  <div class="read list-left floatR"><span>7篇</span></div>
+                </li>
+                            <li class="clearfix">
+                  <a href="http://blog.csdn.net/huijinjava/article/month/2018/01" class="odd-overhidden floatL">2018年1月</a>
+                  <div class="read list-left floatR"><span>1篇</span></div>
+                </li>
+                      </ul>
+          <div class="unfold-btn">
+            <span>展开</span><i class="icon iconfont icon-xiajiantou"></i>
+          </div>
+        </div>
+        <div class="user-hotArticle">
+        <h3>他的热门文章</h3>
+        <ul class="hotArticle-list csdn-tracking-statistics tracking-click" data-mod="popu_521">
+<!--            [StartHotArticles]-->
+                                                <li>
+                        <a href="http://blog.csdn.net/huijinjava/article/details/79232189">java爬虫爬取网站使用多线程(虎嗅网站)</a>
+                        <div class="read list-left"><i class="icon iconfont icon-read"></i><span>222</span></div>
+                    </li>
+                                    <li>
+                        <a href="http://blog.csdn.net/huijinjava/article/details/79233431">安装linux虚拟机步骤</a>
+                        <div class="read list-left"><i class="icon iconfont icon-read"></i><span>30</span></div>
+                    </li>
+                                    <li>
+                        <a href="http://blog.csdn.net/huijinjava/article/details/79224351">java爬虫爬取虎嗅网站分页信息</a>
+                        <div class="read list-left"><i class="icon iconfont icon-read"></i><span>25</span></div>
+                    </li>
+                                    <li>
+                        <a href="http://blog.csdn.net/huijinjava/article/details/79213690">java爬虫 爬取网站信息 保存数据库</a>
+                        <div class="read list-left"><i class="icon iconfont icon-read"></i><span>25</span></div>
+                    </li>
+                                    <li>
+                        <a href="http://blog.csdn.net/huijinjava/article/details/79233998">MySQL数据库的增删改查的操作</a>
+                        <div class="read list-left"><i class="icon iconfont icon-read"></i><span>25</span></div>
+                    </li>
+                            <!--            [EndHotArticles]-->
+        </ul>
+    </div>
+
+<!--    [startcustom]-->
+    <!--    [endcustom]-->
+  <div class="fixRight_box" style="height:256px">
+    <div class="fixRight">
+                    <!--u3163270-->
+            <script type="text/javascript" src="//cee1.iteye.com/avneunkwb.js"></script>
+                <div class="right_box copyright csdn-tracking-statistics" data-mod="popu_475" data-dsm="post">
+        <h3 class="feed_new_tit"><span class="line"></span><span class="txt">联系我们</span></h3>
+        <div class="contact-box">
+            <div class="img-box">
+                <img src="https://www.csdn.net/images/csdn_cs_qr.png" alt="客服">
+            </div>
+            <div class="contact-info">
+                <h4>请扫描二维码联系客服</h4>
+                <p>
+                    <i class="icon iconfont icon-mail"></i>
+                    <a href="mailto:webmaster@csdn.net" target="_blank">
+                        <span class="txt">webmaster@csdn.net</span>
+                    </a>
+                </p>
+                <p>
+                    <i class="icon iconfont icon-call"></i>
+                    <span class="txt">400-660-0108</span>
+                </p>
+                <p>
+                    <i class="icon iconfont icon-QQ"></i>
+                    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2431299880&amp;site=qq&amp;menu=yes" target="_blank">
+                        <span class="txt">网站客服</span>
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="bg-gray">
+            <div class="feed_copyright">
+                <p><a class="right-dotte" href="//www.csdn.net/company/about.html" target="_blank">关于</a><a href="//www.csdn.net/company/recruit.html" target="_blank" class="right-dotte">招聘</a><a href="//www.csdn.net/company/marketing.html" target="_blank" class="right-dotte">广告服务</a><img src="https://www.csdn.net/images/ali01.png" alt="ali" title="ali"></p>
+                <p class="fz12">©2018 CSDN <a href="http://www.miibeian.gov.cn/" target="_blank" class="ml14">京ICP证09002463号</a></p>
+            </div>
+            <div class="allow-info-box">
+                <p><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><span>经营性网站备案信息</span></a></p>
+                <p><a href="http://www.cyberpolice.cn/" target="_blank"><span>网络110报警服务</span></a></p>
+                <p><a href="http://www.12377.cn/" target="_blank"><span>中国互联网举报中心</span></a></p>
+                <p><a href="http://www.bjjubao.org/" target="_blank"><span>北京互联网违法和不良信息举报中心</span></a></p>
+            </div>
+        </div>
+    </div>
+    </div>
+  </div>
+</aside></div>
+
+<div class="left_fixed">
+    <div class="left_show_button">
+        <span>
+          <i class="icon iconfont icon-youjiantou"></i>
+        </span>
+    </div>
+    <ul class="left_menu" id="share_box">
+        <li>
+            <button class="left-fixed-btn btn-like csdn-tracking-statistics tracking-click" data-mod="popu_373" target="_self" title="点赞">
+                <a href="javascript:void(0);" class="iconbox border_red" ><i class="icon iconfont icon-dianzan"></i></a>
+                <a class="txt" href="javascript:void(0);">1</a>
+            </button>
+        </li>
+        <li id="blog_artical_directory">
+            <button class="left-fixed-btn left_menu_btn csdn-tracking-statistics tracking-click" data-mod="popu_372" target="_self" title="目录">
+                <a href="javascript:void(0);" class="iconbox border_black" ><i class="icon iconfont icon-mulu"></i></a>
+            </button>
+        </li>
+        <li class="menu_con">
+            <div class="list_father">
+                <div class="arr_box">
+                    <button class="btn-noborder arr-btn scroll-down  left_scroll_down"><i class="icon iconfont icon-xiajiantou"></i></button>
+                    <button class="btn-noborder arr-btn scroll-up left_scroll_top"><i class="icon iconfont icon-shangjiantou"></i></button>
+                </div>
+                <div class="arr"></div>
+                <div id="csdnBlogDir"></div>
+            </div>
+        </li>
+        <!--        <li>-->
+        <!--            <button class="left-fixed-btn btn-like tracking-ad" data-mod="popu_373" target="_self">-->
+        <!--                <span class="iconbox border_red"><i class="icon iconfont icon-xihuan-"></i></span>-->
+        <!--                <span class="txt">喜欢</span>-->
+        <!--                <span class="untxt">取消喜欢</span>-->
+        <!--            </button>-->
+        <!--        </li>-->
+        <li>
+            <button class="left-fixed-btn csdn-tracking-statistics tracking-click" data-mod="popu_374"  id="com-quick-collect" target="_self" title="收藏">
+                <a href="javascript:void(0);" class="iconbox border_purple" ><i class="icon iconfont icon-shoucang"></i></a>
+            </button>
+        </li>
+        <li>
+            <button class="left-fixed-btn btn-pinglun csdn-tracking-statistics tracking-click" data-mod="popu_544" title="评论">
+                <a href="javascript:void(0);" class="iconbox border_purple" ><i class="icon iconfont icon-pinglun"></i></a>
+            </button>
+        </li>
+        <li class="bdsharebuttonbox">
+          <button class="outside left-fixed-btn csdn-tracking-statistics tracking-click" data-mod="popu_172" title="分享到新浪微博">
+                <span class="iconbox border_red2"><i class="icon iconfont icon-xinlang"></i></span>
+                <a href="#" class="bds_tsina" data-cmd="tsina" > </a>
+          </button>
+        </li>
+        <li class="bdsharebuttonbox">
+          <button class="outside left-fixed-btn csdn-tracking-statistics tracking-click" data-mod="popu_172" title="分享到微信">
+              <span class="iconbox border_green"><i class="icon iconfont icon-weixin"></i></span>
+              <a href="#" class="bds_weixin" data-cmd="weixin" > </a>
+          </button>
+        </li>
+        <li class="bdsharebuttonbox">
+          <button class="outside left-fixed-btn csdn-tracking-statistics tracking-click" data-mod="popu_172" title="分享到QQ空间">
+              <span class="iconbox border_blue"><i class="icon iconfont icon-QQ"></i></span>
+              <a href="#" class="bds_qzone" data-cmd="qzone" > </a>
+          </button>
+        </li>
+        <li id="share_box">
+            
+            <div class="bdsharebuttonbox csdn-tracking-statistics tracking-click" data-mod="popu_172">
+                
+                
+                
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="right_fixed">
+    <div class="r_ico">
+        <i class="icon iconfont icon-jubao"></i>
+        <span class="txt" id="reportBtn">内容举报</span>
+    </div>
+    <div class="returnTop">
+        <i class="icon iconfont icon-fanhuidingbu"></i>
+        <span>返回顶部</span>
+    </div>
+</div>
+<div id="pop_win"></div>
+<div id="popup_mask"></div>
+<div class="pop_CA_cover" ></div>
+<div class="pop pop_CA" >
+    <div class="CA_header">
+        收藏助手
+        <span class="cancel_icon"  id="fapancle" ></span>
+    </div>
+    <iframe src="" id="collectIframe" frameborder="0" width="100%" height="360"  scrolling="no" ></iframe>
+</div>
+<!--举报-->
+<div id="report_dialog" style="top: 250px; left: 343.5px;"><div id="panel_report">
+    <div class="panel_head">不良信息举报</div>
+    <form method="post" id="frmReport" class="panel_body">
+        <table border="0" cellpadding="0" cellspacing="4" class="pop_table">
+            <tbody><tr><td colspan="2">您举报文章：<a href="http://blog.csdn.net/HUIJINJAVA/article/details/79232189" target="_blank">java爬虫爬取网站使用多线程(虎嗅网站)</a></td></tr>
+            <tr>
+                <th style="width:60px;">举报原因：</th>
+                <td id="panel_reporttype">
+                    <label><input type="radio" class="report_type" id="report_sex" name="report_type" value="1">色情</label>
+                    <label><input type="radio" class="report_type" id="report_Politics" name="report_type" value="2">政治</label>
+                    <label><input type="radio" class="report_type" id="report_copy" name="report_type" value="3">抄袭</label>
+                    <label><input type="radio" class="report_type" id="report_ad" name="report_type" value="4">广告</label>
+                    <label><input type="radio" class="report_type" id="report_want" name="report_type" value="5">招聘</label>
+                    <label><input type="radio" class="report_type" id="report_call" name="report_type" value="6">骂人</label>
+                    <br>
+                    <label><input type="radio" class="report_type" id="report_other" name="report_type" value="7">其他</label>
+                    <input type="text" name="report_other_content" id="report_other_content" maxlength="30" style="display: none;">
+                </td>
+            </tr>
+            <tr id="panel_originalurl" style="display: none;">
+                <th>原文地址：</th>
+                <td>
+                    <input id="originalurl" value="http://" name="originalurl" type="text" style="width: 90%;">
+                </td>
+            </tr>
+            <tr>
+                <th id="sp_reason">原因补充：</th>
+                <td>
+                    <textarea id="report_description" style="width: 300px;" rows="3" name="report_description"></textarea>
+                    <p id="sp_n" style="color:#999;margin:0px;padding:0px;">(最多只允许输入30个字)</p>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input id="btnSubmitReport" name="submit" type="image" align="middle" class="btn_1" src="http://csdnimg.cn/release/phoenix/images/btn_submit.jpg">
+                    <span style="padding-left:20px;"></span>
+                    <img id="btnCloseReportDialog" src="http://csdnimg.cn/release/phoenix/images/btn_cancel.jpg" align="middle">
+                    <div id="error" style="color: Red">
+                    </div>
+                </td>
+            </tr>
+            </tbody></table>
+    </form>
+</div>
+    <script language="javascript" type="text/javascript">
+        var isComment=0;
+        //显示隐藏地址
+        $(function () {
+          console.log("version:phoenix");
+            if(isComment){
+                $("#report_description").attr("disabled",true);
+                $("#sp_n").hide();
+                $("#sp_reason").html("评论内容：");
+            }
+            $(".report_type").click(function () {
+                $("#panel_originalurl,#report_other_content").hide();
+                switch ($(this).val()) {
+                    case '3':
+                        $("#panel_originalurl").show();
+                        $("#originalurl").focus();
+                        break;
+                    case '7':
+                        if(isComment){
+                            $("#report_other_content").show().focus();
+                        }
+                        break;
+                }
+
+            });
+
+            $("#frmReport").submit(function () {
+                if (!currentUserName) {
+
+                    if (confirm("您的操作必须登录，是否登录？")) {
+                        location.href = "http://passport.csdn.net/account/login?from=" + encodeURIComponent(location.href);
+                        return false;
+                    }
+                    return false;
+                }
+
+                var reportType = $("input[name=report_type]:checked").val();
+                if(!reportType){
+                    alert("请选择举报原因！");
+                    return false;
+                }
+                var otherInfo = "";
+                switch (reportType) {
+                    case '3':
+                        otherInfo = $("#originalurl").val();
+                        if (otherInfo == ""||otherInfo=="http://") {
+                            alert("举报抄袭必须提供原创文章地址！");
+                            $("#originalurl").focus();
+                            return false;
+                        } else if(!checkeURL(otherInfo)) {
+                            alert("请输入正确的原创文章地址！");
+                            $("#originalurl").focus();
+                            return false;
+                        }
+                        break;
+                    case '7':
+                        otherInfo = $("#report_other_content").val();
+                        if (isComment && !otherInfo) {
+                            alert("请填写举报的具体原因！");
+                            $("#report_other_content").focus();
+                            return false;
+                        }
+                        if(!isComment){
+                            if(!$("#report_description").val()){
+                                alert("请填写举报的具体原因！");
+                                $("#report_description").focus();
+                                return false;
+                            }
+                        }
+                        break;
+                }
+                if(!isComment){
+                    if($("#report_description").val().length>30){
+                        alert("举报原因最多只允许输入30个字！");
+                        return false;
+                    }
+                }
+	            nowTime = {
+		            year: new Date().getFullYear(),
+		            month: parseInt(new Date().getMonth())+1,
+		            day: new Date().getDate(),
+		            hours: parseInt(new Date().getHours())+1,
+		            minutes: parseInt(new Date().getMinutes())+1,
+		            seconds: parseInt(new Date().getSeconds())+1
+	            };
+	            var data = {
+		            articleId: fileName,
+		            commentId: 0,
+		            reportType: reportType,
+		            originalurl: $("#originalurl").val(),
+		            report_other_content: $("#report_other_content").val(),
+		            report_description: $("#report_description").val(),
+		            currentUserName: currentUserName,
+		            updatetime: nowTime.year+'/'+nowTime.month+'/'+nowTime.day+' '+ nowTime.hours+':'+nowTime.minutes+':'+seconds,
+		            blogUser: username
+	            };
+	            if(!isComment){//如果是举报文章
+		            data.report_other_content = data.report_description;
+		            // data.report_description = "1. 神经网络这是一个常见的神经网络的图：这是一个常见的三层神经网络的基本构成，Layer L1是输入层，Layer L2是隐含层";
+	            }
+
+	            $.post(blog_address + "/common/report?id="+fileName+"&t=2", data, function (data) {
+		            if (data.result == 1){
+			            SetError("感谢您的举报，我们会尽快审核！");
+		            }else{
+			            if (data.content) alert(data.content);
+		            }
+
+	            });
+                return false;
+            });
+
+            $("#btnCloseReportDialog").click(function () {
+                CloseDiv();
+            });
+
+        });
+
+        //提示后关闭方法
+        function SetError(error) {
+            $("#btnCloseReportDialog").trigger("click");
+            alert(error);
+            CloseDiv();
+        }
+
+        //关闭方法
+        function CloseDiv() {
+
+            $.removeMask();
+            $("#report_dialog").hide();
+            return false;
+        }
+
+        //验证url
+        function checkeURL(url){
+            return /^http(s)?:\/\/([\w-]+\.)+[\w-]+/i.test(url);
+        }
+    </script>
+</div>
+<!--  fixme 后期清理掉  -->
+<div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+    <script id="adJs52b5334"></script>
+    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+</div>
+<!-- <script type="text/javascript" src="http://passport.csdn.net/content/loginbox/login.js"></script> -->
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<script type="text/javascript" >
+    if($(".article_collect li").length==1){$(".article_collect").hide();}
+    if($(".article_tags li").length==1){$(".article_tags").hide();}
+    $(".edit a").attr("href","http://mp.blog.csdn.net/postedit/"+fileName);
+    $.each($(".edu_li a"),function(){$(this).attr("href",$(this).attr("href").replace("blog7","blog9"))});
+    new CNick('#uid').showNickname();
+
+    if($("#fan").html()=="")
+    {
+	    $("#fan").html(0);
+    }
+</script>
+<script src="http://c.csdnimg.cn/public/common/append_mark/appendMark.min.js?v=5.00.43" type="text/javascript"></script>
+<script type="text/javascript">
+    appendMark($('.recommend_list').children('a').find('dt'),$('.extension_other'),$('.yd_a_d_feed_cla'))
+</script>
+<div class=""id="loginWrap"></div>
+<div class="" id="dlMask"></div>
+</body>
