@@ -6,9 +6,9 @@ url = "http://www.soft5566.com/down/40567-1.html"
 data = urllib.request.urlopen(url).read().decode("utf-8")
 data = etree.HTML(data) #将request的数据转换为html内容
 
-links = data.xpath("/html/body/div/div[2]/div/ul/li/span/a/@href/text()")
+links = data.xpath("/html/body/div/div[2]/div/ul/li/span/a/@href")
 
-fh = open("E:/allFile/Python_Project/Spider/xpathForNormal/data/links.txt","w")
+fh = open("D:/allFile/Python_Project/Spider/xpathForNormal/data/links.txt","w")
 
 for i in range(0,len(links)):
     fh.write(links[i] + '\n')
