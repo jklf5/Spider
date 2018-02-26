@@ -3,8 +3,8 @@ from lxml import etree #导入xpath模块
 
 url = "http://www.soft5566.com/down/40567-1.html"
 
-data = urllib.request(url).read().decode("utf-8")
-data = data.HTML() #将request的数据转换为html内容
+data = urllib.request.urlopen(url).read().decode("utf-8")
+data = etree.HTML(data) #将request的数据转换为html内容
 
 links = data.xpath("/html/body/div/div[2]/div/ul/li/span/a/@href/text()")
 
