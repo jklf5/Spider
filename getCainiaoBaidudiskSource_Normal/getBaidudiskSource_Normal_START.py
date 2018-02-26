@@ -11,9 +11,9 @@ sourceLinkName = re.compile(fault).findall(data)
 
 data1 = etree.HTML(data)
 name = data1.xpath("//*[@id='js_content']/p/text()")
-# print(name)
 
 for no in range(1,len(name)):
-    print(name[no])
+    a = name[no].split("链接:")
+    print(a)
 # for infoNO in range(0,len(sourceLinkName),2):
 #     print(sourceLinkName[infoNO])
