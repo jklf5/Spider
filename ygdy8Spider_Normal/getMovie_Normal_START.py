@@ -20,8 +20,8 @@ def getContent(url):
     html = ulr.urlopen('http://www.ygdy8.net%s' %url).read()
     con_text = html.decode('gb2312', 'ignore')
     data = etree.HTML(con_text)
-    reg = r'<div class="co_content8">(.+?)<p><strong><font color="#ff0000" size="4">'
-    #reg = r'◎简　　介 <br /><br />\s\s(.*?)<br />'
+    #reg = r'<div class="co_content8">(.+?)<p><strong><font color="#ff0000" size="4">'
+    reg = r'◎简　　介 <br /><br />\s\s(.*?)<br />'
     #reg = re.compile(reg,re.S)#编译正则表达式为对象,增加匹配效率
     text = re.compile(reg).findall(con_text)
     #text = data.xpath('//*[@id="Zoom"]/span/p[1]/text()')
@@ -34,7 +34,7 @@ def getContent(url):
     link = re.findall(reg,con_text)[0]
     return text,link
 
-for i in range(1,157):
+for i in range(1,157):  #已爬取40页内容
     for url,title in getList(page=i):#getList()=列表[(url,标题),(url2,标题2)]
         #i=(url,标题)
         try:
