@@ -46,3 +46,6 @@ for i in range(1,157):  #已爬取40页内容
             #url,content,link都拿到了
         except Exception as e:
             print(e)
+
+
+# 测试用 [\w|\W]* 可匹配，再转换成字符串，用replace替换
