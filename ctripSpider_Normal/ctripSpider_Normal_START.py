@@ -9,7 +9,7 @@ headers={
     "Connection": "keep-alive",
 }
 
-url="http://flights.ctrip.com/domesticsearch/search/SearchFirstRouteFlights?DCity1=SHA&ACity1=CTU&SearchType=S&DDate1=2018-03-02"
+url="http://flights.ctrip.com/domesticsearch/search/SearchFirstRouteFlights?DCity1=SHA&ACity1=CTU&SearchType=S&DDate1=2018-03-05"
 
 res=urllib.request.Request(url,headers=headers)
 data=urllib.request.urlopen(res).read().decode("gb2312")#获取json数据
