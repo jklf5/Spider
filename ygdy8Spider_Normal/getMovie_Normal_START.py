@@ -55,3 +55,4 @@ for i in range(1,157):  #已爬取40页内容
 #upgrade:
 # 1、测试用 [\w|\W]* 可匹配，再转换成字符串，用replace替换
 # 2、测试用 r'<!--Content Start--><span style="FONT-SIZE: 12px"><td>([\w|\W]*)<img' 匹配
+# 3、测试用 re.S|re.M 匹配
