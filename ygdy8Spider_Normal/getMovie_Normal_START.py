@@ -57,4 +57,4 @@ for i in range(8,157):  #已爬取40页内容
 # 1、测试用 [\w|\W]* 可匹配，再转换成字符串，用replace替换
 # 2、测试用 r'<!--Content Start--><span style="FONT-SIZE: 12px"><td>([\w|\W]*)<img' 匹配
 # 3、测试用 re.S|re.M 匹配
-# 4、
+# 4、测试用 string(//div[@id="Zoom"]//p[1]) //segmentfault提供的答案 匹配
