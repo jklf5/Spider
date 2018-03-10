@@ -19,15 +19,11 @@ def getList(page):
 def getContent(url):
     html = ulr.urlopen('http://www.ygdy8.net%s' %url).read()
     con_text = html.decode('gb2312', 'ignore')
-    data = etree.HTML(con_text)
-    reg = r'<div class="co_content8">(.+?)<p><strong><font color="#ff0000" size="4">'
-    #reg = r'◎简　　介 <br /><br />\s\s(.*?)<br />'
-    #reg = r'</div><div id="Zoom">([\w|\W]*?)<strong>'
-    #reg = re.compile(reg,re.S)#编译正则表达式为对象,增加匹配效率
-    #reg = r'<!--Content Start--><span style="FONT-SIZE: 12px"><td>([\w|\W]*)<img'
-    #text = re.compile(reg).findall(con_text)
-    text = re.findall(reg,con_text,re.S|re.M)
-    #text = data.xpath('//*[@id="Zoom"]/span/p[1]/text()')
+    #data = etree.HTML(con_text)
+    reg = r'<div class="co_content8">(.+?)<strong><font color="#ff0000"'
+    #reg = r'</div><div id="Zoom">([\w|\W]*?)<strong>'  #有一定用途
+    text = re.findall(reg,con_text,re.S|re.M)   #有用
+    #text = data.xpath('string(//div[@id="Zoom"]//p[1])')   #有用(不能普适)
     if text:
         text = text[0]
         #''.join(text)  #将list转为str
@@ -40,7 +36,7 @@ def getContent(url):
     link = re.findall(reg,con_text)[0]
     return text,link
 
-for i in range(8,157):  #已爬取40页内容
+for i in range(8,157):
     for url,title in getList(page=i):#getList()=列表[(url,标题),(url2,标题2)]
         #i=(url,标题)
         try:
@@ -57,4 +53,5 @@ for i in range(8,157):  #已爬取40页内容
 # 1、测试用 [\w|\W]* 可匹配，再转换成字符串，用replace替换
 # 2、测试用 r'<!--Content Start--><span style="FONT-SIZE: 12px"><td>([\w|\W]*)<img' 匹配
 # 3、测试用 re.S|re.M 匹配
-# 4、测试用 string(//div[@id="Zoom"]//p[1]) //segmentfault提供的答案 匹配
+# 4、测试用 string(//div[@id="Zoom"]//p[1]) #segmentfault提供的答案 匹配
+# 5、测试发现页面存在差异，用正则表达式并不能满足所有页面需求，通过去掉'<p>'和' size="4">'一块，达到暂时的需求，考虑用xpath匹配
