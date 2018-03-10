@@ -36,7 +36,7 @@ def getContent(url):
     link = re.findall(reg,con_text)[0]
     return text,link
 
-for i in range(8,157):
+for i in range(1,157):
     for url,title in getList(page=i):#getList()=列表[(url,标题),(url2,标题2)]
         #i=(url,标题)
         try:
