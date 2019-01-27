@@ -1,9 +1,3 @@
-
-# coding: utf-8
-
-# In[59]:
-
-
 import urllib.request
 from lxml import etree
 
@@ -23,16 +17,9 @@ for m in range(6):
         teacher_name = html_temp.xpath('/html/body/div[1]/div[5]/div[2]/div[2]/div/h3/text()')
         print(teacher_name[0])
         
-        html_data_temp = html_temp.xpath('//div[@class="wp_articlecontent"]')
+        html_data_temp = html_temp.xpath('//div[@class="wp_articlecontent"]/p/span')
+        strinfo = ""
         for k in html_data_temp:
-            print(k.text)
-        
-        #for j in range(10):
-            #if(html_temp.xpath("/html/body/div[@class='wrapper']/div[@class='sub_right']/div[@class='con']/div[2]/div[@class='container']/div[@class='wp_articlecontent']/p["+str(j)+"]") != None):
-                #html_data_temp = html_temp.xpath("/html/body/div[@class='wrapper']/div[@class='sub_right']/div[@class='con']/div[2]/div[@class='container']/div[@class='wp_articlecontent']/p["+str(j)+"]")
-                #for k in html_data_temp:
-                    #print(k.text)
-
-        
-    
-
+            if(k != None):
+                strinfo += k.text
+        print(strinfo)
