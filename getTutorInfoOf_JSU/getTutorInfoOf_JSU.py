@@ -1,12 +1,17 @@
 import urllib.request
 import requests
+import os
 from lxml import etree
-root = "J:/allFile/Python_Project/Spider/getTutorInfoOf_JSU/Data/IMG/"
+
+root_path = os.getcwd()
+# root = "J:/allFile/Python_Project/Spider/getTutorInfoOf_JSU/Data/IMG/"
+img_path = os.path.join(root_path, "getTutorInfoOf_JSU/Data/IMG/")
+print(img_path)
 
 url = "http://cs.ujs.edu.cn/info/1052/5807.htm"
 
-def downloadIMG(url_img,name):
-    urllib.request.urlretrieve(url_img,root+name+".jpg")
+def downloadIMG(url_img, name):
+    urllib.request.urlretrieve(url_img, img_path+name+".jpg")
 
 # 使用urlopen请求页面，解码，封装
 # html = urllib.request.urlopen(url)
@@ -48,4 +53,4 @@ print(name)
 html_data_img = ehtml.xpath('//table[1]/tbody/tr[1]/td[1]/img/@src')[0]
 #print(html_data_img)
 url_img = "http://cs.ujs.edu.cn" + html_data_img
-downloadIMG(url_img,name.strip())
+downloadIMG(url_img, name.strip())
