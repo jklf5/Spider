@@ -15,8 +15,18 @@ def downloadIMG(url_img, name):
     urllib.request.urlretrieve(url_img, path+name+".jpg")
 
 def saveInfo(all_info, name):
-    with open(path+name+".json", 'w', encoding='utf-8') as json_file:
-        json.dump(all_info, json_file, ensure_ascii=False)
+    fp = open(path+name+".txt", 'w', encoding='utf-8')
+    for i in range(len(all_info)):
+        if len(all_info[i])==2:
+            fp.write(all_info[i][0])
+            fp.write(all_info[i][1])
+            fp.write('\n')
+        else:
+            fp.write(all_info[i][0])
+            fp.write('\n')
+            fp.write('\n')
+    # with open(path+name+".json", 'w', encoding='utf-8') as json_file:
+    #     json.dump(all_info, json_file, ensure_ascii=False)
 
 # 使用urlopen请求页面，解码，封装
 # html = urllib.request.urlopen(url)
