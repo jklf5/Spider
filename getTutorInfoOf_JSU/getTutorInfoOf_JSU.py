@@ -2,16 +2,21 @@ import urllib.request
 import requests
 import os
 from lxml import etree
+import json
 
 root_path = os.getcwd()
 # root = "J:/allFile/Python_Project/Spider/getTutorInfoOf_JSU/Data/IMG/"
-img_path = os.path.join(root_path, "getTutorInfoOf_JSU/Data/IMG/")
-print(img_path)
+path = os.path.join(root_path, "getTutorInfoOf_JSU/Data/")
+# print(img_path)
 
 url = "http://cs.ujs.edu.cn/info/1052/5807.htm"
 
 def downloadIMG(url_img, name):
-    urllib.request.urlretrieve(url_img, img_path+name+".jpg")
+    urllib.request.urlretrieve(url_img, path+name+".jpg")
+
+def saveInfo(all_info, name):
+    with open(path+name+".json", 'w', encoding='utf-8') as json_file:
+        json.dump(all_info, json_file, ensure_ascii=False)
 
 # 使用urlopen请求页面，解码，封装
 # html = urllib.request.urlopen(url)
@@ -27,10 +32,13 @@ def downloadIMG(url_img, name):
 # print(tr_list[0][0].text.strip())
 # name = tr_list[0][0].text
 
-#使用requests请求页面，解码，替换br标签以供后面xpath使用，最后封装为html页面
+#使用requests请求页面，解码，替换各种标签以供后面xpath使用，最后封装为html页面
 r = requests.get(url)
 r.encoding = r.apparent_encoding
-newr = r.text.replace(u'<BR>',u'').replace(u'<BR/>',u'')
+newr = r.text.replace(u'<BR>', u'').replace(u'<BR/>', u'')# 去除br标签
+newr = newr.replace(u'<SPAN style="margin-left: 10px">', u'').replace(u'</SPAN>', u'')# 去除span标签
+newr = newr.replace(u'<STRONG>', u'').replace(u'</STRONG>', u'')# 去除strong标签
+# print(newr)
 ehtml = etree.HTML(newr)
 
 all_info = []
@@ -49,8 +57,10 @@ for tr in trs:
 
 #下载图片
 name = all_info[0][1]
-print(name)
+# print(name)
 html_data_img = ehtml.xpath('//table[1]/tbody/tr[1]/td[1]/img/@src')[0]
 #print(html_data_img)
 url_img = "http://cs.ujs.edu.cn" + html_data_img
 downloadIMG(url_img, name.strip())
+
+saveInfo(all_info, name)
