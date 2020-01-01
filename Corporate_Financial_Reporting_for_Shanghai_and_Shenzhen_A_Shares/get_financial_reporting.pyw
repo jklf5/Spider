@@ -1,19 +1,38 @@
 import time
 import requests
 import random
+import os
 import function as fun
+from pathlib import Path
 
 if __name__ == '__main__':
+    '''
+    用cmd运行时，用此方法获取地址
+    '''
+    work_cwd = os.path.abspath('..') 
+    '''
+    用vscode运行时，用此方法获取地址
+    '''
+    # work_cwd = os.getcwd()
+    # print(work_cwd)
+    path_reporting = work_cwd + r'/Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares/Financial_reporting'
+    path_stock_info = work_cwd + r'/Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares/Stock_info'
     # 记录程序开始运行时间
     time_start = time.time()
+    time_temp = time.localtime(time_start)
+    time_start_format = time.strftime("%Y-%m-%d %H:%M:%S", time_temp)
+    # 将运行产生的错误全部存入run_error_log.txt中
+    fun.is_file_exists(path_reporting + '/run_error_log.txt')
+    f_error = open(path_reporting + '/run_error_log.txt', 'a+') # 打开一个文件，用于追加（非二进制打开）
     # 将运行产生的信息全部存入run_log.txt中
-    f_run_log = open('./Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares/Financial_reporting/run_log_' + str(time_start) + '.txt', 'a+') # 打开一个文件，用于追加（非二进制打开）
-    f_run_log.write("开始运行时间：" + str(time_start) + '\n')
-    print("开始运行时间：" + str(time_start) + '\n')
+    fun.is_file_exists(path_reporting + '/run_log_' + str(time_start) + '.txt')
+    f_run_log = open(path_reporting + '/run_log_' + str(time_start) + '.txt', 'a+') # 打开一个文件，用于追加（非二进制打开）
+    f_run_log.write("开始运行时间：" + str(time_start_format) + '\n')
+    print("开始运行时间：" + str(time_start_format) + '\n')
     # 将股票的编号和名称提取出来存为两个列表
     stock_num_list = list()
     stock_name_list = list()
-    f_stock_info = open('./Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares/Stock_info/stock_info.txt', 'r') # 打开一个文件，用于只读
+    f_stock_info = open(path_stock_info + '/stock_info.txt', 'r') # 打开一个文件，用于只读
     stock_info = f_stock_info.readlines()
     f_stock_info.close()
     for item in stock_info:
@@ -23,7 +42,7 @@ if __name__ == '__main__':
         stock_num_list.append(num)
         stock_name_list.append(name)   
     # 开始爬取
-    for stock_index in range(10):
+    for stock_index in range(3):
     # for stock_index in range(len(stock_num_list)):
         ## 1-------------------------------------------------------------------
         # # 每爬取10个休息10秒，每爬取50个休息60秒，每爬取100个休息120秒，每爬取1000个休息160秒
@@ -50,12 +69,13 @@ if __name__ == '__main__':
         ##
 
         # 存放文件的路径(zcfzb：资产负债表，lrb：利润表，xjllb：现金流量表，cwbbzy：财务报表摘要，zycwzb：主要财务数据，yjyg：业绩预告)
-        zcfzb_path = './Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares/Financial_reporting/zcfzb/' + stock_num_list[stock_index] + '_' + stock_name_list[stock_index] + '_zcfzb.csv'
-        lrb_path = './Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares/Financial_reporting/lrb/' + stock_num_list[stock_index] + '_' + stock_name_list[stock_index] + '_lrb.csv'
-        xjllb_path = './Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares/Financial_reporting/xjllb/' + stock_num_list[stock_index] + '_' + stock_name_list[stock_index] + '_xjllb.csv'
-        cwbbzy_path = './Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares/Financial_reporting/cwbbzy/' + stock_num_list[stock_index] + '_' + stock_name_list[stock_index] + '_cwbbzy.csv'
-        zycwzb_path = './Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares/Financial_reporting/zycwzb/' + stock_num_list[stock_index] + '_' + stock_name_list[stock_index] + '_zycwzb.csv'
-        yjyg_path = './Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares/Financial_reporting/yjyg/' + stock_num_list[stock_index] + '_' + stock_name_list[stock_index] + '_yjyg.txt'
+        zcfzb_path = path_reporting + '/zcfzb/' + stock_num_list[stock_index] + '_' + stock_name_list[stock_index] + '_zcfzb.csv'
+        lrb_path = path_reporting + '/lrb/' + stock_num_list[stock_index] + '_' + stock_name_list[stock_index] + '_lrb.csv'
+        xjllb_path = path_reporting + '/xjllb/' + stock_num_list[stock_index] + '_' + stock_name_list[stock_index] + '_xjllb.csv'
+        cwbbzy_path = path_reporting + '/cwbbzy/' + stock_num_list[stock_index] + '_' + stock_name_list[stock_index] + '_cwbbzy.csv'
+        zycwzb_path = path_reporting + '/zycwzb/' + stock_num_list[stock_index] + '_' + stock_name_list[stock_index] + '_zycwzb.csv'
+        yjyg_path = path_reporting + '/yjyg/' + stock_num_list[stock_index] + '_' + stock_name_list[stock_index] + '_yjyg.txt'
+        dbfx_path = path_reporting + '/dbfx/' + stock_num_list[stock_index] + '_' + stock_name_list[stock_index] + '_dbfx.txt'
 
         # 文件下载的网址(都是按报告期下载)，网址规则：http://quotes.money.163.com/service/+报告类型+股票代码+.html
         zcfzb_url = "http://quotes.money.163.com/service/zcfzb_" + stock_num_list[stock_index] + ".html"
@@ -64,15 +84,16 @@ if __name__ == '__main__':
         cwbbzy_url = "http://quotes.money.163.com/service/cwbbzy_" + stock_num_list[stock_index] + ".html"
         zycwzb_url = "http://quotes.money.163.com/service/zycwzb_" + stock_num_list[stock_index] + ".html?type=report"
         yjyg_url = "http://quotes.money.163.com/f10/yjyg_" + stock_num_list[stock_index] + ".html"
+        dbfx_url = "http://quotes.money.163.com/f10/dbfx_" + stock_num_list[stock_index] + ".html"
 
         # 爬取数据同时检查有没有被反爬
-        fun.get_file(zcfzb_url, zcfzb_path, f_run_log, my_proxies)
-        fun.get_file(lrb_url, lrb_path, f_run_log, my_proxies)
-        fun.get_file(xjllb_url, xjllb_path, f_run_log, my_proxies)
-        fun.get_file(cwbbzy_url, cwbbzy_path, f_run_log, my_proxies)
-        fun.get_file(zycwzb_url, zycwzb_path, f_run_log, my_proxies)
-        fun.get_txt_yjyg(yjyg_url, yjyg_path, f_run_log, my_proxies)
-
+        fun.get_file(zcfzb_url, zcfzb_path, f_run_log, f_error, my_proxies)
+        fun.get_file(lrb_url, lrb_path, f_run_log, f_error, my_proxies)
+        fun.get_file(xjllb_url, xjllb_path, f_run_log, f_error, my_proxies)
+        fun.get_file(cwbbzy_url, cwbbzy_path, f_run_log, f_error, my_proxies)
+        fun.get_file(zycwzb_url, zycwzb_path, f_run_log, f_error, my_proxies)
+        fun.get_txt_yjyg(yjyg_url, yjyg_path, f_run_log, f_error, my_proxies)
+        fun.get_txt_dbfx(dbfx_url, dbfx_path, f_run_log, f_error, my_proxies)
         
         # 提示信息,爬取完成只代表这个股票爬完了，但是可能存在被反爬的情况，反爬的链接存入run_error_report文件中
         f_run_log.write(display_word + "结束爬取----------" + '\n')
@@ -94,8 +115,12 @@ if __name__ == '__main__':
         ##
     # 记录程序结束运行时间
     time_end = time.time()
+    time_temp = time.localtime(time_end)
+    time_end_format = time.strftime("%Y-%m-%d %H:%M:%S", time_temp)
     # 结算总用时
-    print('totally cost',time_end-time_start)
-    f_run_log.write("运行结束时间："+ str(time_end) + '\n')
+    print("运行结束时间：" + str(time_end_format))
+    print("总用时：" + str(time_end-time_start) + "s")
+    f_run_log.write("运行结束时间："+ str(time_end_format) + '\n')
     f_run_log.write("总用时：" + str(time_end-time_start) + '\n')
     f_run_log.close()
+    f_error.close()
