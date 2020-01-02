@@ -74,7 +74,7 @@ def get_file(url, downloadpath, f_run_log, f_error, my_proxies):
     f_run_log：运行日志文件的句柄
     my_proxies：IP代理
     '''
-    data_temp = requests.get(url, headers=my_headers, proxies=my_proxies)
+    data_temp = requests.get(url, headers=my_headers, proxies=my_proxies, stream=True)
     # # 检测是否被反爬，如果被反爬，记录被反爬的地址并且休眠15秒
     # isflag = data_temp.text.find("Forbidden") # .text返回的是str类型，.content返回的是bytes类型
     # # 被反爬了，存错误链接
@@ -118,7 +118,7 @@ def get_txt_yjyg(url, downloadpath, f_run_log, f_error, my_proxies):
     my_proxies：IP代理
     '''
     # url = "http://quotes.money.163.com/f10/yjyg_600789.html"
-    data_temp = requests.get(url, headers=my_headers, proxies=my_proxies)
+    data_temp = requests.get(url, headers=my_headers, proxies=my_proxies, stream=True)
     # # 检测是否被反爬，如果被反爬，记录被反爬的地址并且休眠15秒
     # isflag = data_temp.text.find("Forbidden") # .text返回的是str类型，.content返回的是bytes类型
     # # 被反爬了，存错误链接
@@ -173,7 +173,7 @@ def get_txt_dbfx(url, downloadpath, f_run_log, f_error, my_proxies):
     each_figure_index：每一个数据存放的位置
     '''
     # url = "http://quotes.money.163.com/f10/dbfx_600519.html"
-    data_temp = requests.get(url, headers=my_headers, proxies=my_proxies)
+    data_temp = requests.get(url, headers=my_headers, proxies=my_proxies, stream=True)
     # # 检测是否被反爬，如果被反爬，记录被反爬的地址并且休眠15秒
     # isflag = data_temp.text.find("Forbidden") # .text返回的是str类型，.content返回的是bytes类型
     # # 被反爬了，存错误链接
@@ -202,7 +202,7 @@ def get_txt_dbfx(url, downloadpath, f_run_log, f_error, my_proxies):
         # 抓取每个报告期的数据
         for (each_time, each_url) in zip(list_report_time, list_report_url):
             url_dbfx = url +"?date=" + str(each_url)
-            data_each_report = requests.get(url_dbfx)
+            data_each_report = requests.get(url_dbfx, headers=my_headers, proxies=my_proxies, stream=True)
             html_data_each_report = pq(data_each_report.text)
             items_each_report = html_data_each_report('.dbbg02').items()
             f.write(each_time + '\t' + url_dbfx + "\n") #存每个报告期的具体时间

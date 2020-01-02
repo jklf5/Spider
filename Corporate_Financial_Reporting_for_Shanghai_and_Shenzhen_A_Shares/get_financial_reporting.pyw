@@ -69,8 +69,8 @@ if __name__ == '__main__':
         ## 2-------------------------------------------------------------------
         # 获取代理IP并获得代理IP地址
         my_proxies = fun.get_proxies()
-        resp = requests.get("http://icanhazip.com", proxies=my_proxies)
-        # resp = requests.get("http://test.abuyun.com/proxy.php", proxies=my_proxies)  
+        resp = requests.get("http://icanhazip.com", proxies=my_proxies, stream=True)
+        # resp = requests.get("http://test.abuyun.com/proxy.php", proxies=my_proxies, stream=True)  
         print("代理IP地址：" + resp.text)
         f_run_log.write("代理IP地址：" + resp.text + '\n')
         ##
