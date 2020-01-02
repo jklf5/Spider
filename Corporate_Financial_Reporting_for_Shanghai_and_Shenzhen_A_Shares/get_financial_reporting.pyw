@@ -48,8 +48,8 @@ if __name__ == '__main__':
         stock_num_list.append(num)
         stock_name_list.append(name)   
     # 开始爬取
-    for stock_index in range(3):
-    # for stock_index in range(len(stock_num_list)):
+    # for stock_index in range(3):
+    for stock_index in range(len(stock_num_list)):
         ## 1-------------------------------------------------------------------
         # # 每爬取10个休息10秒，每爬取50个休息60秒，每爬取100个休息120秒，每爬取1000个休息160秒
         # if stock_index is not 0:
