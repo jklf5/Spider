@@ -103,9 +103,9 @@ def get_file(url, downloadpath, f_run_log, f_error, my_proxies):
     # f_run_log.write("随机休眠了：" + str(random_time) + "秒" + '\n')
     ##
     ## 2-------------------------------------------------------------------
-    time.sleep(1.5)
-    print("休眠了：1.5秒")
-    f_run_log.write("休眠了：1.5秒" + '\n')
+    time.sleep(1)
+    print("休眠了：1秒")
+    f_run_log.write("休眠了：1秒" + '\n')
     ##
 
 def get_txt_yjyg(url, downloadpath, f_run_log, f_error, my_proxies):
@@ -150,9 +150,9 @@ def get_txt_yjyg(url, downloadpath, f_run_log, f_error, my_proxies):
         f.close()
         f_run_log.write(url + "\t爬取成功" + '\n')
         print(url + "\t爬取成功")
-    time.sleep(1.5)
-    print("休眠了：1.5秒")
-    f_run_log.write("休眠了：1.5秒" + '\n')
+    time.sleep(1)
+    print("休眠了：1秒")
+    f_run_log.write("休眠了：1秒" + '\n')
 
 def get_txt_dbfx(url, downloadpath, f_run_log, f_error, my_proxies):
     # pyquery使用方法：https://blog.csdn.net/qq_36025814/article/details/90041179， https://www.cnblogs.com/lei0213/p/7676254.html
@@ -215,6 +215,6 @@ def get_txt_dbfx(url, downloadpath, f_run_log, f_error, my_proxies):
         f.close()
         f_run_log.write(url + "\t爬取成功" + '\n')
         print(url + "\t爬取成功")
-    time.sleep(1.5)
-    print("休眠了：1.5秒")
-    f_run_log.write("休眠了：1.5秒" + '\n')
+    time.sleep(1)
+    print("休眠了：1秒")
+    f_run_log.write("休眠了：1秒" + '\n')

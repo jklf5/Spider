@@ -7,11 +7,11 @@ from pathlib import Path
 
 if __name__ == '__main__':
     '''
-    用cmd运行时，用此方法获取地址
+    用此方法获取当运行在Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares文件夹下时的工作路径
     '''
     work_cwd = os.path.abspath('..') 
     '''
-    用vscode运行时，用此方法获取地址
+    用此方法获取当运行在Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares上一层文件夹下时的工作路径
     '''
     # work_cwd = os.getcwd()
     # print(work_cwd)
@@ -20,13 +20,13 @@ if __name__ == '__main__':
     # 记录程序开始运行时间
     time_start = time.time()
     time_temp = time.localtime(time_start)
-    time_start_format = time.strftime("%Y-%m-%d %H:%M:%S", time_temp)
+    time_start_format = time.strftime("%Y-%m-%d %H.%M.%S", time_temp)
     # 将运行产生的错误全部存入run_error_log.txt中
     fun.is_file_exists(path_reporting + '/run_error_log.txt')
     f_error = open(path_reporting + '/run_error_log.txt', 'a+') # 打开一个文件，用于追加（非二进制打开）
     # 将运行产生的信息全部存入run_log.txt中
-    fun.is_file_exists(path_reporting + '/run_log_' + str(time_start) + '.txt')
-    f_run_log = open(path_reporting + '/run_log_' + str(time_start) + '.txt', 'a+') # 打开一个文件，用于追加（非二进制打开）
+    fun.is_file_exists(path_reporting + '/run_log_' + str(time_start_format) + '.txt')
+    f_run_log = open(path_reporting + '/run_log_' + str(time_start_format) + '.txt', 'a+') # 打开一个文件，用于追加（非二进制打开）
     f_run_log.write("开始运行时间：" + str(time_start_format) + '\n')
     print("开始运行时间：" + str(time_start_format) + '\n')
     # 将股票的编号和名称提取出来存为两个列表
@@ -35,10 +35,16 @@ if __name__ == '__main__':
     f_stock_info = open(path_stock_info + '/stock_info.txt', 'r') # 打开一个文件，用于只读
     stock_info = f_stock_info.readlines()
     f_stock_info.close()
+    # stock_info = ['000631:顺发恒业\n', '600485:*ST信威\n', '002259:*ST升达\n'] #测试用
     for item in stock_info:
+        # print(item)
         item = item[:-1] # 切去最后的\n
         num = item[:6] # 分割成编号
         name = item[7:] # 分割成名称
+        # 股票名称中存在'*'，将*替换为^，否则在创建文件时候会出错
+        flag = name.find('*')
+        if flag is not -1:
+            name = name.replace('*', '^')
         stock_num_list.append(num)
         stock_name_list.append(name)   
     # 开始爬取
@@ -64,6 +70,7 @@ if __name__ == '__main__':
         # 获取代理IP并获得代理IP地址
         my_proxies = fun.get_proxies()
         resp = requests.get("http://icanhazip.com", proxies=my_proxies)
+        # resp = requests.get("http://test.abuyun.com/proxy.php", proxies=my_proxies)  
         print("代理IP地址：" + resp.text)
         f_run_log.write("代理IP地址：" + resp.text + '\n')
         ##
@@ -107,16 +114,16 @@ if __name__ == '__main__':
         # f_run_log.write("随机休眠了：" + str(random_time) + "秒" + '\n')
         ##
         # 2-------------------------------------------------------------------
-        time.sleep(1.5)
-        print("休眠了：1.5秒")
-        f_run_log.write("休眠了：1.5秒" + '\n')
+        time.sleep(1)
+        print("休眠了：1秒")
+        f_run_log.write("休眠了：1秒" + '\n')
         print('\n')
         f_run_log.write('\n')
         ##
     # 记录程序结束运行时间
     time_end = time.time()
     time_temp = time.localtime(time_end)
-    time_end_format = time.strftime("%Y-%m-%d %H:%M:%S", time_temp)
+    time_end_format = time.strftime("%Y-%m-%d %H.%M.%S", time_temp)
     # 结算总用时
     print("运行结束时间：" + str(time_end_format))
     print("总用时：" + str(time_end-time_start) + "s")
