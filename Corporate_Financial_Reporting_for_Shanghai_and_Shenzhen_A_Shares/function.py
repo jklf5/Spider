@@ -43,15 +43,15 @@ def is_file_exists(downloadpath):
         p.touch()
 
 ## 2-------------------------------------------------------------------
-# 设置代理服务器（阿布云HTTP隧道动态版）
+# 设置代理服务器（阿布云HTTP隧道专业版）
 def get_proxies():
     '''代理服务器'''
-    proxyHost = "http-dyn.abuyun.com"
-    proxyPort = "9020"
+    proxyHost = "http-pro.abuyun.com"
+    proxyPort = "9010"
 
-    # 代理隧道验证信息 H6343XYWC31T8O9D:5F1A3689C812C12E
-    proxyUser = "H6343XYWC31T8O9D"
-    proxyPass = "5F1A3689C812C12E"
+    # 代理隧道验证信息 H89329100P6Q2B4P:CA5B80409B6DA596
+    proxyUser = "H89329100P6Q2B4P"
+    proxyPass = "CA5B80409B6DA596"
 
     proxyMeta = "http://%(user)s:%(pass)s@%(host)s:%(port)s" % {
       "host" : proxyHost,
@@ -103,9 +103,9 @@ def get_file(url, downloadpath, f_run_log, f_error, my_proxies):
     # f_run_log.write("随机休眠了：" + str(random_time) + "秒" + '\n')
     ##
     ## 2-------------------------------------------------------------------
-    time.sleep(1)
-    print("休眠了：1秒")
-    f_run_log.write("休眠了：1秒" + '\n')
+    # time.sleep(1)
+    # print("休眠了：1秒")
+    # f_run_log.write("休眠了：1秒" + '\n')
     ##
 
 def get_txt_yjyg(url, downloadpath, f_run_log, f_error, my_proxies):
@@ -150,9 +150,9 @@ def get_txt_yjyg(url, downloadpath, f_run_log, f_error, my_proxies):
         f.close()
         f_run_log.write(url + "\t爬取成功" + '\n')
         print(url + "\t爬取成功")
-    time.sleep(1)
-    print("休眠了：1秒")
-    f_run_log.write("休眠了：1秒" + '\n')
+    # time.sleep(1)
+    # print("休眠了：1秒")
+    # f_run_log.write("休眠了：1秒" + '\n')
 
 def get_txt_dbfx(url, downloadpath, f_run_log, f_error, my_proxies):
     # pyquery使用方法：https://blog.csdn.net/qq_36025814/article/details/90041179， https://www.cnblogs.com/lei0213/p/7676254.html
@@ -188,7 +188,6 @@ def get_txt_dbfx(url, downloadpath, f_run_log, f_error, my_proxies):
         print("被反爬了")
     else:
         is_file_exists(downloadpath)
-        f = open(downloadpath, 'a+') #将文件打开为追加模式
         # 获取每个公司杜邦分析中所有报告期的具体时间和对应链接
         list_event_name = ['净资产收益率', '总资产收益率', '权益乘数', '销售净利率', '总资产周转率', '净利润', '营业收入', '营业收入', '平均资产总额', '营业收入', '全部成本', '投资收益', '所得税', '其他', '营业成本', '销售费用', '管理费用', '财务费用']
         list_report_time = list()
@@ -201,7 +200,8 @@ def get_txt_dbfx(url, downloadpath, f_run_log, f_error, my_proxies):
         # print(list_report_time)
         # 抓取每个报告期的数据
         for (each_time, each_url) in zip(list_report_time, list_report_url):
-            url_dbfx = url +"?date=" + str(each_url)
+            f = open(downloadpath, 'a+') #将文件打开为追加模式
+            url_dbfx = url +"?date=" + str(each_url) # 每个报告期的链接
             data_each_report = requests.get(url_dbfx, headers=my_headers, proxies=my_proxies, stream=True)
             html_data_each_report = pq(data_each_report.text)
             items_each_report = html_data_each_report('.dbbg02').items()
@@ -212,9 +212,10 @@ def get_txt_dbfx(url, downloadpath, f_run_log, f_error, my_proxies):
                 # print
             f.write("\n")
             # print('\n')
-        f.close()
+            f.close()
+            time.sleep(0.5)
         f_run_log.write(url + "\t爬取成功" + '\n')
         print(url + "\t爬取成功")
-    time.sleep(1)
-    print("休眠了：1秒")
-    f_run_log.write("休眠了：1秒" + '\n')
+    # time.sleep(1)
+    # print("休眠了：1秒")
+    # f_run_log.write("休眠了：1秒" + '\n')
