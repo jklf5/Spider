@@ -34,7 +34,7 @@ def is_file_exists(downloadpath):
     判断文件是否存在，如果存在，删除；不存在，就创建
     '''
     p = Path(downloadpath)
-    print(p.exists())
+    # print(p.exists())
     # 如果存在，则删除之
     if p.exists():
         p.unlink()
