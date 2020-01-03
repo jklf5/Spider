@@ -6,12 +6,25 @@ import sys
 import random
 from pyquery import PyQuery as pq
 from pathlib import Path
+import threading
 
 my_headers={
     "Host": "quotes.money.163.com",
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36",
     "Connection": "keep-alive",
 }
+
+class my_thread(threading.Thread):
+    def __init__(self, url, each_time, each_url, downloadpath, list_event_name, my_proxies):
+        super(my_thread, self).__init__ ()
+        self.url = url
+        self.each_time = each_time
+        self.each_url = each_url
+        self.downloadpath = downloadpath
+        self.list_event_name = list_event_name
+        self.my_proxies = my_proxies
+    def run(self):
+        get_txt_dbfx_my_thread(self.url, self.each_time, self.each_url, self.downloadpath, self.list_event_name, self.my_proxies)
 
 def check_content(data_temp, url, f_run_log, f_error):
     '''
@@ -199,23 +212,37 @@ def get_txt_dbfx(url, downloadpath, f_run_log, f_error, my_proxies):
             list_report_url.append(each.attr('value'))
         # print(list_report_time)
         # 抓取每个报告期的数据
+        thread_assemble = [] # 线程集合
+        # 创建线程
         for (each_time, each_url) in zip(list_report_time, list_report_url):
-            f = open(downloadpath, 'a+') #将文件打开为追加模式
-            url_dbfx = url +"?date=" + str(each_url) # 每个报告期的链接
-            data_each_report = requests.get(url_dbfx, headers=my_headers, proxies=my_proxies, stream=True)
-            html_data_each_report = pq(data_each_report.text)
-            items_each_report = html_data_each_report('.dbbg02').items()
-            f.write(each_time + '\t' + url_dbfx + "\n") #存每个报告期的具体时间
-            # print(each_time + ":")
-            for (each_figure, count) in zip(items_each_report, range(len(list_event_name))):
-                f.write(list_event_name[count] + ":" + each_figure.text() + "\t")
-                # print
-            f.write("\n")
-            # print('\n')
-            f.close()
-            time.sleep(0.5)
+            t = my_thread(url, each_time, each_url, downloadpath, list_event_name, my_proxies)
+            t.start()
+            thread_assemble.append(t)
+        # 运行线程
+        for thread in thread_assemble:
+            thread.join()
         f_run_log.write(url + "\t爬取成功" + '\n')
         print(url + "\t爬取成功")
     # time.sleep(1)
     # print("休眠了：1秒")
     # f_run_log.write("休眠了：1秒" + '\n')
+
+def get_txt_dbfx_my_thread(url, each_time, each_url, downloadpath, list_event_name, my_proxies):
+    '''
+    用线程爬取
+    '''
+    f = open(downloadpath, 'a+') #将文件打开为追加模式
+    url_dbfx = url +"?date=" + str(each_url) # 每个报告期的链接
+    data_each_report = requests.get(url_dbfx, headers=my_headers, proxies=my_proxies, stream=True)
+    html_data_each_report = pq(data_each_report.text)
+    items_each_report = html_data_each_report('.dbbg02').items()
+    f.write(each_time + '\t' + url_dbfx + "\n") #存每个报告期的具体时间
+    # print(each_time + ":")
+    for (each_figure, count) in zip(items_each_report, range(len(list_event_name))):
+        f.write(list_event_name[count] + ":" + each_figure.text() + "\t")
+        # print
+    f.write("\n")
+    # print('\n')
+    f.close()
+    print(each_time)
+    time.sleep(0.2)
