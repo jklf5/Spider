@@ -60,16 +60,12 @@ if __name__ == '__main__':
     for stock_index in range(20):
         # for stock_index in range(len(stock_num_list)):
         # 1-------------------------------------------------------------------
-        # # 每爬取10个休息10秒，每爬取50个休息60秒，每爬取100个休息120秒，每爬取1000个休息160秒
-        # if stock_index is not 0:
-        #     if stock_index % 1000 == 0:
-        #         time.sleep(160)
-        #     elif stock_index % 100 == 0:
-        #         time.sleep(120)
-        #     elif stock_index % 50 == 0:
-        #         time.sleep(60)
-        #     elif stock_index % 10 == 0:
-        #         time.sleep(10)
+        # 每爬取100个休息10秒
+        if stock_index is not 0:
+            if stock_index % 100 == 0:
+                time.sleep(10)
+                print("爬满了100个，休眠了：10秒")
+                f_run_log.write("爬满了100个，休眠了：10秒" + '\n')
         ##
 
         display_word = "----------第" + \
