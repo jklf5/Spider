@@ -1,4 +1,4 @@
-#coding=utf-8
+# coding=utf-8
 import requests
 from pyquery import PyQuery as pq
 
@@ -19,7 +19,8 @@ for each in item1:
     list_1_1.append(each.text())
 for row in range(6):
     for column in range(7):
-        item2 = html_data('.node.node-row-'+ str(row+1) + '-' + str(column+1) + ' p:last-child').items()
+        item2 = html_data('.node.node-row-' + str(row+1) +
+                          '-' + str(column+1) + ' p:last-child').items()
         # if(item2)
         for each in item2:
             if each.text() == None:
@@ -32,8 +33,8 @@ for row in range(6):
 # print(list_all)
 
 list_event_name = ['净资产收益率', '归属母公司股东的销售净利率', '资产周转率(次)', '权益乘数', '销售净利率', '归属母公司股东的净利润占比',
-'营业总收入', '平均总资产', '平均总资产', '平均归属母公司股东的利益', '经营利润率', '考虑税负因素', '考虑利息负担', '归属母公司股东净利润',
-'净利润', '期末总资产', '期末归属母公司股东的利益', 'EBIT', '净利润', '利润总额', '期初总资产', '期初归属母公司股东的利益', '营业总收入', '利润总额', 'EBIT']
+                   '营业总收入', '平均总资产', '平均总资产', '平均归属母公司股东的利益', '经营利润率', '考虑税负因素', '考虑利息负担', '归属母公司股东净利润',
+                   '净利润', '期末总资产', '期末归属母公司股东的利益', 'EBIT', '净利润', '利润总额', '期初总资产', '期初归属母公司股东的利益', '营业总收入', '利润总额', 'EBIT']
 
 f = open("j://test.txt", 'a+')
 f.write(url + '\n')
@@ -48,6 +49,7 @@ for each in range(len(list_report_time)):
         存放的list_all列表是按照名称来存放，也就是存放了24种名称的数据。每种名称的数据共len(list_report_time)个
         所以得到求每个报告期（each），每一种名称（i）的数据公式为：i*length+each
         '''
-        f.write(list_event_name[i+1] + ":" + list_all[i*report_time_length+each] + " ")
+        f.write(list_event_name[i+1] + ":" +
+                list_all[i*report_time_length+each] + " ")
     f.write('\n')
 f.close()
