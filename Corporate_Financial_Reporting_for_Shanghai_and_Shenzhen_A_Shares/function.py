@@ -9,8 +9,15 @@ from pathlib import Path
 import requests
 from pyquery import PyQuery as pq
 
+# 爬取其他页面（网易财经）所需headers
 my_headers = {
     "Host": "quotes.money.163.com",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36",
+    "Connection": "keep-alive",
+}
+# 爬取杜邦分析页面（新浪财经）所需headers
+my_headers_dbfx = {
+    "Host": "vip.stock.finance.sina.com.cn",
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36",
     "Connection": "keep-alive",
 }
@@ -166,7 +173,7 @@ def get_txt_dbfx(url, downloadpath, f_run_log, f_error, my_proxies):
     list_all：除净资产收益率以外的其他所有数据列表
     '''
     # url = "http://quotes.money.163.com/f10/dbfx_600519.html"
-    data_temp = requests.get(url, headers=my_headers,
+    data_temp = requests.get(url, headers=my_headers_dbfx,
                              proxies=my_proxies, stream=True)
     # # 检测是否被反爬，如果被反爬，记录被反爬的地址并且休眠10秒
     if check_content(data_temp, url, f_run_log, f_error) is False:

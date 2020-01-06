@@ -156,12 +156,15 @@ if __name__ == '__main__':
         yynl_url = "http://quotes.money.163.com/service/zycwzb_" + \
             stock_num_list[stock_index] + ".html?type=report&part=yynl"
 
-        # 爬取数据同时检查有没有被反爬
+        # 爬取数据同时检查有没有被反爬(对于网易财经爬取五个休息1秒)
         fun.get_file(zcfzb_url, zcfzb_path, f_run_log, f_error, my_proxies)
         fun.get_file(lrb_url, lrb_path, f_run_log, f_error, my_proxies)
         fun.get_file(xjllb_url, xjllb_path, f_run_log, f_error, my_proxies)
         fun.get_file(cwbbzy_url, cwbbzy_path, f_run_log, f_error, my_proxies)
         fun.get_txt_yjyg(yjyg_url, yjyg_path, f_run_log, f_error, my_proxies)
+        time.sleep(1)
+        print("休眠了：1秒")
+        f_run_log.write("休眠了：1秒" + '\n')
         fun.get_file(zycwzb_url, zycwzb_path, f_run_log, f_error, my_proxies)
         fun.get_file(ylnl_url, ylnl_path, f_run_log, f_error, my_proxies)
         fun.get_file(chnl_url, chnl_path, f_run_log, f_error, my_proxies)
