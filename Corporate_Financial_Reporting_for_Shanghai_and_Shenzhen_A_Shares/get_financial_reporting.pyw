@@ -98,37 +98,37 @@ if __name__ == '__main__':
         cznl：成长能力
         yynl：营运能力
         '''
-        zcfzb_path = path_reporting + '/zcfzb/' + \
+        zcfzb_path = path_reporting + '/zcfzb/' + str(stock_index) + '_' + \
             stock_num_list[stock_index] + '_' + \
             stock_name_list[stock_index] + '_zcfzb.csv'
-        lrb_path = path_reporting + '/lrb/' + \
+        lrb_path = path_reporting + '/lrb/' + str(stock_index) + '_' + \
             stock_num_list[stock_index] + '_' + \
             stock_name_list[stock_index] + '_lrb.csv'
-        xjllb_path = path_reporting + '/xjllb/' + \
+        xjllb_path = path_reporting + '/xjllb/' + str(stock_index) + '_' + \
             stock_num_list[stock_index] + '_' + \
             stock_name_list[stock_index] + '_xjllb.csv'
-        cwbbzy_path = path_reporting + '/cwbbzy/' + \
+        cwbbzy_path = path_reporting + '/cwbbzy/' + str(stock_index) + '_' + \
             stock_num_list[stock_index] + '_' + \
             stock_name_list[stock_index] + '_cwbbzy.csv'
-        yjyg_path = path_reporting + '/yjyg/' + \
+        yjyg_path = path_reporting + '/yjyg/' + str(stock_index) + '_' + \
             stock_num_list[stock_index] + '_' + \
             stock_name_list[stock_index] + '_yjyg.txt'
-        dbfx_path = path_reporting + '/dbfx/' + \
+        dbfx_path = path_reporting + '/dbfx/' + str(stock_index) + '_' + \
             stock_num_list[stock_index] + '_' + \
             stock_name_list[stock_index] + '_dbfx.txt'
-        zycwzb_path = path_reporting + '/zycwzb/zycwzb/' + \
+        zycwzb_path = path_reporting + '/zycwzb/zycwzb/' + str(stock_index) + '_' + \
             stock_num_list[stock_index] + '_' + \
             stock_name_list[stock_index] + '_zycwzb.csv'
-        ylnl_path = path_reporting + '/zycwzb/ylnl/' + \
+        ylnl_path = path_reporting + '/zycwzb/ylnl/' + str(stock_index) + '_' + \
             stock_num_list[stock_index] + '_' + \
             stock_name_list[stock_index] + '_ylnl.csv'
-        chnl_path = path_reporting + '/zycwzb/chnl/' + \
+        chnl_path = path_reporting + '/zycwzb/chnl/' + str(stock_index) + '_' + \
             stock_num_list[stock_index] + '_' + \
             stock_name_list[stock_index] + '_chnl.csv'
-        cznl_path = path_reporting + '/zycwzb/cznl/' + \
+        cznl_path = path_reporting + '/zycwzb/cznl/' + str(stock_index) + '_' + \
             stock_num_list[stock_index] + '_' + \
             stock_name_list[stock_index] + '_cznl.csv'
-        yynl_path = path_reporting + '/zycwzb/yynl/' + \
+        yynl_path = path_reporting + '/zycwzb/yynl/' + str(stock_index) + '_' + \
             stock_num_list[stock_index] + '_' + \
             stock_name_list[stock_index] + '_yynl.csv'
 
