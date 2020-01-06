@@ -180,8 +180,8 @@ def get_txt_dbfx(url, downloadpath, f_run_log, f_error, my_proxies):
         list_report_time = []
         list_1_1 = []
         list_all = []
-        # 网页按gb2312编码，但是python3中只有bytes才能用decode，所以用content获取bytes类型
-        html_data = pq(data_temp.content.decode('gb2312'))
+        # 网页按gb2312编码，但是python3中只有bytes才能用decode，所以用content获取bytes类型，gb2312不能满足所有要求，改用国际扩展码gbk
+        html_data = pq(data_temp.content.decode('gbk'))
         # 获取每个报告期时间
         item = html_data('.datelist a').items()
         for each in item:

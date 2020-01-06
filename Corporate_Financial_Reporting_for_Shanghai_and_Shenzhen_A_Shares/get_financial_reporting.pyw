@@ -162,12 +162,12 @@ if __name__ == '__main__':
         fun.get_file(xjllb_url, xjllb_path, f_run_log, f_error, my_proxies)
         fun.get_file(cwbbzy_url, cwbbzy_path, f_run_log, f_error, my_proxies)
         fun.get_txt_yjyg(yjyg_url, yjyg_path, f_run_log, f_error, my_proxies)
-        fun.get_txt_dbfx(dbfx_url, dbfx_path, f_run_log, f_error, my_proxies)
         fun.get_file(zycwzb_url, zycwzb_path, f_run_log, f_error, my_proxies)
         fun.get_file(ylnl_url, ylnl_path, f_run_log, f_error, my_proxies)
         fun.get_file(chnl_url, chnl_path, f_run_log, f_error, my_proxies)
         fun.get_file(cznl_url, cznl_path, f_run_log, f_error, my_proxies)
         fun.get_file(yynl_url, yynl_path, f_run_log, f_error, my_proxies)
+        fun.get_txt_dbfx(dbfx_url, dbfx_path, f_run_log, f_error, my_proxies)
 
         # 提示信息,爬取完成只代表这个股票爬完了，但是可能存在被反爬的情况，反爬的链接存入run_error_report文件中
         f_run_log.write(display_word + "结束爬取----------" + '\n')
