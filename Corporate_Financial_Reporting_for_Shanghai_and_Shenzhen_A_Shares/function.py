@@ -22,6 +22,12 @@ my_headers_dbfx = {
     "Connection": "keep-alive",
 }
 
+work_cwd = os.path.abspath('..')
+path_reporting = work_cwd + \
+    r'/Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares/Financial_reporting'
+path_stock_info = work_cwd + \
+    r'/Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares/Stock_info'
+
 
 def check_content(data_temp, url, f_run_log, f_error):
     '''
@@ -51,6 +57,53 @@ def is_file_exists(downloadpath):
     # 如果不存在，就创建
     else:
         p.touch()
+
+
+def is_first_run(f_run_log):
+    '''
+    判断是否第一次运行
+    '''
+    if not os.listdir(path_reporting + '/lrb') and not os.listdir(path_reporting + '/xjllb'):
+        print("是第一次运行")
+        f_run_log.write("是第一次运行" + '\n')
+        p1 = Path(path_stock_info + '/stock_info_unfinished.txt')
+        if p1.exists():
+            p1.unlink()
+            p1.touch()
+        else:
+            p1.touch()
+        p2 = Path(path_stock_info + '/stock_info_finished.txt')
+        if p2.exists():
+            p2.unlink()
+            p2.touch()
+        else:
+            p2.touch()
+
+
+def get_file_content(file_name):
+    '''
+    获取未完成爬取文件的文件内容，分成股票编号和股票名称两个列表返回
+    '''
+    stock_num_list = list()
+    stock_name_list = list()
+    stock_info_list = list()
+    f_stock_info = open(
+        path_stock_info + '/' + file_name + '.txt', 'r')  # 打开一个文件，用于只读
+    stock_info_list = f_stock_info.readlines()
+    f_stock_info.close()
+    # stock_info = ['000631:顺发恒业\n', '600485:*ST信威\n', '002259:*ST升达\n'] #测试用
+    for item in stock_info_list:
+        # print(item)
+        item = item[:-1]  # 切去最后的\n
+        num = item[:6]  # 分割成编号
+        name = item[7:]  # 分割成名称
+        # 股票名称中存在'*'，将*替换为^，否则在创建文件时候会出错
+        flag = name.find('*')
+        if flag is not -1:
+            name = name.replace('*', '^')
+        stock_num_list.append(num)
+        stock_name_list.append(name)
+    return stock_info_list, stock_num_list, stock_name_list
 
 # 2-------------------------------------------------------------------
 # 设置代理服务器（阿布云HTTP隧道专业版）

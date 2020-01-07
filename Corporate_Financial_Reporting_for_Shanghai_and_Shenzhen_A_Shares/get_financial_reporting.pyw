@@ -8,20 +8,25 @@ from pyquery import PyQuery as pq
 
 import function as fun
 
+'''
+用此方法获取当运行在Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares文件夹下时的工作路径
+'''
+work_cwd = os.path.abspath('..')
+'''
+用此方法获取当运行在Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares上一层文件夹下时的工作路径
+'''
+# work_cwd = os.getcwd()
+# print(work_cwd)
+path_reporting = work_cwd + \
+    r'/Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares/Financial_reporting'
+path_stock_info = work_cwd + \
+    r'/Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares/Stock_info'
+
 if __name__ == '__main__':
-    '''
-    用此方法获取当运行在Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares文件夹下时的工作路径
-    '''
-    work_cwd = os.path.abspath('..')
-    '''
-    用此方法获取当运行在Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares上一层文件夹下时的工作路径
-    '''
-    # work_cwd = os.getcwd()
-    # print(work_cwd)
-    path_reporting = work_cwd + \
-        r'/Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares/Financial_reporting'
-    path_stock_info = work_cwd + \
-        r'/Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares/Stock_info'
+    stock_info_file_name = 'stock_info'  # 完整版股票信息文件名
+    stock_info_unfinished_file_name = 'stock_info_unfinished'  # 未完成爬取的股票信息文件名
+    stock_info_finished_file_name = 'stock_info_finished'  # 已完成爬取的股票信息文件名
+
     # 记录程序开始运行时间
     time_start = time.time()
     time_temp = time.localtime(time_start)
@@ -35,30 +40,24 @@ if __name__ == '__main__':
                        str(time_start_format) + '.txt')
     f_run_log = open(path_reporting + '/run_log_' +
                      str(time_start_format) + '.txt', 'a+')  # 打开一个文件，用于追加（非二进制打开）
+    fun.is_first_run(f_run_log)  # 判断是否第一次运行
+    # 向run_log文件中写入开始运行时间
     f_run_log.write("开始运行时间：" + str(time_start_format) + '\n')
     print("开始运行时间：" + str(time_start_format) + '\n')
-    # 将股票的编号和名称提取出来存为两个列表
-    stock_num_list = list()
-    stock_name_list = list()
-    f_stock_info = open(
-        path_stock_info + '/stock_info.txt', 'r')  # 打开一个文件，用于只读
-    stock_info = f_stock_info.readlines()
-    f_stock_info.close()
-    # stock_info = ['000631:顺发恒业\n', '600485:*ST信威\n', '002259:*ST升达\n'] #测试用
-    for item in stock_info:
-        # print(item)
-        item = item[:-1]  # 切去最后的\n
-        num = item[:6]  # 分割成编号
-        name = item[7:]  # 分割成名称
-        # 股票名称中存在'*'，将*替换为^，否则在创建文件时候会出错
-        flag = name.find('*')
-        if flag is not -1:
-            name = name.replace('*', '^')
-        stock_num_list.append(num)
-        stock_name_list.append(name)
+    # 获取需要爬取的股票位置
+    stock_info_list, stock_num_list, stock_name_list = fun.get_file_content(
+        stock_info_file_name)
+    stock_info_unfinished_list = fun.get_file_content(
+        stock_info_unfinished_file_name)
+    if len(stock_info_unfinished_list[0]) is not 0:  # 获取未完成爬取股票在完整版股票信息文件中的位置
+        index = stock_info_list.index(stock_info_unfinished_list[0][1])
+    else:
+        index = 1
+    # stock_temp_for_unfinished = stock_info_list[index-1:]
+
     # 开始爬取
-    for stock_index in range(20):
-        # for stock_index in range(len(stock_num_list)):
+    # for stock_index in range(20):
+    for stock_index in range(index-1, len(stock_num_list)):
         # 1-------------------------------------------------------------------
         # 每爬取100个休息10秒
         if stock_index is not 0:
@@ -176,6 +175,21 @@ if __name__ == '__main__':
         f_run_log.write(display_word + "结束爬取----------" + '\n')
         print(display_word + "结束爬取----------")
 
+        # 将未爬取的股票信息写入stock_info_unfinished.txt文件中，并将爬取完成的股票信息写入stock_info_finished.txt文件中
+        stock_temp_for_unfinished = stock_info_list[stock_index + 1:]
+        with open(path_stock_info + '/' + stock_info_unfinished_file_name + '.txt', 'w') as f_unfinished:
+            for each in stock_temp_for_unfinished:
+                f_unfinished.write(each)
+        f_unfinished.close()
+        with open(path_stock_info + '/' + stock_info_finished_file_name + '.txt', 'a+') as f_finished:
+            # f_finished.write(
+            #     stock_num_list[stock_index] + ':' + stock_name_list[stock_index] + '\n')
+            f_finished.write(stock_info_list[stock_index])
+        f_finished.close()
+        print(stock_num_list[stock_index] + ':' +
+              stock_name_list[stock_index] + '已写入stock_info_finished.txt文件中' + '\n')
+        f_run_log.write(stock_num_list[stock_index] + ':' +
+                        stock_name_list[stock_index] + '已写入stock_info_finished.txt文件中' + '\n')
         # 休眠
         # 1-------------------------------------------------------------------
         # random_time = random.randint(3, 10)
