@@ -22,7 +22,7 @@ if __name__ == "__main__":
     time_temp = time.localtime(time_start)
     time_start_format = time.strftime("%Y-%m-%d %H.%M.%S", time_temp)
     run_log_for_rest_file_name = "run_log_for_rest" + '_' + str(time_start_format)
-    run_error_log_for_rest_file_name = "run_error_log_for_rest" + '_' + str(time_start_format)
+    run_error_log_for_rest_file_name = "run_error_log_for_rest"
     # 打开run_error_log文件（存放被反爬的链接），获取链接
     f_rest = open(path_reporting + '/run_error_log.txt', 'r')
     # 打开run_log_for_rest文件
@@ -34,8 +34,9 @@ if __name__ == "__main__":
     print("开始运行时间：" + str(time_start_format) + '\n')
     # 打开run_error_log_for_rest文件
     downloadpath_for_run_error_log = path_reporting + '/' + run_error_log_for_rest_file_name + '.txt' 
-    fun.is_file_exists(downloadpath_for_run_error_log)
+    fun.is_file_exists("run_error_log")
     f_run_error_log_for_rest = open(downloadpath_for_run_error_log, 'a+')
+    f_run_error_log_for_rest.write("开始运行时间：" + str(time_start_format) + '\n')
     # 获取stock_info.txt中的内容
     stock_info_list, stock_num_list, stock_name_list = fun.get_file_content(
         stock_info_file_name)
@@ -43,8 +44,11 @@ if __name__ == "__main__":
     for each in rest_stock_info:
         each = each[:-1] # 切掉最后的'\n'
         each_num = each[-11:-5] # 从字符串中切除股票代码
-        # 以股票代码从stock_info.txt文件中找到对应顺序和对应股票名称
-        index = stock_num_list.index(each_num)
+        # 以股票代码从stock_info.txt文件中找到对应顺序和对应股票名称，如果是时间就跳过
+        if each_num in stock_num_list:
+            index = stock_num_list.index(each_num)
+        else:
+            continue
         each_name = stock_name_list[index]
         # print(each_name)
         # print(each_num)

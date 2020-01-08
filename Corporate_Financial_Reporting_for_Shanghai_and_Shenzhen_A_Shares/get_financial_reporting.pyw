@@ -32,10 +32,11 @@ if __name__ == '__main__':
     time_start = time.time()
     time_temp = time.localtime(time_start)
     time_start_format = time.strftime("%Y-%m-%d %H.%M.%S", time_temp)
-    # 将运行产生的错误全部存入run_error_log.txt中
-    fun.is_file_exists(path_reporting + '/run_error_log_' + str(time_start_format) + '.txt')
-    f_error = open(path_reporting + '/run_error_log_' + str(time_start_format) + '.txt',
+    # 将运行产生的错误全部存入run_error_log.txt中,run_error_log文件名不能加时间创建且如果存在不能删除，否则在断点续爬和最后get_rest的时候会有逻辑错误
+    fun.is_file_exists("run_error_log")
+    f_error = open(path_reporting + '/run_error_log.txt',
                    'a+')  # 打开一个文件，用于追加（非二进制打开）
+    f_error.write("开始运行时间：" + str(time_start_format) + '\n')
     # 将运行产生的信息全部存入run_log.txt中
     fun.is_file_exists(path_reporting + '/run_log_' +
                        str(time_start_format) + '.txt')
