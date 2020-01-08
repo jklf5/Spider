@@ -17,10 +17,11 @@ work_cwd = os.path.abspath('..')
 '''
 # work_cwd = os.getcwd()
 # print(work_cwd)
+work_folder = 'Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares'
 path_reporting = work_cwd + \
-    r'/Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares/Financial_reporting'
+    r'/' + work_folder + '/Financial_reporting'
 path_stock_info = work_cwd + \
-    r'/Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares/Stock_info'
+    r'/' + work_folder + '/Stock_info'
 
 if __name__ == '__main__':
     stock_info_file_name = 'stock_info'  # 完整版股票信息文件名
@@ -32,8 +33,8 @@ if __name__ == '__main__':
     time_temp = time.localtime(time_start)
     time_start_format = time.strftime("%Y-%m-%d %H.%M.%S", time_temp)
     # 将运行产生的错误全部存入run_error_log.txt中
-    fun.is_file_exists(path_reporting + '/run_error_log.txt')
-    f_error = open(path_reporting + '/run_error_log.txt',
+    fun.is_file_exists(path_reporting + '/run_error_log_' + str(time_start_format) + '.txt')
+    f_error = open(path_reporting + '/run_error_log_' + str(time_start_format) + '.txt',
                    'a+')  # 打开一个文件，用于追加（非二进制打开）
     # 将运行产生的信息全部存入run_log.txt中
     fun.is_file_exists(path_reporting + '/run_log_' +
@@ -97,63 +98,10 @@ if __name__ == '__main__':
         cznl：成长能力
         yynl：营运能力
         '''
-        zcfzb_path = path_reporting + '/zcfzb/' + str(stock_index) + '_' + \
-            stock_num_list[stock_index] + '_' + \
-            stock_name_list[stock_index] + '_zcfzb.csv'
-        lrb_path = path_reporting + '/lrb/' + str(stock_index) + '_' + \
-            stock_num_list[stock_index] + '_' + \
-            stock_name_list[stock_index] + '_lrb.csv'
-        xjllb_path = path_reporting + '/xjllb/' + str(stock_index) + '_' + \
-            stock_num_list[stock_index] + '_' + \
-            stock_name_list[stock_index] + '_xjllb.csv'
-        cwbbzy_path = path_reporting + '/cwbbzy/' + str(stock_index) + '_' + \
-            stock_num_list[stock_index] + '_' + \
-            stock_name_list[stock_index] + '_cwbbzy.csv'
-        yjyg_path = path_reporting + '/yjyg/' + str(stock_index) + '_' + \
-            stock_num_list[stock_index] + '_' + \
-            stock_name_list[stock_index] + '_yjyg.txt'
-        dbfx_path = path_reporting + '/dbfx/' + str(stock_index) + '_' + \
-            stock_num_list[stock_index] + '_' + \
-            stock_name_list[stock_index] + '_dbfx.txt'
-        zycwzb_path = path_reporting + '/zycwzb/zycwzb/' + str(stock_index) + '_' + \
-            stock_num_list[stock_index] + '_' + \
-            stock_name_list[stock_index] + '_zycwzb.csv'
-        ylnl_path = path_reporting + '/zycwzb/ylnl/' + str(stock_index) + '_' + \
-            stock_num_list[stock_index] + '_' + \
-            stock_name_list[stock_index] + '_ylnl.csv'
-        chnl_path = path_reporting + '/zycwzb/chnl/' + str(stock_index) + '_' + \
-            stock_num_list[stock_index] + '_' + \
-            stock_name_list[stock_index] + '_chnl.csv'
-        cznl_path = path_reporting + '/zycwzb/cznl/' + str(stock_index) + '_' + \
-            stock_num_list[stock_index] + '_' + \
-            stock_name_list[stock_index] + '_cznl.csv'
-        yynl_path = path_reporting + '/zycwzb/yynl/' + str(stock_index) + '_' + \
-            stock_num_list[stock_index] + '_' + \
-            stock_name_list[stock_index] + '_yynl.csv'
+        zcfzb_path, lrb_path, xjllb_path, cwbbzy_path, yjyg_path, dbfx_path, zycwzb_path, ylnl_path, chnl_path, cznl_path, yynl_path = fun.get_file_downloadpath(stock_index)
 
         # 文件下载的网址(都是按报告期下载)，网址规则：http://quotes.money.163.com/service/+报告类型+股票代码+.html
-        zcfzb_url = "http://quotes.money.163.com/service/zcfzb_" + \
-            stock_num_list[stock_index] + ".html"
-        lrb_url = "http://quotes.money.163.com/service/lrb_" + \
-            stock_num_list[stock_index] + ".html"
-        xjllb_url = "http://quotes.money.163.com/service/xjllb_" + \
-            stock_num_list[stock_index] + ".html"
-        cwbbzy_url = "http://quotes.money.163.com/service/cwbbzy_" + \
-            stock_num_list[stock_index] + ".html"
-        yjyg_url = "http://quotes.money.163.com/f10/yjyg_" + \
-            stock_num_list[stock_index] + ".html"
-        dbfx_url = "http://vip.stock.finance.sina.com.cn/corp/go.php/vFD_DupontAnalysis/stockid/" + \
-            stock_num_list[stock_index] + ".html"
-        zycwzb_url = "http://quotes.money.163.com/service/zycwzb_" + \
-            stock_num_list[stock_index] + ".html?type=report"
-        ylnl_url = "http://quotes.money.163.com/service/zycwzb_" + \
-            stock_num_list[stock_index] + ".html?type=report&part=ylnl"
-        chnl_url = "http://quotes.money.163.com/service/zycwzb_" + \
-            stock_num_list[stock_index] + ".html?type=report&part=chnl"
-        cznl_url = "http://quotes.money.163.com/service/zycwzb_" + \
-            stock_num_list[stock_index] + ".html?type=report&part=cznl"
-        yynl_url = "http://quotes.money.163.com/service/zycwzb_" + \
-            stock_num_list[stock_index] + ".html?type=report&part=yynl"
+        zcfzb_url, lrb_url, xjllb_url, cwbbzy_url, yjyg_url, dbfx_url, zycwzb_url, ylnl_url, chnl_url, cznl_url, yynl_url = fun.get_download_url(stock_index)
 
         # 爬取数据同时检查有没有被反爬(对于网易财经爬取五个休息1秒)
         fun.get_file(zcfzb_url, zcfzb_path, f_run_log, f_error, my_proxies)
@@ -171,7 +119,7 @@ if __name__ == '__main__':
         fun.get_file(yynl_url, yynl_path, f_run_log, f_error, my_proxies)
         fun.get_txt_dbfx(dbfx_url, dbfx_path, f_run_log, f_error, my_proxies)
 
-        # 提示信息,爬取完成只代表这个股票爬完了，但是可能存在被反爬的情况，反爬的链接存入run_error_report文件中
+        # 提示信息,爬取完成只代表这个股票爬完了，但是可能存在被反爬的情况，反爬的链接存入run_error_report文件中，也可能存在“暂无数据”的情况
         f_run_log.write(display_word + "结束爬取----------" + '\n')
         print(display_word + "结束爬取----------")
 

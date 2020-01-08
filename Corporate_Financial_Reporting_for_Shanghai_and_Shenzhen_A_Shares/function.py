@@ -11,6 +11,7 @@ from pyquery import PyQuery as pq
 
 # 爬取其他页面（网易财经）所需headers
 my_headers = {
+    # "Host": "flights.ctrip.com",
     "Host": "quotes.money.163.com",
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36",
     "Connection": "keep-alive",
@@ -23,21 +24,28 @@ my_headers_dbfx = {
 }
 
 work_cwd = os.path.abspath('..')
+work_folder = 'Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares'
 path_reporting = work_cwd + \
-    r'/Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares/Financial_reporting'
+    r'/' + work_folder + '/Financial_reporting'
 path_stock_info = work_cwd + \
-    r'/Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares/Stock_info'
-
+    r'/' + work_folder + '/Stock_info'
+stock_info_file_name = 'stock_info'  # 完整版股票信息文件名
 
 def check_content(data_temp, url, f_run_log, f_error):
     '''
-    检查有没有被反爬
+    检查有没有被反爬或者是暂无数据的情况
     '''
+    is_objected_flag = data_temp.text.find("Forbidden")
+    is_none_flag = data_temp.text.find("暂无数据")
+    # 检查是否为暂无数据的情况
+    if is_none_flag is not -1:
+        f_run_log.write(url + "\t暂无数据" + '\n')
+        print(url + "\t暂无数据" + '\n')
+        return True
     # 检测是否被反爬，如果被反爬，记录被反爬的地址并且休眠10秒
     # .text返回的是str类型，.content返回的是bytes类型
-    isflag = data_temp.text.find("Forbidden")
     # 被反爬了，存错误链接
-    if isflag is not -1 or len(data_temp.text) < 200:
+    elif is_objected_flag is not -1 or len(data_temp.text) < 600:
         f_error.write(url + '\n')
         f_run_log.write(url + "\t被反爬" + '\n')
         return False
@@ -105,6 +113,70 @@ def get_file_content(file_name):
         stock_name_list.append(name)
     return stock_info_list, stock_num_list, stock_name_list
 
+stock_info_list, stock_num_list, stock_name_list = get_file_content(
+        stock_info_file_name)
+
+def get_file_downloadpath(stock_index):
+    zcfzb_path = path_reporting + '/zcfzb/' + str(stock_index) + '_' + \
+            stock_num_list[stock_index] + '_' + \
+            stock_name_list[stock_index] + '_zcfzb.csv'
+    lrb_path = path_reporting + '/lrb/' + str(stock_index) + '_' + \
+            stock_num_list[stock_index] + '_' + \
+            stock_name_list[stock_index] + '_lrb.csv'
+    xjllb_path = path_reporting + '/xjllb/' + str(stock_index) + '_' + \
+            stock_num_list[stock_index] + '_' + \
+            stock_name_list[stock_index] + '_xjllb.csv'
+    cwbbzy_path = path_reporting + '/cwbbzy/' + str(stock_index) + '_' + \
+            stock_num_list[stock_index] + '_' + \
+            stock_name_list[stock_index] + '_cwbbzy.csv'
+    yjyg_path = path_reporting + '/yjyg/' + str(stock_index) + '_' + \
+            stock_num_list[stock_index] + '_' + \
+            stock_name_list[stock_index] + '_yjyg.txt'
+    dbfx_path = path_reporting + '/dbfx/' + str(stock_index) + '_' + \
+            stock_num_list[stock_index] + '_' + \
+            stock_name_list[stock_index] + '_dbfx.txt'
+    zycwzb_path = path_reporting + '/zycwzb/zycwzb/' + str(stock_index) + '_' + \
+            stock_num_list[stock_index] + '_' + \
+            stock_name_list[stock_index] + '_zycwzb.csv'
+    ylnl_path = path_reporting + '/zycwzb/ylnl/' + str(stock_index) + '_' + \
+            stock_num_list[stock_index] + '_' + \
+            stock_name_list[stock_index] + '_ylnl.csv'
+    chnl_path = path_reporting + '/zycwzb/chnl/' + str(stock_index) + '_' + \
+            stock_num_list[stock_index] + '_' + \
+            stock_name_list[stock_index] + '_chnl.csv'
+    cznl_path = path_reporting + '/zycwzb/cznl/' + str(stock_index) + '_' + \
+            stock_num_list[stock_index] + '_' + \
+            stock_name_list[stock_index] + '_cznl.csv'
+    yynl_path = path_reporting + '/zycwzb/yynl/' + str(stock_index) + '_' + \
+            stock_num_list[stock_index] + '_' + \
+            stock_name_list[stock_index] + '_yynl.csv'
+    return zcfzb_path, lrb_path, xjllb_path, cwbbzy_path, yjyg_path, dbfx_path, zycwzb_path, ylnl_path, chnl_path, cznl_path, yynl_path
+
+def get_download_url(stock_index):
+    zcfzb_url = "http://quotes.money.163.com/service/zcfzb_" + \
+            stock_num_list[stock_index] + ".html"
+    lrb_url = "http://quotes.money.163.com/service/lrb_" + \
+            stock_num_list[stock_index] + ".html"
+    xjllb_url = "http://quotes.money.163.com/service/xjllb_" + \
+            stock_num_list[stock_index] + ".html"
+    cwbbzy_url = "http://quotes.money.163.com/service/cwbbzy_" + \
+            stock_num_list[stock_index] + ".html"
+    yjyg_url = "http://quotes.money.163.com/f10/yjyg_" + \
+            stock_num_list[stock_index] + ".html"
+    dbfx_url = "http://vip.stock.finance.sina.com.cn/corp/go.php/vFD_DupontAnalysis/stockid/" + \
+            stock_num_list[stock_index] + ".html"
+    zycwzb_url = "http://quotes.money.163.com/service/zycwzb_" + \
+            stock_num_list[stock_index] + ".html?type=report"
+    ylnl_url = "http://quotes.money.163.com/service/zycwzb_" + \
+            stock_num_list[stock_index] + ".html?type=report&part=ylnl"
+    chnl_url = "http://quotes.money.163.com/service/zycwzb_" + \
+            stock_num_list[stock_index] + ".html?type=report&part=chnl"
+    cznl_url = "http://quotes.money.163.com/service/zycwzb_" + \
+            stock_num_list[stock_index] + ".html?type=report&part=cznl"
+    yynl_url = "http://quotes.money.163.com/service/zycwzb_" + \
+            stock_num_list[stock_index] + ".html?type=report&part=yynl"
+    return zcfzb_url, lrb_url, xjllb_url, cwbbzy_url, yjyg_url, dbfx_url, zycwzb_url, ylnl_url, chnl_url, cznl_url, yynl_url
+
 # 2-------------------------------------------------------------------
 # 设置代理服务器（阿布云HTTP隧道专业版）
 
@@ -132,7 +204,7 @@ def get_proxies():
 ##
 
 
-def get_file(url, downloadpath, f_run_log, f_error, my_proxies):
+def get_file(url, downloadpath, f_run_log, f_error, my_proxies=None):
     '''
     获取文件(zcfzb：资产负债表，lrb：利润表，xjllb：现金流量表，cwbbzy：财务报表摘要，zycwzb：主要财务数据)
     url：用于存放需爬取或下载文件的链接
@@ -169,7 +241,7 @@ def get_file(url, downloadpath, f_run_log, f_error, my_proxies):
     ##
 
 
-def get_txt_yjyg(url, downloadpath, f_run_log, f_error, my_proxies):
+def get_txt_yjyg(url, downloadpath, f_run_log, f_error, my_proxies=None):
     # pyquery使用方法：https://blog.csdn.net/qq_36025814/article/details/90041179， https://www.cnblogs.com/lei0213/p/7676254.html
     '''
     获取需页面解析的文件(yjyg：业绩预告)
@@ -210,7 +282,7 @@ def get_txt_yjyg(url, downloadpath, f_run_log, f_error, my_proxies):
     # f_run_log.write("休眠了：1秒" + '\n')
 
 
-def get_txt_dbfx(url, downloadpath, f_run_log, f_error, my_proxies):
+def get_txt_dbfx(url, downloadpath, f_run_log, f_error, my_proxies=None):
     # pyquery使用方法：https://blog.csdn.net/qq_36025814/article/details/90041179， https://www.cnblogs.com/lei0213/p/7676254.html
     '''
     获取需页面解析的文件(dbfx：杜邦分析)，只抓取数据（因为格式和标题都一样）
