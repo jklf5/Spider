@@ -28,6 +28,7 @@
 | 09       | 在传智播客上学习Scrapy爬虫时的听课案例               | [链接][9]  | 是       |
 | 10       | 从游侠网上获取某个游戏的下载链接（练习Xpath的应用）  | [链接][10] | 是       |
 | 11       | 从阳光电影网站获取电影信息并写入数据库供网站使用     | [链接][11] | 是       |
+| 12       | 获取浙江烟草公司指定时期内公告（部分为隐藏公告）     | [链接][12] | 是       |
 
 [1]:https://github.com/jklf5/Spider/tree/master/Corporate_Financial_Reporting_for_Shanghai_and_Shenzhen_A_Shares "获取A股所有上市公司财报"
 [2]:https://github.com/jklf5/Spider/tree/master/csdnSpider_Normal "获取CSDN首页新闻"
@@ -40,3 +41,4 @@
 [9]:https://github.com/jklf5/Spider/tree/master/itcastSpider_Scrapy "在传智播客上学习Scrapy爬虫时的听课案例"
 [10]:https://github.com/jklf5/Spider/tree/master/xpathForNormal "从游侠网上获取某个游戏的下载链接（练习Xpath的应用）"
 [11]:https://github.com/jklf5/Spider/tree/master/ygdy8Spider_Normal "从阳光电影网站获取电影信息并写入数据库供网站使用"
+[12]:https://github.com/jklf5/Spider/tree/master/getzjtobaccoSpecifiedNews "获取浙江烟草公司指定时期内公告（部分为隐藏公告）"
