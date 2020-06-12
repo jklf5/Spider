@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+  <head>
+    <title>402 Payment Required</title>
+  </head>
+  <body>
+    <h1>402 Payment Required</h1>
+    <p>Oops, the proxy tunnel seems to be expired, please charge it at the dashboard.</p>
+    <hr />
+    <address><a href="https://www.abuyun.com/">abuyun</a></address>
+  </body>
+</html>
